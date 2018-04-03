@@ -5,7 +5,9 @@
     "pages/order/order",
     "pages/setting/setting",
     "pages/ticket/ticket",
-    "pages/paySuccess/paySuccess"
+    "pages/paySuccess/paySuccess",
+    "pages/orderDetail/orderDetail",
+    "pages/plan/plan"
   ],
   "window":{
     "backgroundTextStyle":"light",
