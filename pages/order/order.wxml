@@ -10,7 +10,7 @@
       </view>
     </view>
     <view class='userInfo_phoneNumber'>
-      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>请点击获取手机号</button>
+      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>{{showPhoneNubmer}}</button>
     </view>
   </view>
   <view class='box_commodity'>
@@ -27,9 +27,9 @@
     <view class='ticket_title'> 
       优惠券
     </view>
-    <view class='ticket_name'>
-      请选择优惠券  >
-      <!-- <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/more.png"></image> -->
+    <view class='ticket_name' bindtap='selectTicket'>
+      请选择优惠券 
+      <image src="https://www.ecartoon.com.cn/picture/More@2x.png"></image>
     </view>
   </view>
   <view class='box_payType'>

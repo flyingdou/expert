@@ -1,3 +1,4 @@
+
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
     userInfo: {},
     productDetail: {},
     price: 0,
-    phoneNumber: 0
+    phoneNumber: 0,
+    showPhoneNubmer: '请点击获取手机号'
   },
 
   /**
@@ -84,35 +86,46 @@ Page({
   /**
    * 用户点击获取手机号
    */
-  getPhoneNumber: function (e) {
+  getPhoneNumber: function(e) {
+    wx.showLoading({
+      mask: 'true'
+    })
     var obj = this;
+    e.session_key = wx.getStorageSync("session_key");
     wx.request({
-      url: '',
+      url: 'https://www.ecartoon.com.cn/expertex!decodePhoneNumber.asp',
       data: {
-        json: encodeURI(JSON.stringify(e))
+        json: JSON.stringify(e)
       },
       success: function (res) {
-        console.log(res);
-        if(res.success){
-          obj.setData({
-            phoneNumber: res.phoneNumber
-          });
-        } else {
-          var message = res.data.message ? '程序异常' : res.data.message;
-          wx.showToast({
-            title: message,
-            icon: 'none'
-          })
-        }
+        // 获取和处理用户手机号
+        var userPhoneNumber = res.data.phoneNumber;
+        var showUserPhoneNumber = userPhoneNumber.substring(0, 3) + "****" 
+          + userPhoneNumber.substring(userPhoneNumber.length - 4, userPhoneNumber.length);
+        // 更新UI显示
+        obj.setData({
+          phoneNumber: userPhoneNumber,
+          showPhoneNubmer: showUserPhoneNumber
+        });
+        // 隐藏加载动画
+        wx.hideLoading();
       }
     })
   },
   /**
+   * 用户点击选择优惠券
+   */
+  selectTicket: function() {
+    wx.navigateTo({
+      url: '../ticket/ticket'
+    });
+  },
+  /**
    * 用户点击确认支付
    */
-  payMent: function () {
+  payMent: function() {
     // 判断用户是否已经获取手机号
-    if(this.data.phoneNumber == 0){
+    if (this.data.phoneNumber == 0){
       wx.showToast({
         title: '请先获取手机号!',
         icon: 'none'
@@ -120,10 +133,11 @@ Page({
       return;
     }
     // 请求服务端签名
-    var param = {
-      strengthDate: this.data.strengthDate
-    }
+    var param = {}
+    param.phoneNumber = this.data.phoneNumber;
+    param.strengthDate = this.data.strengthDate
     param.memberId = wx.getStorageSync("memberId");
+    param.openId = wx.getStorageSync("openId");
     if(wx.getStorageInfoSync("ticket")){
       param.ticket = wx.getStorageInfoSync("ticket");
     }
@@ -146,8 +160,9 @@ Page({
               icon: 'success'
             });
             // 支付成功, 跳转页面
+            var success_url = '../paySuccess/paySuccess?orderId=' + sign.data.orderId;
             wx.navigateTo({
-              url: ''
+              url: success_url
             });
           },
           fail: function (e) {

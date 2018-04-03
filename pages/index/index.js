@@ -26,6 +26,7 @@ Page({
               success: function(res){
                 wx.setStorageSync("memberId", res.data.key);
                 wx.setStorageSync("openId", res.data.openid);
+                wx.setStorageSync("session_key", res.data.session_key);
               }
             });
           }

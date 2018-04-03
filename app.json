@@ -4,8 +4,8 @@
     "pages/logs/logs",
     "pages/order/order",
     "pages/setting/setting",
+    "pages/ticket/ticket",
     "pages/paySuccess/paySuccess"
-    
   ],
   "window":{
     "backgroundTextStyle":"light",
