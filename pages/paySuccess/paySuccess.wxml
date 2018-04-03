@@ -1,0 +1,18 @@
+<view>
+   <!-- 购买成功图像 -->
+   <view class='img-div' >
+      <image src='https://www.ecartoon.com.cn/picture/1.jpg' class='img'></image>
+   </view>
+   <view class='font' >支付成功</view>
+   
+   <view class='buttons'>
+      <view class='orderDetail'>查看订单详情</view>
+      <view class='backHome' bindtap='backHome'>回到首页</view>
+   </view>
+
+
+
+
+
+
+</view>

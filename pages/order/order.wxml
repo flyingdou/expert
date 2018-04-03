@@ -1,0 +1,55 @@
+<view class='wraper'>
+  <view class='top-box'></view>
+  <view class='box_userInfo'>
+    <view class='userInfo'>
+      <view class='userInfo_photo'>
+        <image src='{{userInfo.avatarUrl}}'></image>
+      </view>
+      <view class='userInfo_nick'>
+        {{userInfo.nickName}}
+      </view>
+    </view>
+    <view class='userInfo_phoneNumber'>
+      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>请点击获取手机号</button>
+    </view>
+  </view>
+  <view class='box_commodity'>
+    <view class='commodity_photo'>
+      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg'></image>
+    </view>
+    <view class='commodity_describe'>
+      <view class="commodity_name">{{productDetail.productName}}</view>
+      <view class="commodity_startTime">开始时间: {{productDetail.strengthDate}}</view>
+      <view class="commodity_price">￥{{productDetail.price}}.00</view>
+    </view>
+  </view>
+  <view class='box_ticket'>
+    <view class='ticket_title'> 
+      优惠券
+    </view>
+    <view class='ticket_name'>
+      请选择优惠券  >
+      <!-- <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/more.png"></image> -->
+    </view>
+  </view>
+  <view class='box_payType'>
+    <view class='wxPay_icon'>
+      <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/adwy-13.png'></image>
+    </view>
+    <view class='wxPay_title'>
+      <view class='wxPay_name'>微信支付</view>
+			<view class='wxPay_content'>推荐微信用户使用</view>
+    </view>
+    <view class='wxPay_check'>
+      <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/adwy-8.png'></image>
+    </view>
+  </view>
+  <view class='footer'>
+    <view class='orderMoney'>
+      <view class='orderMonty_text'>合计 : <text class='orderMoney_price'>￥{{price}}元</text></view>
+    </view>
+    <view class='payMent' bindtap='payMent'>
+      确认支付
+    </view>
+  </view>
+</view>

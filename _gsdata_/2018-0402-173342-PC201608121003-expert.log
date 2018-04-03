@@ -1,0 +1,52 @@
+2018-04-02 17:33:43: inserice.inservice314.goodsync is on local network, trying direct connect at 192.168.3.14:33333
+2018-04-02 17:33:45: -- Analysis Started by User Command
+2018-04-02 17:33:45: 左侧: State file does not exist: D:/wechatApp/expert/_gsdata_/_file_state_v4._gs
+2018-04-02 17:33:45: /app.js: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /app.js: 冲突: 新文件有变化
+2018-04-02 17:33:45: /app.json: 冲突: 新文件有变化
+2018-04-02 17:33:45: /app.wxss: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /app.wxss: 冲突: 新文件有变化
+2018-04-02 17:33:45: /pages/index/index.js: 冲突: 新文件有变化
+2018-04-02 17:33:45: /pages/index/index.wxml: 冲突: 新文件有变化
+2018-04-02 17:33:45: /pages/logs/logs.js: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /pages/logs/logs.js: 冲突: 新文件有变化
+2018-04-02 17:33:45: /pages/logs/logs.json: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /pages/logs/logs.json: 冲突: 新文件有变化
+2018-04-02 17:33:45: /pages/logs/logs.wxml: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /pages/logs/logs.wxml: 冲突: 新文件有变化
+2018-04-02 17:33:45: /pages/logs/logs.wxss: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /pages/logs/logs.wxss: 冲突: 新文件有变化
+2018-04-02 17:33:45: /project.config.json: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /project.config.json: 冲突: 新文件有变化
+2018-04-02 17:33:45: /utils/util.js: Conflict Detected but try once more with Checksums: file modified on both sides
+2018-04-02 17:33:45: /utils/util.js: 冲突: 新文件有变化
+2018-04-02 17:33:45: 分析完毕并发现冲突情况。如需解决冲突请选择正常的同步方向。
+2018-04-02 17:33:45: 变更：19， 冲突：11， 复制时间：， 复制状态：4/， 错误： , All: 24
+2018-04-02 17:33:45: Left to Right: Copy File: 1 
+2018-04-02 17:33:45: Right to Left: Copy File: 7 Copy State: 4 
+2018-04-02 17:33:45: ----- ：分析已结束。 历时 00:00:03， 速度： 8 个文件/秒 -----
+2018-04-02 17:33:45: 
+2018-04-02 17:34:29: inserice.inservice314.goodsync is on local network, trying direct connect at 192.168.3.14:33333
+2018-04-02 17:34:30: New _gsdata_ folder(s) created, so rescan all job folders for their ghosts
+2018-04-02 17:34:30: == Sync Started by User Command
+2018-04-02 17:34:30: 创建文件夹 'D:/wechatApp/expert/pages/order'
+2018-04-02 17:34:30: 创建文件夹 'D:/wechatApp/expert/pages/setting'
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/app.js' -> 'D:/wechatApp/expert/app.js' (User Action)
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/app.json' -> 'D:/wechatApp/expert/app.json' (User Action)
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/app.wxss' -> 'D:/wechatApp/expert/app.wxss' (User Action)
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/index/index.js' -> 'D:/wechatApp/expert/pages/index/index.js' (User Action)
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/index/index.wxml' -> 'D:/wechatApp/expert/pages/index/index.wxml' (User Action)
+2018-04-02 17:34:30: 新建复制 'D:/wechatApp/expert/pages/index/index.wxss' -> 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/index/index.wxss'
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/logs/logs.js' -> 'D:/wechatApp/expert/pages/logs/logs.js' (User Action)
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/logs/logs.json' -> 'D:/wechatApp/expert/pages/logs/logs.json' (User Action)
+2018-04-02 17:34:30: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/logs/logs.wxml' -> 'D:/wechatApp/expert/pages/logs/logs.wxml' (User Action)
+2018-04-02 17:34:31: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/logs/logs.wxss' -> 'D:/wechatApp/expert/pages/logs/logs.wxss' (User Action)
+2018-04-02 17:34:31: 新建复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/order/order.js' -> 'D:/wechatApp/expert/pages/order/order.js'
+2018-04-02 17:34:31: 新建复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/order/order.wxml' -> 'D:/wechatApp/expert/pages/order/order.wxml'
+2018-04-02 17:34:31: 新建复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/order/order.wxss' -> 'D:/wechatApp/expert/pages/order/order.wxss'
+2018-04-02 17:34:31: 新建复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/setting/setting.js' -> 'D:/wechatApp/expert/pages/setting/setting.js'
+2018-04-02 17:34:31: 新建复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/pages/setting/setting.wxml' -> 'D:/wechatApp/expert/pages/setting/setting.wxml'
+2018-04-02 17:34:31: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/project.config.json' -> 'D:/wechatApp/expert/project.config.json' (User Action)
+2018-04-02 17:34:31: 覆盖复制 'gstps://inserice.inservice314.goodsync/file:///D:/java/wechatApp/utils/util.js' -> 'D:/wechatApp/expert/utils/util.js' (User Action)
+2018-04-02 17:34:31: ===== ：同步完毕。时间：00:00:04，速度： 5.06 KB/s =====, 项目同步未必： 23，错误： 
+2018-04-02 17:34:31: 

@@ -1,0 +1,2 @@
+<!--setting.wxml-->
+<web-view src="{{setting_url}}"></web-view>
