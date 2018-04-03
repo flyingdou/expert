@@ -28,20 +28,20 @@
       优惠券
     </view>
     <view class='ticket_name' bindtap='selectTicket'>
-      请选择优惠券 
+      {{ticket.name}} 
       <image src="https://www.ecartoon.com.cn/picture/More@2x.png"></image>
     </view>
   </view>
   <view class='box_payType'>
     <view class='wxPay_icon'>
-      <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/adwy-13.png'></image>
+      <image src='https://www.ecartoon.com.cn/expert/img/adwy-13.png'></image>
     </view>
     <view class='wxPay_title'>
       <view class='wxPay_name'>微信支付</view>
 			<view class='wxPay_content'>推荐微信用户使用</view>
     </view>
     <view class='wxPay_check'>
-      <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/adwy-8.png'></image>
+      <image src='https://www.ecartoon.com.cn/expert/img/adwy-8.png'></image>
     </view>
   </view>
   <view class='footer'>

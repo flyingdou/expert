@@ -1,0 +1,28 @@
+<view class='wraper'>
+  <view class="no-data" wx:if="{{tickets.length == 0}}">
+    <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+    </image>
+    <view>暂无数据</view>
+    <view>先去看看别的</view>
+  </view>
+  <view class='ticket-list'>
+    <view class='ticket-li' wx:for="{{tickets}}" wx:key="ticket"    bindtap='selectTicket' data-ticket='{{item}}'>
+      <view class='ticket-content'>
+        <view class='ticket-content-wraper'>
+          <view class='ticket-name'>
+            {{item.name}}
+          </view>
+          <view class='ticket-type'>
+            {{item.name}}
+          </view>
+          <view class='ticket-validity'>
+            有效期至: {{item.useDate}}
+          </view>
+        </view>
+      </view>
+      <view class='ticket-price'>
+        ￥{{item.price}}
+      </view>
+    </view>
+  </view>
+</view>

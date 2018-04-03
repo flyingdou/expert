@@ -4,14 +4,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    tickets: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var obj = this;
+    var memberId = wx.getStorageSync("memberId");
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/expertex!findTicketByType.asp',
+      data: {
+        memberId: memberId
+      },
+      success: function(res) {
+        obj.setData({
+          tickets: res.data.tickets
+        });
+      }
+    })
   },
 
   /**
@@ -61,5 +73,15 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+  /**
+   * 用户点击优惠券
+   */
+  selectTicket: function(e) {
+    var ticket = e.currentTarget.dataset.ticket;
+    wx.setStorageSync("ticket", ticket)
+    wx.navigateBack({
+      delta: 1
+    });
   }
 })
