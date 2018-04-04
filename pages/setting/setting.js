@@ -12,7 +12,6 @@ Page({
    */
   onLoad: function (options) {
     var memberId = wx.getStorageSync("memberId");
-    console.log("memberId:"+memberId);
     this.setData({
       setting_url: 'https://www.ecartoon.com.cn/expert/md.jsp?memberId='+memberId
     });
