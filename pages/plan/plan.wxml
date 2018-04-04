@@ -41,8 +41,36 @@
     <view class="box-flex">
       <view class="flex-item" wx:for="{{currentDayList}}" wx:for-index='key' wx:for-item="vo" wx:key="{{key}}">
            <view class="item-content today" wx:if="{{currentDay == vo}}">{{vo}}</view>
-           <view class="{{dou_items[key]}}" wx:if="{{currentDay < vo && vo <= currentDay+14}}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+           <view class="{{dou_items[key]}}" wx:if="{{currentDay < vo && vo <=currentDay+7}}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
       </view>
     </view>
   </view>
+
+ <!-- 课程信息 -->
+ <view class="course">
+     <!-- 当天没有训练计划 -->
+     <view class="no-data" wx:if="{{hasNoData == 1}}">
+        <view class="no-data-img-div">
+            <image src="https:www.ecartoon.com.cn/picture/Look-surprised@2x.png" class="no-data-img">
+              </image>
+        </view>
+       
+        <view class="no-data-font no-data-font-1">今天没有训练计划</view>
+        <view class="no-data-font no-data-font-2">欢迎使用 [王严健身专家系统] 为自己定制健身计划</view>
+     </view>
+
+     <!-- 当天有计划 -->
+     <view class="course-info" wx:if="{{hasNoData == 0}}" >
+         <view class="title">
+            <view class="title-name">课程名称</view>
+            <view class="title-courseName">瘦身减重 ></view>
+         </view>
+
+         <view class="remark">
+            <view class="remark-title">课程备注</view>
+            <view class="remark-content">请您在在正式训练前进行10分钟左右的热身，身体微微出汗即可。训练结束后进行全身拉伸训练放松。</view>
+         </view>
+     </view>
+ </view>
+
 </view>
