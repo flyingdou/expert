@@ -1,8 +1,7 @@
 
 @import '../../pages/css/icon.wxss';
 page {
-  background-color: #2a8cef;
-  background:-webkit-gradient(linear, 0 0, 0 bottom, from(#2a8cef), to(#8A2BE2)); 
+  background-color: #FAF5F5;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -36,10 +35,9 @@ page {
   margin: 5px;
   padding: 0 10px;
   text-align: center;
-  background-color: #000;
-  height: 2rem;
-  line-height: 2rem;
-  color: #fff;
+  height: 1rem;
+  line-height: 1rem;
+  color: black;
 }
 
 .bk-color-day {
@@ -60,4 +58,63 @@ page {
 .isChoosed{
     background-color: yellow;
     color: black;
+}
+
+.no-data{
+   margin: 0 auto;
+}
+.no-data-img-div{
+   text-align: center;
+
+}
+.no-data-img{
+   width: 60rpx;
+   height: 60rpx;
+}
+
+.no-data-font{
+   text-align: center;
+   font-size: 30rpx;
+   color: #959595;
+}
+
+.title{
+   width: 100%;
+   height: 50rpx;
+   background: white;
+   margin-top: 30rpx;
+   line-height: 50rpx;
+   padding: 20rpx;
+}
+
+.title-name{
+  float: left;
+  font-size: 32rpx;
+  color: black; 
+}
+
+.title-courseName{
+ float: right;
+ margin-right: 40rpx;
+ font-size: 28rpx;
+ color: #959595;
+}
+
+.remark{
+   width: 100%;
+   height: 140rpx;
+   background: white;
+   padding: 20rpx;
+   margin-top: 20rpx;
+}
+
+.remark-title{
+   font-size: 32rpx;
+   color: black;
+}
+
+.remark-content{
+   margin-top: 20rpx;
+   font-size: 28rpx;
+   color: #959595;
 }

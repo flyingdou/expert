@@ -6,17 +6,21 @@ Page({
     currentDayList: '',
     currentObj: '',
     currentDay: '',
+    currentDayStr:'',
     isChoosed:false,
-    dou_items: ["item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content"]
+    dou_items: ["item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content"],
+    hasNoData:2
   },
   onLoad: function (options) {
     var currentObj = this.getCurrentDayString()
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDayStr: currentObj.getFullYear() + '-' + (currentObj.getMonth() + 1) + '-' + currentObj.getDate(), 
       currentDay: currentObj.getDate(),
       currentObj: currentObj
     })
     this.setSchedule(currentObj)
+    this.getPlanData(this.currentDayStr)
   },
   doDay: function (e) {
     var that = this
@@ -87,8 +91,6 @@ Page({
     })
   },
 
-  
-
   /**
    * 用户选中日期
    */
@@ -117,6 +119,35 @@ Page({
      this.setData({
        dou_items: dou_arr
      });
+
+     this.getPlanData(dateStr);
+  },
+
+  /**
+   * 根据日期查询当前用户的信息
+   */
+  getPlanData: function (planDate) {
+     var memberId = wx.getStorageSync("memberId");
+     var parma = {};
+     var obj = this;
+     parma.memberId = memberId;
+     parma.planDate = planDate;
+    //  微信请求中，
+     wx.request({
+       url: 'https://www.ecartoon.com.cn/expertex!list.asp',
+       data:{
+         json: encodeURI(JSON.stringify(parma))
+       },
+       success: function (res) {
+         var hasNoData = res.data.success == undefined ? 1 : 0;
+         obj.setData({
+           hasNoData: hasNoData
+         });
+       }
+       
+     })
+      
   }
+
 
 })
