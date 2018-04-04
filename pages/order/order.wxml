@@ -26,6 +26,9 @@
   <view class='box_ticket'>
     <view class='ticket_title'> 
       优惠券
+      <view class='ticket_share'>
+       分享给好友获得更多优惠券
+      </view>
     </view>
     <view class='ticket_name' bindtap='selectTicket'>
       {{ticket.name}} 
@@ -38,15 +41,17 @@
     </view>
     <view class='wxPay_title'>
       <view class='wxPay_name'>微信支付</view>
-			<view class='wxPay_content'>推荐微信用户使用</view>
+			<view class='wxPay_content'>推荐安装微信5.0及以上版本的用户使用</view>
     </view>
     <view class='wxPay_check'>
-      <image src='https://www.ecartoon.com.cn/expert/img/adwy-8.png'></image>
+      <image src='https://www.ecartoon.com.cn/expert/img/button-on.png'></image>
     </view>
   </view>
   <view class='footer'>
     <view class='orderMoney'>
-      <view class='orderMonty_text'>合计 : <text class='orderMoney_price'>￥{{price}}元</text></view>
+      <view class='orderMonty_text'> 
+         实付款 : ￥{{price}}.00元
+      </view>
     </view>
     <view class='payMent' bindtap='payMent'>
       确认支付

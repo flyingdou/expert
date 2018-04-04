@@ -1,18 +1,16 @@
-<view>
-   <!-- 购买成功图像 -->
-   <view class='img-div' >
-      <image src='https://www.ecartoon.com.cn/picture/1.jpg' class='img'></image>
-   </view>
-   <view class='font' >支付成功</view>
-   
-   <view class='buttons'>
-      <view class='orderDetail'>查看订单详情</view>
-      <view class='backHome' bindtap='backHome'>回到首页</view>
-   </view>
-
-
-
-
-
-
+<view class='wraper'>
+  <view class="paySuccess-icon">
+    <image src='https://www.ecartoon.com.cn/expert/img/tk/Pay-for-success.png'></image>
+  </view>
+  <view class='paySuccess-title'>
+    支付完成!
+  </view>
+  <view class='paySuccess-content'>
+    <view class='paySuccess-content-top'>您已购买王严专家健身系统，</view>
+    <view class='paySuccess-content-bottom'>请在小程序首页点击 “我的计划” 查看计划内容</view>
+  </view>
+  <view class='paySuccess-message'>
+    -点击右上角分享给好友继续获得优惠券
+    <view class='paySuccess-hr'></view>
+  </view>
 </view>

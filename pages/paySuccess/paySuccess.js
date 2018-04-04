@@ -4,16 +4,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-        orderId:""
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        this.setData({ 
-             orderId:options.orderId
-        });
+    
   },
 
   /**
@@ -41,7 +39,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+    wx.navigateBack({
+      delta: 4
+    });
   },
 
   /**
@@ -63,26 +63,5 @@ Page({
    */
   onShareAppMessage: function () {
     
-  },
-
-  /**
-   * 用户点击返回首页时跳转到首页
-   */
-  backHome: function () {
-     wx.navigateTo({
-       url: '../../pages/index/index',
-     })
-
-  },
-
-  /**
-   * 用户点击查看订单详情页面时跳转
-   */
-  orderDetail: function () {
-      wx.navigateTo({
-        url: '../../pages/orderDetail?orderId='+this.orderId,
-      })
   }
-
-
 })

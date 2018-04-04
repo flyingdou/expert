@@ -10,8 +10,8 @@ Page({
     originalPrice: 0,
     price: 0,
     phoneNumber: 0,
-    ticket: { name: '请选择优惠券'},
-    showPhoneNubmer: '请点击获取手机号'
+    showPhoneNubmer: '请点击获取手机号',
+    ticket: { name: '请选择优惠券'}
   },
 
   /**
@@ -147,10 +147,10 @@ Page({
     // 请求服务端签名
     var param = {}
     param.phoneNumber = this.data.phoneNumber;
-    param.strengthDate = this.data.strengthDate
+    param.strengthDate = this.data.productDetail.strengthDate;
     param.memberId = wx.getStorageSync("memberId");
     param.openId = wx.getStorageSync("openId");
-    if(wx.getStorageInfoSync("ticket")){
+    if(wx.getStorageSync('ticket')){
       var ticket = wx.getStorageSync("ticket");
       param.ticket = ticket.ticketId;
       wx.removeStorageSync("ticket");
@@ -165,7 +165,7 @@ Page({
         wx.requestPayment({
           timeStamp: sign.data.timeStamp,
           nonceStr: sign.data.nonceStr,
-          package: sign.data.package,
+          package: sign.data.packageValue,
           signType: sign.data.signType,
           paySign: sign.data.paySign,
           success: function (res) {
@@ -174,9 +174,8 @@ Page({
               icon: 'success'
             });
             // 支付成功, 跳转页面
-            var success_url = '../paySuccess/paySuccess?orderId=' + sign.data.orderId;
             wx.navigateTo({
-              url: success_url
+              url: '../paySuccess/paySuccess'
             });
           },
           fail: function (e) {
