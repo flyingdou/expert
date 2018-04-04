@@ -9,18 +9,28 @@ Page({
     currentDayStr:'',
     isChoosed:false,
     dou_items: ["item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content"],
-    hasNoData:2
+    hasNoData:2,
+    planData:{}
   },
   onLoad: function (options) {
     var currentObj = this.getCurrentDayString()
+    var YYYY = currentObj.getFullYear();
+    var MM = currentObj.getMonth()+1;
+    var dd = currentObj.getDate();
+    if (MM < 10 ){
+      MM = "0" + MM;
+    }
+    if (dd < 10 ) {
+      dd = "0" + dd;
+    }
+    var planDate = YYYY + '-' + MM + '-' + dd;
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
-      currentDayStr: currentObj.getFullYear() + '-' + (currentObj.getMonth() + 1) + '-' + currentObj.getDate(), 
       currentDay: currentObj.getDate(),
       currentObj: currentObj
     })
     this.setSchedule(currentObj)
-    this.getPlanData(this.currentDayStr)
+    this.getPlanData(planDate)
   },
   doDay: function (e) {
     var that = this
@@ -109,7 +119,7 @@ Page({
      }
 
      // 查询日期
-     var dateStr = yea + "-" + mon + "-" + chooseDay;
+     var dateStr = yea + "-" + mon + "-" + chooseDay < 10 ? "0"+chooseDay : chooseDay;
 
      var dou_arr = this.data.dou_items;
      for(var d = 0; d < dou_arr.length ; d++) {
@@ -141,12 +151,20 @@ Page({
        success: function (res) {
          var hasNoData = res.data.success == undefined ? 1 : 0;
          obj.setData({
-           hasNoData: hasNoData
+           hasNoData : hasNoData,
+           planData : res.data.items
          });
        }
        
      })
       
+  },
+  
+  /**
+   * 用户点击课程名称
+   */
+  courseAction: function () {
+      console.log("进入动作组词页面");
   }
 
 

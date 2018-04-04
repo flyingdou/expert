@@ -61,14 +61,17 @@
 
      <!-- 当天有计划 -->
      <view class="course-info" wx:if="{{hasNoData == 0}}" >
-         <view class="title">
-            <view class="title-name">课程名称</view>
-            <view class="title-courseName">瘦身减重 ></view>
-         </view>
+         <view wx:for="{{planData}}" wx:for-item="course">
+              <view class="title" bindtap="courseAction" >
+                  <view class="title-name">课程名称</view>
+                  <view class="title-courseName">{{course.course}} ></view>
+                  <view class="courseId" hidden="hidden" data-courseId="{{course.id}}" ></view>
+              </view>
 
-         <view class="remark">
-            <view class="remark-title">课程备注</view>
-            <view class="remark-content">请您在在正式训练前进行10分钟左右的热身，身体微微出汗即可。训练结束后进行全身拉伸训练放松。</view>
+              <view class="remark">
+                  <view class="remark-title">课程备注</view>
+                  <view class="remark-content">{{course.memo}}</view>
+              </view>
          </view>
      </view>
  </view>
