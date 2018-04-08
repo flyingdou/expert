@@ -6,7 +6,8 @@
     "pages/setting/setting",
     "pages/ticket/ticket",
     "pages/paySuccess/paySuccess",
-    "pages/plan/plan"
+    "pages/plan/plan",
+    "pages/planDetail/planDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

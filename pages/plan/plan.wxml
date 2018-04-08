@@ -62,10 +62,9 @@
      <!-- 当天有计划 -->
      <view class="course-info" wx:if="{{hasNoData == 0}}" >
          <view wx:for="{{planData}}" wx:for-item="course">
-              <view class="title" bindtap="courseAction" >
+              <view class="title" bindtap="courseAction"  data-courseId="{{course.id}}" >
                   <view class="title-name">课程名称</view>
                   <view class="title-courseName">{{course.course}} ></view>
-                  <view class="courseId" hidden="hidden" data-courseId="{{course.id}}" ></view>
               </view>
 
               <view class="remark">

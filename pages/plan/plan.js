@@ -138,15 +138,15 @@ Page({
    */
   getPlanData: function (planDate) {
      var memberId = wx.getStorageSync("memberId");
-     var parma = {};
+     var param = {};
      var obj = this;
-     parma.memberId = memberId;
-     parma.planDate = planDate;
+     param.memberId = memberId;
+     param.planDate = planDate;
     //  微信请求中，
      wx.request({
        url: 'https://www.ecartoon.com.cn/expertex!list.asp',
        data:{
-         json: encodeURI(JSON.stringify(parma))
+         json: encodeURI(JSON.stringify(param))
        },
        success: function (res) {
          var hasNoData = res.data.success == undefined ? 1 : 0;
@@ -163,8 +163,11 @@ Page({
   /**
    * 用户点击课程名称
    */
-  courseAction: function () {
-      console.log("进入动作组词页面");
+  courseAction: function (dou) {
+      var courseId = dou.currentTarget.dataset.courseid;
+      wx.navigateTo({
+        url: '../../pages/planDetail/planDetail?courseId=' + courseId
+      })
   }
 
 
