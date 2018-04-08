@@ -7,7 +7,6 @@ Page({
   data: {
     userInfo: {},
     productDetail: {},
-    originalPrice: 0,
     price: 0,
     phoneNumber: 0,
     showPhoneNubmer: '请点击获取手机号',
@@ -28,7 +27,6 @@ Page({
           productDetail: {
             productName: res.data.productName,
             originalPrice: res.data.price,
-            price: res.data.price,
             strengthDate: options.strengthDate
           },
           price: res.data.price
@@ -51,12 +49,13 @@ Page({
     // 如果有优惠券就显示优惠券并计算价格
     if (wx.getStorageSync("ticket")){
       var ticket = wx.getStorageSync("ticket");
-      var price = this.data.originalPrice - ticket.price;
+      var price = this.data.productDetail.originalPrice - ticket.price;
       price = price < 0 ? 0 : price;
       this.setData({
         ticket: ticket,
         price: price
       });
+      wx.removeStorageSync("ticket");
     }
   },
 
@@ -150,10 +149,8 @@ Page({
     param.strengthDate = this.data.productDetail.strengthDate;
     param.memberId = wx.getStorageSync("memberId");
     param.openId = wx.getStorageSync("openId");
-    if(wx.getStorageSync('ticket')){
-      var ticket = wx.getStorageSync("ticket");
-      param.ticket = ticket.ticketId;
-      wx.removeStorageSync("ticket");
+    if(this.data.ticket){
+      param.ticket = this.data.ticket.ticketId;
     }
     wx.request({
       url: 'https://www.ecartoon.com.cn/expertex!createGoodsOrder.asp',

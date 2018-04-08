@@ -66,5 +66,6 @@ page{
   line-height: 90px;
   text-align: center;
   background-color: #FF6600;
+  font-size: 16px;
   color: #FFF;
 }

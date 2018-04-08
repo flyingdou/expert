@@ -13,7 +13,7 @@
             {{item.name}}
           </view>
           <view class='ticket-type'>
-            {{item.name}}
+            {{item.scope}}
           </view>
           <view class='ticket-validity'>
             有效期至: {{item.useDate}}
