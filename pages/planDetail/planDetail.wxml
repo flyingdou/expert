@@ -54,7 +54,8 @@
               </view>
           </view>
       </view>
-
+      <!-- 撑起高度的 -->
+      <view class="dou-footer-full"></view>
   </view>
 
   <!-- 开始训练 -->
