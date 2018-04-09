@@ -10,7 +10,8 @@ Page({
     isChoosed:false,
     dou_items: ["item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content"],
     hasNoData:2,
-    planData:{}
+    planData:{},
+    douDatas : []
   },
   onLoad: function (options) {
     var currentObj = this.getCurrentDayString()
@@ -31,6 +32,10 @@ Page({
     })
     this.setSchedule(currentObj)
     this.getPlanData(planDate)
+    var doux = this;
+    setTimeout (function(){
+        doux.getCurrentData(planDate)
+    },500)
   },
   doDay: function (e) {
     var that = this
@@ -125,14 +130,15 @@ Page({
 
      var dou_arr = this.data.dou_items;
      for(var d = 0; d < dou_arr.length ; d++) {
-          dou_arr[d] = "item-content";
+         dou_arr[d] = "item-content";
      }
      dou_arr[chooseIndex] = "item-content isChoosed";
-     this.setData({
+    this.setData({
        dou_items: dou_arr
-     });
-
-     this.getPlanData(dateStr);
+    })
+     
+     // 设置当前日期，页面的数据源
+     this.getCurrentData(dateStr);
   },
 
   /**
@@ -144,6 +150,10 @@ Page({
      var obj = this;
      param.memberId = memberId;
      param.planDate = planDate;
+     var displayRedDot = [];
+     for(var d = 0; d < 42; d++) {
+         displayRedDot.push("redDot");
+     }
     //  微信请求中，
      wx.request({
        url: 'https://www.ecartoon.com.cn/expertex!list.asp',
@@ -151,10 +161,25 @@ Page({
          json: encodeURI(JSON.stringify(param))
        },
        success: function (res) {
-         var hasNoData = res.data.items.length == 0 ? 1 : 0;
+         var xx_items = obj.data.dou_items;
+         // 日历中的日期  
+         var days = obj.data.currentDayList;
+         for (var x=0; x <res.data.items.length; x++){
+             var douPlanDate = res.data.items[x].planDate;
+             var hasDay = douPlanDate.substring(douPlanDate.length - 2, douPlanDate.length);
+             hasDay = parseInt(hasDay);
+             for (var y = 0; y < days.length; y++) {
+                 if (days[y] == hasDay) {
+                    xx_items[y] = "item-content hasPlan";
+                    displayRedDot[y] = "displayRedDot";
+                 }
+             }
+         }
+         var planDatas = res.data.items;
          obj.setData({
-           hasNoData : hasNoData,
-           planData : res.data.items
+           douDatas : planDatas,
+           dou_items : xx_items,
+           dou_display : displayRedDot
          });
        }
        
@@ -170,6 +195,23 @@ Page({
       wx.navigateTo({
         url: '../../pages/planDetail/planDetail?courseId=' + courseId
       })
+  },
+  
+  getCurrentData (dateStr) {
+    var objx = this;
+    var douPlanData = objx.data.douDatas;
+    var douPageData = [];
+    for (var dx = 0; dx < douPlanData.length; dx++) {
+      if (dateStr == douPlanData[dx].planDate) {
+        douPageData.push(douPlanData[dx]);
+      }
+    }
+    var hasNoData = douPageData.length == 0 ? 1 : 0;
+    objx.setData({
+      planData: douPageData,
+      hasNoData: hasNoData
+    })
+
   }
 
 

@@ -12,7 +12,6 @@ Page({
    */
   onLoad: function (options) {
       var courseId = options.courseId;
-      console.log(options);
       this.setData({
           courseId:courseId
       })
