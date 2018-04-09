@@ -118,8 +118,10 @@ Page({
         mon = "0" + mon;
      }
 
+     chooseDay = chooseDay < 10 ? ("0"+chooseDay)  : chooseDay;
+
      // 查询日期
-     var dateStr = yea + "-" + mon + "-" + chooseDay < 10 ? "0"+chooseDay : chooseDay;
+     var dateStr = yea + "-" + mon + "-" + chooseDay;
 
      var dou_arr = this.data.dou_items;
      for(var d = 0; d < dou_arr.length ; d++) {
@@ -149,7 +151,7 @@ Page({
          json: encodeURI(JSON.stringify(param))
        },
        success: function (res) {
-         var hasNoData = res.data.success == undefined ? 1 : 0;
+         var hasNoData = res.data.items.length == 0 ? 1 : 0;
          obj.setData({
            hasNoData : hasNoData,
            planData : res.data.items
