@@ -94,10 +94,11 @@ Page({
                }
             
              var actionCount = res.data.items.length;
+             var dou_carruli = parseInt(res.data.sumTime/60);
              obj.setData({
                  planDetailData:res.data,
                  dou_time : dou_time,
-                 dou_carruli: res.data.sumTime%60*13,
+                 dou_carruli: dou_carruli*13,
                  actionCount: actionCount
              })
            } else {
