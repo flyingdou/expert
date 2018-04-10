@@ -18,13 +18,20 @@ page {
   border-radius: 1%;
   border: 1rpx solid #D6D6D6;
   background: white;
+  padding: 18rpx;
+  padding-bottom: 0;
 }
 
 .dou-ex{
    display: block;
    height:6rpx;
+   width: 100%;
    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#959595), to(#EADEDE)); 
    border: none;
+   padding-left: 18rpx;
+   padding-right: 18rpx;
+   margin-top: 10rpx;
+   margin-left: -18rpx;
 }
 
 .box-flex {
@@ -73,9 +80,9 @@ page {
 .no-data{
    margin: 0 auto;
 }
+
 .no-data-img-div{
    text-align: center;
-
 }
 .no-data-img{
    width: 60rpx;
@@ -147,4 +154,22 @@ page {
     margin-top: -23rpx;
     color: #ff4401;
     font-size: 42rpx;
+}
+
+.planDetail-div{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.planDetailButton{
+    text-align: center;
+    background: #ff4401;
+    color: white;
+    font-size: 32rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-radius: 0;
 }

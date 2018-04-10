@@ -97,13 +97,20 @@ Page({
              obj.setData({
                  planDetailData:res.data,
                  dou_time : dou_time,
-                 dou_carruli: res.data.sumTime/60*13,
+                 dou_carruli: res.data.sumTime%60*13,
                  actionCount: actionCount
              })
            } else {
              console.log("请求失败！");
            }
         }
+      })
+  },
+
+  reminder: function () {
+      wx.showModal({
+        title: '提示',
+        content: '请前往应用商店下载"卡库健身"APP查看本计划视频',
       })
   }
 })

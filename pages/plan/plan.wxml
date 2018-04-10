@@ -49,7 +49,8 @@
       </view>
     </view>
     
-   <view class="dou-ex"></view>
+   
+  <view class="dou-ex"></view>
   </view>
 
  <!-- 课程信息 -->
@@ -57,7 +58,7 @@
      <!-- 当天没有训练计划 -->
      <view class="no-data" wx:if="{{hasNoData == 1}}">
         <view class="no-data-img-div">
-            <image src="https:www.ecartoon.com.cn/picture/Look-surprised@2x.png" class="no-data-img">
+            <image src="https://www.ecartoon.com.cn/picture/Look-surprised@2x.png" class="no-data-img">
               </image>
         </view>
        
@@ -67,21 +68,26 @@
 
      <!-- 当天有计划 -->
      <view class="course-info" wx:if="{{hasNoData == 0}}" >
-         <view wx:for="{{planData}}" wx:for-item="course">
-              <view class="title" bindtap="courseAction"  data-courseId="{{course.id}}" >
-                 <view class="title-div">
-                      <view class="title-name">课程名称</view>
-                      <view class="title-courseName">{{course.course}} ></view>
-                 </view>
-              </view>
+         
+                  <view class="title">
+                    <view class="title-div">
+                          <view class="title-name">课程名称</view>
+                          <view class="title-courseName">{{planData.course}}</view>
+                    </view>
+                  </view>
 
-              <view class="remark">
-                <view class="remark-div">
-                      <view class="remark-title">课程备注</view>
-                      <view class="remark-content">{{course.memo}}</view>
-                </view>
-              </view>
-         </view>
+                  <view class="remark">
+                    <view class="remark-div">
+                          <view class="remark-title">课程备注</view>
+                          <view class="remark-content">{{planData.memo}}</view>
+                    </view>
+                  </view>
+         
+     </view>
+ </view>
+ <view class="planDetail-div" wx:if="{{hasNoData == 0}}"  bindtap = "courseAction" data-courseId="{{planData.id}}" >
+     <view class="planDetailButton" >
+      查看计划详情
      </view>
  </view>
 

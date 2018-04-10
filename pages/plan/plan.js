@@ -26,7 +26,7 @@ Page({
     }
     var planDate = YYYY + '-' + MM + '-' + dd;
     this.setData({
-      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDate: currentObj.getFullYear() + '年' + MM + "月",
       currentDay: currentObj.getDate(),
       currentObj: currentObj
     })
@@ -35,7 +35,7 @@ Page({
     var doux = this;
     setTimeout (function(){
         doux.getCurrentData(planDate)
-    },500)
+    },800)
   },
   doDay: function (e) {
     var that = this
@@ -59,12 +59,32 @@ Page({
         str = (Y + 1) + '/' + 1 + '/' + d
       }
     }
-    currentObj = new Date(str)
+    currentObj = new Date(str);
+    var dou_MM = parseInt((currentObj.getMonth() + 1));
+    if ( dou_MM < 10 ) {
+         dou_MM = "0" + dou_MM;
+      } 
     this.setData({
-      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDate: currentObj.getFullYear() + '年' + dou_MM + '月',
       currentObj: currentObj
     })
     this.setSchedule(currentObj);
+
+    var douYYYY = currentObj.getFullYear();
+    var douMM = (currentObj.getMonth()+1);
+    var douDD = currentObj.getDate();
+    if (douMM < 10 ) {
+        douMM = "0" + dou_MM;
+    }
+    if (douDD < 10 ) {
+        douDD = "0" + douDD;
+    }
+    var douStr = douYYYY + "-" + douMM + "-" + douDD;
+    this.getPlanData(douStr);
+    var douObjx = this;
+    setTimeout(function() {
+      douObjx.getCurrentData(douStr);
+    }, 800)
   },
   getCurrentDayString: function () {
     var objDate = this.data.currentObj
@@ -147,6 +167,9 @@ Page({
   getPlanData: function (planDate) {
      var memberId = wx.getStorageSync("memberId");
      var param = {};
+     // 暂时测试
+    //  memberId = "12190";
+    //  planDate = "2018-02-09";
      var obj = this;
      param.memberId = memberId;
      param.planDate = planDate;
@@ -162,6 +185,9 @@ Page({
        },
        success: function (res) {
          var xx_items = obj.data.dou_items;
+
+         
+
          // 日历中的日期  
          var days = obj.data.currentDayList;
          for (var x=0; x <res.data.items.length; x++){
@@ -208,7 +234,7 @@ Page({
     }
     var hasNoData = douPageData.length == 0 ? 1 : 0;
     objx.setData({
-      planData: douPageData,
+      planData: douPageData.length == 0 ? [] : douPageData[0],
       hasNoData: hasNoData
     })
 

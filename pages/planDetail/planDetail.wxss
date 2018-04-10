@@ -157,10 +157,9 @@
    bottom: 0;
    color: white;
    width: 100%;
-   height: auto;
-   padding-top: 16rpx;
-   padding-bottom: 16rpx;
+   height: 88rpx;
+   line-height: 88rpx;
    text-align: center;
-   font-size: 36rpx;
-   border-radius: 2%;
+   font-size: 32rpx;
+   border-radius: 0;
 }
