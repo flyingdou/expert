@@ -1,7 +1,7 @@
 
 @import '../../pages/css/icon.wxss';
 page {
-  background-color: #FAF5F5;
+  background-color: #EFEFF4;
   display: flex;
   flex-direction: column;
   width: 100%;

@@ -22,7 +22,8 @@
       </view>
       <view class='ticket-price'>
         <image src='https://www.ecartoon.com.cn/expert/img/Couponsorange@2x.png'></image>
-        <view class='price-text'>￥{{item.price}}</view>
+        
+        <view class='price-text'><text class="RMB" >¥</text>{{item.price}}</view>
       </view>
     </view>
   </view>
