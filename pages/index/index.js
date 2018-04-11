@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    
+    url: ''
   },
   onLoad: function () {
     var obj = this;
@@ -27,6 +27,18 @@ Page({
                 wx.setStorageSync("memberId", res.data.key);
                 wx.setStorageSync("openId", res.data.openid);
                 wx.setStorageSync("session_key", res.data.session_key);
+
+                if(res.data.memberTicket){
+                  obj.setData({
+                    url: 'https://www.ecartoon.com.cn/expert/zjxt.jsp?memberTicket=' 
+                        + res.data.memberTicket
+                  });
+                } else {
+                  obj.setData({
+                    url: 'https://www.ecartoon.com.cn/expert/zjxt.jsp'
+                  });
+                }
+
               }
             });
           }
