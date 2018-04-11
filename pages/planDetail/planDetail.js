@@ -90,7 +90,7 @@ Page({
              if (dou_time == 0) {
                   dou_time = res.data.sumTime/60 + "'" + "00" + "''";
                } else {
-                  dou_time = res.data.sumTime/60 + "'" + dou_time + "''";
+                  dou_time = parseInt(res.data.sumTime / 60) + "'" + dou_time + "''";
                }
             
              var actionCount = res.data.items.length;
@@ -98,7 +98,7 @@ Page({
              obj.setData({
                  planDetailData:res.data,
                  dou_time : dou_time,
-                 dou_carruli: dou_carruli*13,
+                 dou_carruli: dou_carruli * 13,
                  actionCount: actionCount
              })
            } else {

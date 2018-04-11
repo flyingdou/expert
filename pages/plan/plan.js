@@ -11,7 +11,8 @@ Page({
     dou_items: ["item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content"],
     hasNoData:2,
     planData:{},
-    douDatas : []
+    douDatas : [],
+    toMonth:0
   },
   onLoad: function (options) {
     var currentObj = this.getCurrentDayString()
@@ -28,7 +29,8 @@ Page({
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + MM + "月",
       currentDay: currentObj.getDate(),
-      currentObj: currentObj
+      currentObj: currentObj,
+      toMonth: 1
     })
     this.setSchedule(currentObj)
     this.getPlanData(planDate)
@@ -60,7 +62,21 @@ Page({
       }
     }
     currentObj = new Date(str);
+    var dou_YY = currentObj.getFullYear();
     var dou_MM = parseInt((currentObj.getMonth() + 1));
+    
+    // 判断是否是当前月份
+    var today = new Date();
+    var toYear = today.getFullYear();
+    var toMonth =parseInt((today.getMonth() + 1));
+    var isToMonth = 0;
+    if (dou_YY == toYear && dou_MM == toMonth ) {
+        isToMonth = 1;
+    } 
+
+    that.setData({
+      toMonth: isToMonth
+    })
     if ( dou_MM < 10 ) {
          dou_MM = "0" + dou_MM;
       } 

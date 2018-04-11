@@ -40,7 +40,8 @@
     </view>
     <view class="box-flex">
       <view class="flex-item" wx:for="{{currentDayList}}" wx:for-index='key' wx:for-item="vo" wx:key="{{key}}">
-           <view class="item-content today" wx:if="{{currentDay == vo}}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+           <view class="item-content today" wx:if="{{ toMonth == 1 && currentDay == vo}}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+           <view class="{{dou_items[key]}}" wx:if="{{ toMonth == 0 && currentDay == vo}}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
            <view class="{{dou_items[key]}}" wx:if="{{currentDay != vo && vo != null }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >
               <view>{{vo}}</view>
               <view class="{{dou_display[key]}}">.</view>
