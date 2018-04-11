@@ -15,6 +15,23 @@ page {
 .box {
   display: block;
   margin: 10px;
+  border-radius: 1%;
+  border: 1rpx solid #D6D6D6;
+  background: white;
+  padding: 18rpx;
+  padding-bottom: 0;
+}
+
+.dou-ex{
+   display: block;
+   height:6rpx;
+   width: 100%;
+   background:-webkit-gradient(linear, 0 0, 0 bottom, from(#959595), to(#EADEDE)); 
+   border: none;
+   padding-left: 18rpx;
+   padding-right: 18rpx;
+   margin-top: 10rpx;
+   margin-left: -18rpx;
 }
 
 .box-flex {
@@ -63,9 +80,9 @@ page {
 .no-data{
    margin: 0 auto;
 }
+
 .no-data-img-div{
    text-align: center;
-
 }
 .no-data-img{
    width: 60rpx;
@@ -80,11 +97,14 @@ page {
 
 .title{
    width: 100%;
-   height: 50rpx;
+   height: 80rpx;
    background: white;
-   margin-top: 30rpx;
-   line-height: 50rpx;
-   padding: 20rpx;
+   line-height: 80rpx;
+}
+
+.title-div{
+    margin: 20rpx;
+    overflow: hidden;
 }
 
 .title-name{
@@ -95,17 +115,22 @@ page {
 
 .title-courseName{
  float: right;
- margin-right: 40rpx;
+ margin-right: 10rpx;
  font-size: 28rpx;
  color: #959595;
 }
 
 .remark{
    width: 100%;
-   height: 140rpx;
+   height: 180rpx;
    background: white;
-   padding: 20rpx;
-   margin-top: 20rpx;
+}
+
+.remark-div{
+   margin: 20rpx;
+   overflow: hidden;
+   padding-top: 20rpx;
+   padding-bottom: 20rpx;
 }
 
 .remark-title{
@@ -117,4 +142,34 @@ page {
    margin-top: 20rpx;
    font-size: 28rpx;
    color: #959595;
+}
+
+.redDot{
+    display: none;
+}
+
+.displayRedDot{
+    float: left;
+    margin-left: 17.5rpx;
+    margin-top: -23rpx;
+    color: #ff4401;
+    font-size: 42rpx;
+}
+
+.planDetail-div{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.planDetailButton{
+    text-align: center;
+    background: #ff4401;
+    color: white;
+    font-size: 32rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-radius: 0;
 }

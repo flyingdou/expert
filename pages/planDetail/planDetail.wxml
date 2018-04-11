@@ -54,11 +54,12 @@
               </view>
           </view>
       </view>
-
+      <!-- 撑起高度的 -->
+      <view class="dou-footer-full"></view>
   </view>
 
   <!-- 开始训练 -->
-  <view class="train">
+  <view class="train" bindtap="reminder" >
     请下载“卡库健身”APP查看本计划视频
   </view>
 </view>

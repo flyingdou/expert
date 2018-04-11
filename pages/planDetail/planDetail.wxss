@@ -95,6 +95,7 @@
    height: 1rpx;
    background: #F0F0F0;
    margin: 0 auto;
+   margin-bottom: -20rpx;
   
 }
 
@@ -108,7 +109,9 @@
 .action-item{
    width: 100%;
    height: 100%;
-   margin-bottom: 20rpx;
+   overflow: hidden;
+   margin-top: 40rpx;
+   margin-bottom: 40rpx;
 }
 
 .action-item-img-div{
@@ -142,6 +145,11 @@
     color: #B7B2B2;
 }
 
+.dou-footer-full{
+     width: 100%;
+     height: 100rpx;
+}
+
 .train{
    position: fixed;
    background: #FF4401;
@@ -149,10 +157,9 @@
    bottom: 0;
    color: white;
    width: 100%;
-   height: auto;
-   padding-top: 16rpx;
-   padding-bottom: 16rpx;
+   height: 88rpx;
+   line-height: 88rpx;
    text-align: center;
-   font-size: 36rpx;
-   border-radius: 2%;
+   font-size: 32rpx;
+   border-radius: 0;
 }

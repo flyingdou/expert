@@ -10,7 +10,8 @@ Page({
     isChoosed:false,
     dou_items: ["item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content", "item-content"],
     hasNoData:2,
-    planData:{}
+    planData:{},
+    douDatas : []
   },
   onLoad: function (options) {
     var currentObj = this.getCurrentDayString()
@@ -25,12 +26,16 @@ Page({
     }
     var planDate = YYYY + '-' + MM + '-' + dd;
     this.setData({
-      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDate: currentObj.getFullYear() + '年' + MM + "月",
       currentDay: currentObj.getDate(),
       currentObj: currentObj
     })
     this.setSchedule(currentObj)
     this.getPlanData(planDate)
+    var doux = this;
+    setTimeout (function(){
+        doux.getCurrentData(planDate)
+    },800)
   },
   doDay: function (e) {
     var that = this
@@ -54,12 +59,32 @@ Page({
         str = (Y + 1) + '/' + 1 + '/' + d
       }
     }
-    currentObj = new Date(str)
+    currentObj = new Date(str);
+    var dou_MM = parseInt((currentObj.getMonth() + 1));
+    if ( dou_MM < 10 ) {
+         dou_MM = "0" + dou_MM;
+      } 
     this.setData({
-      currentDate: currentObj.getFullYear() + '年' + (currentObj.getMonth() + 1) + '月' + currentObj.getDate() + '日',
+      currentDate: currentObj.getFullYear() + '年' + dou_MM + '月',
       currentObj: currentObj
     })
     this.setSchedule(currentObj);
+
+    var douYYYY = currentObj.getFullYear();
+    var douMM = (currentObj.getMonth()+1);
+    var douDD = currentObj.getDate();
+    if (douMM < 10 ) {
+        douMM = "0" + dou_MM;
+    }
+    if (douDD < 10 ) {
+        douDD = "0" + douDD;
+    }
+    var douStr = douYYYY + "-" + douMM + "-" + douDD;
+    this.getPlanData(douStr);
+    var douObjx = this;
+    setTimeout(function() {
+      douObjx.getCurrentData(douStr);
+    }, 800)
   },
   getCurrentDayString: function () {
     var objDate = this.data.currentObj
@@ -118,19 +143,22 @@ Page({
         mon = "0" + mon;
      }
 
+     chooseDay = chooseDay < 10 ? ("0"+chooseDay)  : chooseDay;
+
      // 查询日期
-     var dateStr = yea + "-" + mon + "-" + chooseDay < 10 ? "0"+chooseDay : chooseDay;
+     var dateStr = yea + "-" + mon + "-" + chooseDay;
 
      var dou_arr = this.data.dou_items;
      for(var d = 0; d < dou_arr.length ; d++) {
-          dou_arr[d] = "item-content";
+         dou_arr[d] = "item-content";
      }
      dou_arr[chooseIndex] = "item-content isChoosed";
-     this.setData({
+    this.setData({
        dou_items: dou_arr
-     });
-
-     this.getPlanData(dateStr);
+    })
+     
+     // 设置当前日期，页面的数据源
+     this.getCurrentData(dateStr);
   },
 
   /**
@@ -139,9 +167,16 @@ Page({
   getPlanData: function (planDate) {
      var memberId = wx.getStorageSync("memberId");
      var param = {};
+     // 暂时测试
+    //  memberId = "12190";
+    //  planDate = "2018-02-09";
      var obj = this;
      param.memberId = memberId;
      param.planDate = planDate;
+     var displayRedDot = [];
+     for(var d = 0; d < 42; d++) {
+         displayRedDot.push("redDot");
+     }
     //  微信请求中，
      wx.request({
        url: 'https://www.ecartoon.com.cn/expertex!list.asp',
@@ -149,10 +184,28 @@ Page({
          json: encodeURI(JSON.stringify(param))
        },
        success: function (res) {
-         var hasNoData = res.data.success == undefined ? 1 : 0;
+         var xx_items = obj.data.dou_items;
+
+         
+
+         // 日历中的日期  
+         var days = obj.data.currentDayList;
+         for (var x=0; x <res.data.items.length; x++){
+             var douPlanDate = res.data.items[x].planDate;
+             var hasDay = douPlanDate.substring(douPlanDate.length - 2, douPlanDate.length);
+             hasDay = parseInt(hasDay);
+             for (var y = 0; y < days.length; y++) {
+                 if (days[y] == hasDay) {
+                    xx_items[y] = "item-content hasPlan";
+                    displayRedDot[y] = "displayRedDot";
+                 }
+             }
+         }
+         var planDatas = res.data.items;
          obj.setData({
-           hasNoData : hasNoData,
-           planData : res.data.items
+           douDatas : planDatas,
+           dou_items : xx_items,
+           dou_display : displayRedDot
          });
        }
        
@@ -168,6 +221,23 @@ Page({
       wx.navigateTo({
         url: '../../pages/planDetail/planDetail?courseId=' + courseId
       })
+  },
+  
+  getCurrentData (dateStr) {
+    var objx = this;
+    var douPlanData = objx.data.douDatas;
+    var douPageData = [];
+    for (var dx = 0; dx < douPlanData.length; dx++) {
+      if (dateStr == douPlanData[dx].planDate) {
+        douPageData.push(douPlanData[dx]);
+      }
+    }
+    var hasNoData = douPageData.length == 0 ? 1 : 0;
+    objx.setData({
+      planData: douPageData.length == 0 ? [] : douPageData[0],
+      hasNoData: hasNoData
+    })
+
   }
 
 
