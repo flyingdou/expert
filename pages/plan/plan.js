@@ -38,10 +38,10 @@ Page({
     })
     this.setSchedule(currentObj)
     this.getPlanData(planDate)
-    var doux = this;
-    setTimeout (function(){
-        doux.getCurrentData(planDate)
-    },800)
+    // var doux = this;
+    // setTimeout (function(){
+    //     doux.getCurrentData(planDate)
+    // },800)
   },
   doDay: function (e) {
     var that = this
@@ -101,10 +101,10 @@ Page({
     }
     var douStr = douYYYY + "-" + douMM + "-" + douDD;
     this.getPlanData(douStr);
-    var douObjx = this;
-    setTimeout(function() {
-      douObjx.getCurrentData(douStr);
-    }, 800)
+    // var douObjx = this;
+    // setTimeout(function() {
+    //   douObjx.getCurrentData(douStr);
+    // }, 800)
   },
   getCurrentDayString: function () {
     var objDate = this.data.currentObj
@@ -188,7 +188,7 @@ Page({
      var memberId = wx.getStorageSync("memberId");
      var param = {};
      // 暂时测试
-    //  memberId = "12190";
+    //  memberId = "12769";
     //  planDate = "2018-04-09";
      var obj = this;
      param.memberId = memberId;
@@ -225,9 +225,12 @@ Page({
            dou_hasPlan : xx_items,
            dou_display : displayRedDot
          });
+
+         obj.getCurrentData(planDate);
        }
        
      })
+
       
   },
   
