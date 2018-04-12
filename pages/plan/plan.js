@@ -1,3 +1,4 @@
+var wxParse = require('../../wxParse/wxParse/wxParse.js');
 var app = getApp();
 Page({
   data: {
@@ -12,7 +13,8 @@ Page({
     hasNoData:2,
     planData:{},
     douDatas : [],
-    toMonth:0
+    toMonth:0,
+    article:"Can You change a line ? <br/> Yes I'm change the line!<br/>"
   },
   onLoad: function (options) {
     var currentObj = this.getCurrentDayString()
@@ -26,11 +28,13 @@ Page({
       dd = "0" + dd;
     }
     var planDate = YYYY + '-' + MM + '-' + dd;
+   
     this.setData({
       currentDate: currentObj.getFullYear() + '年' + MM + "月",
       currentDay: currentObj.getDate(),
       currentObj: currentObj,
       toMonth: 1
+
     })
     this.setSchedule(currentObj)
     this.getPlanData(planDate)
@@ -185,7 +189,7 @@ Page({
      var param = {};
      // 暂时测试
     //  memberId = "12190";
-    //  planDate = "2018-02-09";
+    //  planDate = "2018-04-09";
      var obj = this;
      param.memberId = memberId;
      param.planDate = planDate;
@@ -202,8 +206,6 @@ Page({
        success: function (res) {
          var xx_items = obj.data.dou_items;
 
-         
-
          // 日历中的日期  
          var days = obj.data.currentDayList;
          for (var x=0; x <res.data.items.length; x++){
@@ -212,7 +214,7 @@ Page({
              hasDay = parseInt(hasDay);
              for (var y = 0; y < days.length; y++) {
                  if (days[y] == hasDay) {
-                    xx_items[y] = "item-content hasPlan";
+                    xx_items[y] = "hasPlan";
                     displayRedDot[y] = "displayRedDot";
                  }
              }
@@ -220,7 +222,7 @@ Page({
          var planDatas = res.data.items;
          obj.setData({
            douDatas : planDatas,
-           dou_items : xx_items,
+           dou_hasPlan : xx_items,
            dou_display : displayRedDot
          });
        }
@@ -249,10 +251,19 @@ Page({
       }
     }
     var hasNoData = douPageData.length == 0 ? 1 : 0;
+    var currentPagePlanData = douPageData.length == 0 ? [] : douPageData[0];
+    
+    // 给对象设值
     objx.setData({
-      planData: douPageData.length == 0 ? [] : douPageData[0],
+      planData: currentPagePlanData,
+      article: currentPagePlanData.memo == undefined ? "" : currentPagePlanData.memo,
       hasNoData: hasNoData
     })
+
+    // 对article进行处理
+    wxParse.wxParse('article', 'html', objx.data.article, objx, 5);
+
+    console.log(JSON.stringify(objx.data.article));
 
   },
   

@@ -1,5 +1,6 @@
 
 @import '../../pages/css/icon.wxss';
+@import "../../wxParse/wxParse/wxParse.wxss";
 page {
   background-color: #EFEFF4;
   display: flex;
@@ -122,8 +123,9 @@ page {
 
 .remark{
    width: 100%;
-   height: 180rpx;
+   height: auto;
    background: white;
+   margin-bottom: 200rpx;
 }
 
 .remark-div{
@@ -131,6 +133,7 @@ page {
    overflow: hidden;
    padding-top: 20rpx;
    padding-bottom: 20rpx;
+   
 }
 
 .remark-title{
