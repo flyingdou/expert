@@ -68,7 +68,49 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var obj = this;
+    var memberId = wx.getStorageSync("memberId");
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/expertex!findTicketByType.asp',
+      data: {
+        memberId: memberId
+      },
+      success: function (res) {
+        res.data.tickets.forEach(function (item) {
+          var scope = '';
+          var types = item.scope.split(",");
+          types.forEach(function (typeItem) {
+            typeItem = parseInt(typeItem);
+            if (typeItem == 1) {
+              scope += '健身卡,';
+            } else if (typeItem == 2) {
+              scope += '健身挑战,';
+            } else if (typeItem == 3) {
+              scope += '健身计划,';
+            } else if (typeItem == 4) {
+              scope += '场地预定,';
+            } else if (typeItem == 5) {
+              scope += '团体课程,';
+            } else if (typeItem == 6) {
+              scope += '智能计划,';
+            } else if (typeItem == 7) {
+              scope += '健身E卡通,';
+            }
+          });
+          if (scope.length > 18) {
+            scope = scope.substring(0, 18);
+            scope += '...';
+          } else {
+            scope = scope.substring(0, scope.length - 1);
+          }
+          item.scope = scope;
+        });
+        // 设置数据源
+        obj.setData({
+          tickets: res.data.tickets
+        });
+      }
+    })
   },
 
   /**
@@ -114,5 +156,15 @@ Page({
     wx.navigateBack({
       delta: 1
     });
+  },
+  
+  /**
+   * 激活优惠券
+   */
+  activeTicket: function () {
+     wx.navigateTo({
+       url: '../../pages/activeTicket/activeTicket',
+     })
   }
+
 })

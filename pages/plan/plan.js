@@ -37,12 +37,14 @@ Page({
 
     })
     this.setSchedule(currentObj)
+
+    // 获取当前月份的plan数据
     this.getPlanData(planDate)
-    // var doux = this;
-    // setTimeout (function(){
-    //     doux.getCurrentData(planDate)
-    // },800)
   },
+
+ /**
+  * 用户切换月份，调用的函数
+  */
   doDay: function (e) {
     var that = this
     var currentObj = that.data.currentObj
@@ -78,6 +80,7 @@ Page({
         isToMonth = 1;
     } 
 
+    // 设置当前时间是不是本月
     that.setData({
       toMonth: isToMonth
     })
@@ -100,11 +103,9 @@ Page({
         douDD = "0" + douDD;
     }
     var douStr = douYYYY + "-" + douMM + "-" + douDD;
+
+    // 获取当前月份的plan数据
     this.getPlanData(douStr);
-    // var douObjx = this;
-    // setTimeout(function() {
-    //   douObjx.getCurrentData(douStr);
-    // }, 800)
   },
   getCurrentDayString: function () {
     var objDate = this.data.currentObj
@@ -225,7 +226,8 @@ Page({
            dou_hasPlan : xx_items,
            dou_display : displayRedDot
          });
-
+ 
+         // 筛选出查询日期当天的数据
          obj.getCurrentData(planDate);
        }
        
@@ -244,6 +246,10 @@ Page({
       })
   },
   
+
+  /**
+   * 筛选查询日期的plan数据
+   */
   getCurrentData (dateStr) {
     var objx = this;
     var douPlanData = objx.data.douDatas;

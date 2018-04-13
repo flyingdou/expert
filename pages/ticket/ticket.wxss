@@ -94,3 +94,24 @@ page{
     font-size: 22rpx;
     color: white;
 }
+
+.activeTicket-div{
+   position: fixed;
+   width: 100%;
+   left: 0;
+   bottom: 0;
+
+}
+
+.activeTicket{
+   background: #FF4401;
+   color: white;
+   font-size: 32rpx;
+   width: 92%;
+   padding-top: 30rpx;
+   padding-bottom: 30rpx;
+   border-radius: 10rpx;
+   margin: 0 auto;
+   text-align: center;
+   margin-bottom: 26rpx;
+}
