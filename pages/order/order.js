@@ -29,7 +29,7 @@ Page({
             originalPrice: res.data.price,
             strengthDate: options.strengthDate
           },
-          price: res.data.price
+          price: res.data.price.toFixed(2)
         });
       }
     })
@@ -50,6 +50,7 @@ Page({
     if (wx.getStorageSync("ticket")){
       var ticket = wx.getStorageSync("ticket");
       var price = this.data.productDetail.originalPrice - ticket.price;
+      price = price.toFixed(2);
       price = price < 0 ? 0 : price;
       this.setData({
         ticket: ticket,

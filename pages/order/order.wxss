@@ -115,6 +115,7 @@ page{
 .ticket_share{
   font-size: 12px;
   color:#8f8e8e;
+  margin-top: 20rpx;
 }
 
 .ticket_name{
@@ -208,4 +209,8 @@ page{
   text-align: center;
   color: #FFF;
   background-color: #FF4401;
+}
+
+.RMB{
+    font-size: 14rpx;
 }
