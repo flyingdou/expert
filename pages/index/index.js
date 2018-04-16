@@ -28,18 +28,29 @@ Page({
                 wx.setStorageSync("openId", res.data.openid);
                 wx.setStorageSync("session_key", res.data.session_key);
 
+                var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
+                url += "?memberId=" + res.data.key;
+
                 if(res.data.memberTicket){
-                  obj.setData({
-                    url: 'https://www.ecartoon.com.cn/expert/zjxt.jsp?memberTicket=' 
-                        + res.data.memberTicket
-                  });
+                  url += "&memberTicket=" + res.data.memberTicket;
                 } else {
-                  obj.setData({
-                    url: 'https://www.ecartoon.com.cn/expert/zjxt.jsp'
-                  });
+                  url += "&memberTicket=" + 0;
                 }
 
+                obj.setData({
+                  url: url
+                });
               }
+            });
+          },
+          fail: e => {
+            var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
+            url += "?memberId=" + 0;
+            url += "&memberTicket=" + 0;
+
+            console.log(url);
+            obj.setData({
+              url: url
             });
           }
         });
