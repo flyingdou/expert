@@ -21,12 +21,13 @@ Page({
             wx.request({
               url: 'https://www.ecartoon.com.cn/loginex!wechatLogin.asp',
               data: {
-                json: encodeURI(JSON.stringify(res))
+                json: JSON.stringify(res)
               },
               success: function(res){
                 wx.setStorageSync("memberId", res.data.key);
                 wx.setStorageSync("openId", res.data.openid);
                 wx.setStorageSync("session_key", res.data.session_key);
+                console.log(JSON.stringify(res.data));
 
                 var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
                 url += "?memberId=" + res.data.key;
