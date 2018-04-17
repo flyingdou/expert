@@ -17,43 +17,83 @@ Page({
             app.globalData.userInfo = res.userInfo
             // 请求参数
             res.code = login_data.code;
-            // 发起网络请求
-            wx.request({
-              url: 'https://www.ecartoon.com.cn/loginex!wechatLogin.asp',
-              data: {
-                json: JSON.stringify(res)
-              },
-              success: function(res){
-                wx.setStorageSync("memberId", res.data.key);
-                wx.setStorageSync("openId", res.data.openid);
-                wx.setStorageSync("session_key", res.data.session_key);
-                console.log(JSON.stringify(res.data));
-
-                var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
-                url += "?memberId=" + res.data.key;
-
-                if(res.data.memberTicket){
-                  url += "&memberTicket=" + res.data.memberTicket;
-                } else {
+            // 调用服务端登录方法
+            obj.wechatLogin(res);
+          },
+          fail: e => {
+            wx.showModal({
+              title: '提示',
+              content: '您拒绝了授权,如果想使用后续功能,需要将信息授权功能开启',
+              success: function(sure){
+                if (sure.cancel) {
+                  var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
+                  url += "?memberId=" + 0;
                   url += "&memberTicket=" + 0;
+
+                  obj.setData({
+                    url: url
+                  });
+                  return;
                 }
 
-                obj.setData({
-                  url: url
+                wx.openSetting({
+                  success: function (setting) {
+                    if (setting.authSetting["scope.userInfo"]) {
+                      //这里是授权成功之后 填写你重新获取数据的js
+                      wx.getUserInfo({
+                        success: function (res) {
+                          app.globalData.userInfo = res.userInfo
+                          // 请求参数
+                          res.code = login_data.code;
+                          // 调用服务端登录方法
+                          obj.wechatLogin(res);
+                        }
+                      });
+                    } else {
+                      var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
+                      url += "?memberId=" + 0;
+                      url += "&memberTicket=" + 0;
+
+                      obj.setData({
+                        url: url
+                      });
+                    }
+                  }
                 });
               }
             });
-          },
-          fail: e => {
-            var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
-            url += "?memberId=" + 0;
-            url += "&memberTicket=" + 0;
-
-            console.log(url);
-            obj.setData({
-              url: url
-            });
           }
+        });
+      }
+    });
+  },
+
+  // 在服务端登录
+  wechatLogin: function(res){
+    var obj = this;
+    // 发起网络请求
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/loginex!wechatLogin.asp',
+      data: {
+        json: JSON.stringify(res)
+      },
+      success: function (res) {
+        wx.setStorageSync("memberId", res.data.key);
+        wx.setStorageSync("openId", res.data.openid);
+        wx.setStorageSync("session_key", res.data.session_key);
+        console.log(JSON.stringify(res.data));
+
+        var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
+        url += "?memberId=" + res.data.key;
+
+        if (res.data.memberTicket) {
+          url += "&memberTicket=" + res.data.memberTicket;
+        } else {
+          url += "&memberTicket=" + 0;
+        }
+
+        obj.setData({
+          url: url
         });
       }
     });
