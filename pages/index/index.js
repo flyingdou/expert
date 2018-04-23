@@ -78,11 +78,31 @@ Page({
         json: JSON.stringify(res)
       },
       success: function (res) {
+        console.log(JSON.stringify(res.data));
+        if(!res.data.success){
+          wx.showModal({
+            title: '提示',
+            content: '注册失败, 程序异常, 请联系开发者!'
+          });
+
+          var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
+          url += "?memberId=" + 0;
+
+          if (res.data.memberTicket) {
+            url += "&memberTicket=" + res.data.memberTicket;
+          } else {
+            url += "&memberTicket=" + 0;
+          }
+
+          obj.setData({
+            url: url
+          });
+        }
+
         wx.setStorageSync("memberId", res.data.key);
         wx.setStorageSync("openId", res.data.openid);
         wx.setStorageSync("session_key", res.data.session_key);
-        console.log(JSON.stringify(res.data));
-
+        
         var url = "https://www.ecartoon.com.cn/expert/zjxt.jsp";
         url += "?memberId=" + res.data.key;
 
