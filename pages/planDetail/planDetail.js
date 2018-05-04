@@ -92,7 +92,23 @@ Page({
                } else {
                   dou_time = parseInt(res.data.sumTime / 60) + "'" + dou_time + "''";
                }
-            
+             var doux = res.data.items;
+             for (var y = 0; y < doux.length; y++) {
+                 var doux_detail = doux[y].detail;
+                 var doux_mode = doux[y].mode;
+                 if (doux_detail.indexOf("0公斤") != -1) {
+                     if (doux_mode == '0') {
+                        var doux_preTime = doux[y].preTime;
+                        doux_preTime = doux_preTime%60 == 0 ? (doux_preTime/60 + "分") : ((doux_preTime/60).toFixed(0) + "分" + doux_preTime%60 + "秒");
+                        doux[y].detail = "时间： " + doux_preTime;
+                     } else {
+                       var str = doux_detail.split(",");
+                       doux_detail = str[0] + ",力竭";
+                       doux[y].detail = doux_detail;
+                     }
+                 }
+             }
+
              var actionCount = res.data.items.length;
              var dou_carruli = parseInt(res.data.sumTime/60);
              obj.setData({
