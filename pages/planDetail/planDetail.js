@@ -101,7 +101,7 @@ Page({
                  dou_carruli: dou_carruli * 13,
                  actionCount: actionCount
              })
-             console.log(res.data);
+             
            } else {
              console.log("请求失败！");
            }
