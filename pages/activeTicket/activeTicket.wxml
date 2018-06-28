@@ -23,6 +23,6 @@
 
                 <!-- 激活按钮 -->
                 <view class="active-button-div" bindtap='active'>
-                        <view class="active-button">激活</view>
+                        <view class="active-button">激活优惠券</view>
                 </view>
       </view>
