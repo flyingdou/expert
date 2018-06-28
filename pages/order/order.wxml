@@ -15,7 +15,8 @@
   </view>
   <view class='box_commodity'>
     <view class='commodity_photo'>
-      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg'></image>
+      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
+      </image>
     </view>
     <view class='commodity_describe'>
       <view class="commodity_name">{{productDetail.productName}}</view>
@@ -35,7 +36,7 @@
       <image src="https://www.ecartoon.com.cn/picture/More@2x.png"></image>
     </view>
   </view>
-  <view class='box_payType'>
+  <!-- <view class='box_payType'>
     <view class='wxPay_icon'>
       <image src='https://www.ecartoon.com.cn/expert/img/adwy-13.png'></image>
     </view>
@@ -46,7 +47,7 @@
     <view class='wxPay_check'>
       <image src='https://www.ecartoon.com.cn/expert/img/button-on.png'></image>
     </view>
-  </view>
+  </view> -->
   <view class='footer'>
     <view class='orderMoney'>
       <view class='orderMonty_text'> 

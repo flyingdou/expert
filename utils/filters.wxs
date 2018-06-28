@@ -1,0 +1,139 @@
+// 过滤器
+var filters = {
+  getPictureUrl: function (image) {
+    return 'https://www.ecartoon.com.cn/picture/' + image;
+  },
+  errorImage: function (image) {
+    if(!image || image == ''){
+      return 'https://www.ecartoon.com.cn/miniProgram/club/img/default.png';
+    }
+
+    if (image.indexOf("http://wx") >= 0 ){
+      return image;
+    }
+    return 'https://www.ecartoon.com.cn/picture/' + image;
+  },
+  toFixed: function (num, length) {
+    if (!isNaN(num)) {
+      return parseFloat(num).toFixed(length);
+    } else {
+      return num;
+    }
+  },
+  overflow_hidden: function (text, length) {
+    if(text){
+      if (text.length > length) {
+        text = text.substring(0, length) + '...';
+      }
+    }
+    return text;
+  },
+  active_target: function (days, target, value){
+    var company = target == 'A' || target == 'B' ? '公斤' : '次';
+    var targetText = { A: '体重减少', B: '体重增加', C: '运动', D: '运动'};
+    return days + '天' + targetText[target] + value + company;
+  },
+  distance: function (distance) {
+    if(parseInt(distance) > 1000){
+      distance = (parseInt(distance) / 1000);
+      return distance.toFixed(2) + 'km';
+    }
+    return distance + 'm';
+  },
+  week_date: function (value) {
+      if ( "0" == value ) {
+        value = "周一";
+      } 
+      if ( "1" == value ) {
+        value = "周二";
+      }
+      if ( "2" == value ) {
+        value = "周三";
+      }
+      if ( "3" == value ) {
+        value = "周四";
+      }
+      if ( "4" == value ) {
+        value = "周五";
+      }
+      if ( "5" == value ) {
+        value = "周六";
+      }
+      if ( "6" == value ) {
+        value = "周日";
+      }
+      
+      return value;
+    },
+    /**
+     * 字符串null过滤
+     */
+    stringNull: function (str) {
+       if (str == "null" || str == null) {
+         return "暂无";
+       } else {
+         return str;
+       }
+    },
+
+    /**
+     * 手机号、银行卡号处理
+     */
+    getStarNumberStr: function (str,headLength,footLength) {
+       var headIndex = headLength;
+       var footIndex = str.length - footLength;
+       var starLength = str.length - headLength - footLength;
+       var head = str.substring(0,headIndex);
+       var footer = str.substring(footIndex, str.length);
+       var star = "";
+       for(var x = 0; x < starLength; x++) {
+         star += "*";
+       }
+       return head + star + footer;
+    },
+
+    /**
+     * 手机号、银行卡混合模式
+     */
+    getStarNumberStrMix: function (str) {
+     
+      if (str.length == 11) {
+        // 手机号，默认3，4
+        str = filters.getStarNumberStr(str,3,4);
+      }
+      if (str.length > 11) {
+        // 银行卡，默认5，4
+        str = filters.getStarNumberStr(str,5,4);
+      }
+
+      return str;
+    },
+
+    /**
+     * 价格过滤
+     */
+    getPriceStr: function (str) {
+      if (str == "" || str == "null" || str == null || str == "undefined" || str == undefined || parseInt(str) == 0) {
+         str = "免费";
+      } else {
+         str = "￥" + parseFloat(str).toFixed(2);
+      }
+      return str;
+    }
+
+}
+
+// 暴露接口
+module.exports = {
+  getPictureUrl: filters.getPictureUrl,
+  errorImage: filters.errorImage,
+  toFixed: filters.toFixed,
+  overflow_hidden: filters.overflow_hidden,
+  active_target: filters.active_target,
+  distance: filters.distance,
+  week_date: filters.week_date,
+  stringNull: filters.stringNull,
+  getStarNumberStr:filters.getStarNumberStr,
+  getStarNumberStrMix:filters.getStarNumberStrMix,
+  getPriceStr:filters.getPriceStr
+}

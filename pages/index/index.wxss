@@ -1,0 +1,136 @@
+page{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #FFF;
+}
+
+.wraper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.ecartoon.com.cn/expert/img/201806281026.png') 
+  no-repeat;
+  background-size: 100% 100%;
+}
+
+.block{
+  position: relative;
+  height: 100%;
+}
+
+.price{
+  position: absolute;
+  top: 43%;
+  left: 0;
+  width: 90%;
+  padding: 0 5%;
+  text-align: right;
+}
+
+.buttons{
+  position: absolute;
+  top: 55%;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  text-align: center;
+}
+
+.button1{
+  position: relative;
+  width: 40%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #000;
+  background-color: #FFDD00;
+  border-radius: 10rpx;
+}
+
+.button2{
+  position: relative;
+  width: 40%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #FF4401;
+  border-radius: 10rpx;
+}
+
+.loginButton{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.bottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 440rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom-block{
+  position: relative;
+}
+
+.title{
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.photo{
+  float: left;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.photo > image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.title-content{
+  float: left;
+  margin-left: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+
+.scroll-item{
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.product-memo{
+  float: left;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.product-content{
+  float: left;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+}
+
+.text{
+  margin-top: 10rpx;
+}
+
+
+
+
+
+
