@@ -3,7 +3,7 @@
 <view class='wraper'>
   <view class='block'>
     <view class='price'>
-      <text style='font-size: 36rpx;' decode='{{true}}'>仅&nbsp;</text>
+      <!-- <text style='font-size: 36rpx;' decode='{{true}}'>仅&nbsp;</text> -->
       <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
       <text style='font-size: 110rpx;'>{{filter.toFixed(item.price, 0)}}</text>
       <text style='font-size: 56rpx;'>.00</text>
