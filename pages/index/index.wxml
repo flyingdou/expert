@@ -3,7 +3,6 @@
 <view class='wraper'>
   <view class='block'>
     <view class='price'>
-      <!-- <text style='font-size: 36rpx;' decode='{{true}}'>仅&nbsp;</text> -->
       <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
       <text style='font-size: 110rpx;'>{{filter.toFixed(item.price, 0)}}</text>
       <text style='font-size: 56rpx;'>.00</text>
@@ -28,13 +27,30 @@
             </image>
           </view>
           <view class='title-content'>王严讲健身</view>
+         
+        </view>
+        <!-- 客服按钮 -->
+        <view class='customerServiceDiv'>
+               <image mode='aspectFill' src='https://www.ecartoon.com.cn/expert/img/customerService.png'></image>
+               <button open-type='contact' class='customerButton'></button>
         </view>
         <swiper indicator-dots='{{true}}' autoplay='{{true}}' indicator-color='#FFF'
           indicator-active-color='#FF4401'>
           <swiper-item>
             <view class="scroll-item">
-              <text style='font-size:30rpx;font-weight:bold;' decode='{{true}}'>专家介绍:&nbsp;&nbsp;</text>
-              <text style='font-size:24rpx;'>{{item.summary}}</text>
+              <!-- line1 -->
+              <view>
+                      <view style='font-size:30rpx;font-weight:bold;'>王严介绍:<text decode='{{true}}'>&nbsp;&nbsp;</text><text style='font-size:24rpx;font-weight:400;'>{{item.summary}}</text>
+                      </view>
+                     
+              </view>
+
+              <!-- line2 -->
+              <view>
+                      <text style='font-size:30rpx;font-weight:bold;' decode='{{true}}'>人生目标:&nbsp;&nbsp;</text>
+                      <text style='font-size:24rpx;'>{{item.target}}</text>
+              </view>
+
             </view>
           </swiper-item>
           <swiper-item>
