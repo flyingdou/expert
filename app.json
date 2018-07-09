@@ -2,25 +2,22 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
+    "pages/giveRose/giveRose",
+    "pages/myQRCode/myQRCode",
     "pages/order/order",
     "pages/setting/setting",
     "pages/ticket/ticket",
     "pages/paySuccess/paySuccess",
     "pages/plan/plan",
     "pages/planDetail/planDetail",
-    "pages/activeTicket/activeTicket"
+    "pages/activeTicket/activeTicket",
+    "pages/mine/mine"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#FF4401",
     "navigationBarTitleText": "王严健身专家系统",
     "navigationBarTextStyle":"white"
-  },
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "俱乐部小程序",
-    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "selectedColor": "#FF4401",
@@ -38,13 +35,13 @@
         "selectedIconPath": "icon/courseList_selected.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/giveRose/giveRose",
         "text": "赠人玫瑰",
         "iconPath": "icon/rose-off.png",
         "selectedIconPath": "icon/rose-on.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "icon/mine.png",
         "selectedIconPath": "icon/mine_selected.png"

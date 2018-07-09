@@ -1,0 +1,29 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='background'>
+  <view class='float-box'>
+    <view class='box box-padding'>
+      <view class='text-left'></view>
+      <view class='text-right'>
+        <view>通过科学运动使人健康长寿</view>
+        <view>是王严的人生目标</view>
+        <view>智能健身计划引擎</view>
+        <view>是王严数十年研究成果结晶</view>
+        <view>点击下面的分享按钮</view>
+        <view>圆梦他人，成就自己</view>
+        <view>二成的交易佣金</view>
+        <view>是对您善心的回报</view>
+      </view>
+    </view>
+    <view class='box'>
+      <view class='share-friend'>
+        分享给好友
+        <button open-type='share' class='share-button'>
+        </button>
+      </view>
+      <view class='share-circle' bindtap='bindShareCircleButtonTap'>
+        分享到朋友圈
+      </view>
+    </view>
+  </view> 
+</view>

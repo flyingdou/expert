@@ -1,0 +1,26 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='content'>
+    <view class='user-info'>
+      <view class='user-image'>
+        <open-data type='userAvatarUrl'></open-data>
+      </view>
+      <view class='user-other'>
+        <view class='user-name'><open-data type='userNickName'></open-data></view>
+        <view class='user-text'>王严健身专家系统专属分享码</view>
+      </view>
+    </view>
+    <view class='qrcode'>
+      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
+      </image>
+    </view>
+    <view class='tip'>
+      <view>将上面的专属分享码发到朋友圈</view>
+      <view>领取成交金额20%佣金</view>
+    </view>
+  </view>
+  <view class='save-button'>
+    保存专属分享码到手机
+  </view>
+</view>

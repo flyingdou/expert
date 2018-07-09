@@ -6,5 +6,12 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+
+  /**
+   * 全局常量
+   */
+  constants: {
+    expert_img_url: 'https://www.ecartoon.com.cn/expert/img/'
   }
 })

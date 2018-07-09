@@ -26,9 +26,7 @@ Page({
     }) 
 
     if(options.shareMember){
-      this.setData({
-        shareMember: shareMember
-      });
+      wx.setStorageSync('shareMember', options.shareMember)
     }  
   },
 
@@ -40,40 +38,19 @@ Page({
     }
   },
 
-  // 我的计划按钮绑定
-  myPlan: function (e) {
-    if (e.detail.errMsg == 'getUserInfo:ok'){
-      if (this.data.loginStatus == 1) {
-        wx.navigateTo({
-          url: '../plan/plan'
-        })
-        return;
-      }
-      e.detail.code = this.data.code;
-      this.wechatLogin(e.detail, function () {
-        wx.navigateTo({
-          url: '../plan/plan'
-        })
-      });
-    }
-  },
-
   // 我要定制按钮绑定
   goBuy: function (e) {
-    if (e.detail.errMsg == 'getUserInfo:ok') {
-      if(this.data.loginStatus == 1){
-        wx.navigateTo({
-          url: '../setting/setting'
-        })
-        return;
-      }
-      e.detail.code = this.data.code;
-      this.wechatLogin(e.detail, function () {
-        wx.navigateTo({
-          url: '../setting/setting'
-        })
-      });
+    // 判断用户是否登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=index'
+      })
+      return;
     }
+    // 到填写用户身体数据页面
+    wx.navigateTo({
+      url: '../setting/setting'
+    })
   },
 
   // 在服务端登录

@@ -2,35 +2,28 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
   <view class='block'>
+    <!-- 价格和定制按钮 -->
     <view class='buttons'>
       <view class=''>
         <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
         <text style='font-size: 110rpx;'>{{filter.toFixed(item.price, 0)}}</text>
         <text style='font-size: 56rpx;'>.00</text>
       </view>
-      <view class='button2'>
+      <view class='button2' bindtap='goBuy'>
         我要定制
-        <button open-type='getUserInfo' bindgetuserinfo='goBuy' class='loginButton'>
-        </button>
       </view>
     </view>
     <view class='bottom'>
       <view class='bottom-block'>
+        <!-- 用户头像和标题 -->
         <view class='title'>
           <view class='photo'>
             <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
             </image>
           </view>
           <view class='title-content'>王严讲健身</view>
-         
         </view>
-        <!-- 客服按钮 -->
-        <!-- <view class='customerServiceDiv'>
-          <image mode='aspectFill'
-            src='https://www.ecartoon.com.cn/expert/img/customerService.png'>
-          </image>
-          <button open-type='contact' class='customerButton'></button>
-        </view> -->
+        <!-- 滑块区域 -->
         <swiper indicator-dots='{{true}}' autoplay='{{true}}' indicator-color='#FFF'
           indicator-active-color='#FF4401'>
           <swiper-item>
