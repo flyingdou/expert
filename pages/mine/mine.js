@@ -257,6 +257,12 @@ Page({
       // 获取code
       e.detail.code = objx.data.code;
 
+      // 判断是否从他人分享的连接进来的
+      var shareMember = wx.getStorageSync('shareMember');
+      if (shareMember) {
+         e.detail.shareMember = shareMember;
+      }
+
       // 请求登录后台
       wx.request({
         url: app.wechat_login_url + 'wechatLogin.asp',
