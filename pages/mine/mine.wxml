@@ -1,2 +1,119 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<!-- 页面开始 -->
+<view class="content">
+   <!-- 个人信息 -->
+   <view class="personInfo">
+       <!-- 背景图 -->
+       <image class="BGP" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/wxbackground.jpg" mode="aspectFill"></image>
+       
+       <!-- 用户登录的情况 -->
+       <view class="person" wx:if="{{!login_button}}">
+             <view class='presonDD'>
+
+                     <!-- 头像 -->
+                      <view class="personImageDiv">
+                            <image class="personImage" mode="aspectFill" src="{{filter.errorImage(memberData.image)}}"></image>
+                      </view>
+
+                      <!-- 其他信息 -->
+                      <view class="others"> 
+                              
+                              
+                              
+                      </view>
+             </view>
+       </view>
+
+       <!-- 用户未登录，展示登录按钮 -->
+       <view class="login" wx:if="{{login_button}}">
+            <view class='login_div'>
+                   <button class='login_button' open-type='getUserInfo' lang='zh_CN' bindgetuserinfo='wechatLogin' >登录</button> 
+            </view>
+       </view>
+   </view>
+   
+   <!-- 页面跳转链接 -->
+   <view class="linksPage">
+      <!-- 我的订单 -->
+      <view class="pre" bindtap="gotoMyOrder">
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
+            </view>
+
+            <view class="title">我的订单</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+      <!-- 我的钱包 -->
+      <view class="pre" bindtap="gotoMyWallet">
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
+            </view>
+
+            <view class="title">我的钱包</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+      <!-- 我的优惠券 -->
+      <view class="pre" bindtap='gotoMyTicke'>
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
+            </view>
+
+            <view class="title">我的优惠券</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+      <!-- 我的分享订单 -->
+      <view class="pre" bindtap='gotoMyAppointment'>
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
+            </view>
+
+            <view class="title">我的分享订单</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+      <!-- 我的分享码 -->
+      <view class="pre" >
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+            </view>
+
+            <view class="title">我的分享码</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+      <!-- 联系客服 -->
+      <view class="pre"  >
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>
+            </view>
+
+            <view class="title">联系客服</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+
+   </view>
+
+</view>

@@ -13,5 +13,15 @@ App({
    */
   constants: {
     expert_img_url: 'https://www.ecartoon.com.cn/expert/img/'
-  }
+  },
+  
+  /**
+     * 请求服务器URL 
+     */
+  wechat_login_url: 'https://www.ecartoon.com.cn/loginex!',
+
+  /**
+   * 请求服务器URL 
+   */
+  request_url: 'https://www.ecartoon.com.cn/expertex!'
 })

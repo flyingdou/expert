@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs",
     "pages/giveRose/giveRose",
@@ -10,8 +11,7 @@
     "pages/paySuccess/paySuccess",
     "pages/plan/plan",
     "pages/planDetail/planDetail",
-    "pages/activeTicket/activeTicket",
-    "pages/mine/mine"
+    "pages/activeTicket/activeTicket"
   ],
   "window":{
     "backgroundTextStyle":"light",
