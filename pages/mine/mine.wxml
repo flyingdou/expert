@@ -18,7 +18,8 @@
 
                       <!-- 其他信息 -->
                       <view class="others"> 
-                              
+                              <!-- 昵称 -->
+                              <view class='nickName'>{{memberData.nickName}}<text decode='{{true}}'>&nbsp;&nbsp;|</text><text class='countDesc' decode='{{true}}'>&nbsp;&nbsp;&nbsp;已健身</text><text class='countFont'>{{memberData.count}}</text><text class='countDesc'>次</text></view>
                               
                               
                       </view>

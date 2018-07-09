@@ -22,42 +22,7 @@ Page({
     var objx = this;
     // 获取加载页面参数
     var source = options.source;
-    if (source) {
-      objx.setData({
-        source: source
-      })
-    }
-
-    if (options.productId) {
-      objx.setData({
-        productId: options.productId
-      })
-    }
-
-    if (options.shareMember) {
-      objx.setData({
-        shareMember: options.shareMember
-      });
-    }
-
-    if (options.activeId) {
-      objx.setData({
-        activeId: options.activeId
-      });
-    }
-
-    if (options.priceActiveId) {
-      objx.setData({
-        priceActiveId: options.priceActiveId,
-        priceCutdownId: options.priceCutdownId
-      })
-    }
-
-    if (options.ticketId) {
-      objx.setData({
-        ticketId: options.ticketId
-      });
-    }
+  
   },
 
   /**
@@ -274,6 +239,7 @@ Page({
           // 网络请求成功
           res = JSON.parse(res.data);
           if (res.success) {
+            app.globalData.userInfo = e.detail.userInfo;
             // 登录成功，将数据存储起来
             wx.setStorageSync("memberId", res.key);
             wx.setStorageSync("session_key", res.session_key);
@@ -283,45 +249,8 @@ Page({
             })
             // 登录成功，判断是relaunch过来的，还是用户主动点击tabBar过来的
             var source = objx.data.source;
-            if (!source || source == "" || source == "undefined" || source == undefined) {
-              // 用户主动点击过来的
-              objx.getMemberData();
-            } else {
-              // 跳转到来时的页面
-              if (source == "courseList" || source == "active" || source == "index") {
-                wx.switchTab({
-                  url: '../../pages/' + source + '/' + source
-                })
-              } else if (source == "product") {
-                if (objx.data.productId && objx.data.shareMember) {
-                  wx.navigateTo({
-                    url: '../../pages/' + source + '/' + source + '?productId=' + objx.data.productId +
-                    '&shareMember=' + objx.data.shareMember,
-                  })
-                } else {
-                  wx.navigateTo({
-                    url: '../../pages/' + source + '/' + source + '?productId=' + objx.data.productId,
-                  })
-                }
-              } else if (source == "activeDetail") {
-                wx.navigateTo({
-                  url: '../../pages/' + source + '/' + source + '?activeId=' + objx.data.activeId,
-                })
-              } else if (source == "priceCutdown") {
-                wx.navigateTo({
-                  url: '../../pages/' + source + '/' + source + '?parent=' + objx.data.priceCutdownId + '&priceActiveId=' + objx.data.priceActiveId,
-                })
-
-              } else if (source == "ticketDetail") {
-                wx.navigateTo({
-                  url: '../../pages/' + source + '/' + source + '?shareMember=' + objx.data.shareMember + '&ticketId=' + objx.data.ticketId,
-                })
-              } else {
-                wx.navigateTo({
-                  url: '../../pages/' + source + '/' + source,
-                })
-              }
-            }
+            
+            
             
           } else {
             // 程序异常，console打印异常信息
@@ -346,7 +275,6 @@ Page({
             showCancel: false
           })
           return;
-
         }
 
       })
