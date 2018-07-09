@@ -2,16 +2,11 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
   <view class='block'>
-    <view class='price'>
-      <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
-      <text style='font-size: 110rpx;'>{{filter.toFixed(item.price, 0)}}</text>
-      <text style='font-size: 56rpx;'>.00</text>
-    </view>
     <view class='buttons'>
-      <view class='button1'>
-        我的计划
-        <button open-type='getUserInfo' bindgetuserinfo='myPlan' class='loginButton'>
-        </button>
+      <view class=''>
+        <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
+        <text style='font-size: 110rpx;'>{{filter.toFixed(item.price, 0)}}</text>
+        <text style='font-size: 56rpx;'>.00</text>
       </view>
       <view class='button2'>
         我要定制
@@ -30,10 +25,12 @@
          
         </view>
         <!-- 客服按钮 -->
-        <view class='customerServiceDiv'>
-               <image mode='aspectFill' src='https://www.ecartoon.com.cn/expert/img/customerService.png'></image>
-               <button open-type='contact' class='customerButton'></button>
-        </view>
+        <!-- <view class='customerServiceDiv'>
+          <image mode='aspectFill'
+            src='https://www.ecartoon.com.cn/expert/img/customerService.png'>
+          </image>
+          <button open-type='contact' class='customerButton'></button>
+        </view> -->
         <swiper indicator-dots='{{true}}' autoplay='{{true}}' indicator-color='#FFF'
           indicator-active-color='#FF4401'>
           <swiper-item>

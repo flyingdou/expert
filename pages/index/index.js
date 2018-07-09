@@ -6,7 +6,7 @@ Page({
   data: {
     
   },
-  onLoad: function () {
+  onLoad: function (options) {
     var obj = this;
     wx.request({
       url: 'https://www.ecartoon.com.cn/expertex!loadPlan.asp',
@@ -23,7 +23,13 @@ Page({
           code: res.code
         });
       }
-    })   
+    }) 
+
+    if(options.shareMember){
+      this.setData({
+        shareMember: shareMember
+      });
+    }  
   },
 
   onShow: function () {
@@ -73,6 +79,9 @@ Page({
   // 在服务端登录
   wechatLogin: function(param, callback){
     var obj = this;
+    if (this.data.shareMember) {
+      param.shareMember = this.data.shareMember;
+    }
     // 发起网络请求
     wx.request({
       url: 'https://www.ecartoon.com.cn/loginex!wechatLogin.asp',

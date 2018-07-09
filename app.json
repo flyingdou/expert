@@ -15,5 +15,40 @@
     "navigationBarBackgroundColor": "#FF4401",
     "navigationBarTitleText": "王严健身专家系统",
     "navigationBarTextStyle":"white"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "俱乐部小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#FF4401",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icon/home.png",
+        "selectedIconPath": "icon/home_selected.png"
+      },
+      {
+        "pagePath": "pages/plan/plan",
+        "text": "健身计划",
+        "iconPath": "icon/courseList.png",
+        "selectedIconPath": "icon/courseList_selected.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "赠人玫瑰",
+        "iconPath": "icon/rose-off.png",
+        "selectedIconPath": "icon/rose-on.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的",
+        "iconPath": "icon/mine.png",
+        "selectedIconPath": "icon/mine_selected.png"
+      }
+    ]
   }
 }
