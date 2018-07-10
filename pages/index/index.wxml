@@ -26,8 +26,8 @@
           <view class='title-content'>王严讲健身</view>
         </view>
         <!-- 滑块区域 -->
-        <swiper class='swiper' indicator-dots='{{true}}' autoplay='{{true}}' indicator-color='#FFF'
-          indicator-active-color='#FF4401'>
+        <swiper class='swiper' indicator-dots='{{true}}' autoplay='{{true}}' interval='10000'
+          indicator-color='#FFF'  indicator-active-color='#FF4401'>
           <swiper-item>
             <view class="scroll-item">
               <view style='font-size:30rpx;font-weight:bold;'>王严介绍:<text decode='{{true}}'>&nbsp;&nbsp;</text><text style='font-size:24rpx;font-weight:400;'>{{item.summary}}</text>
