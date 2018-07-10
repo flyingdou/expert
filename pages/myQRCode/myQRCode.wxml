@@ -12,15 +12,12 @@
       </view>
     </view>
     <view class='qrcode'>
-      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
-      </image>
+      <canvas canvas-id='share' style='display:none;width:100vw;height:90vh;'></canvas>
+      <image src='{{qrcode}}' mode='aspectFill'></image>
     </view>
     <view class='tip'>
       <view>将上面的专属分享码发到朋友圈</view>
       <view>领取成交金额20%佣金</view>
     </view>
-  </view>
-  <view class='save-button'>
-    保存专属分享码到手机
   </view>
 </view>

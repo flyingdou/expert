@@ -6,11 +6,11 @@
     <view class='buttons'>
       <view class=''>
         <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
-        <text style='font-size: 110rpx;'>{{filter.toFixed(item.price, 0)}}</text>
+        <text style='font-size: 110rpx;font-weight: bold;'>{{filter.toFixed(item.price, 0)}}</text>
         <text style='font-size: 56rpx;'>.00</text>
       </view>
-      <view class='button2' bindtap='goBuy'>
-        我要定制
+      <view class='button2' bindtap='bindToSettingButtonTap'>
+        开始定制
       </view>
     </view>
     <view class='bottom'>

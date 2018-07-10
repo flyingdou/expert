@@ -13,11 +13,11 @@ Page({
    */
   onLoad: function (options) {
     // 判断用户是否登录
-    // if (!wx.getStorageSync('memberId')) {
-    //   wx.reLaunch({
-    //     url: '../mine/mine?source=giveRose'
-    //   })
-    // }
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=giveRose'
+      })
+    }
   },
 
   /**
