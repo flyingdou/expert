@@ -11,7 +11,11 @@
     "pages/plan/plan",
     "pages/planDetail/planDetail",
     "pages/activeTicket/activeTicket",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/myOrder/myOrder",
+    "pages/myWallet/myWallet",
+    "pages/cash/cash",
+    "pages/bindAccount/bindAccount"
   ],
   "window":{
     "backgroundTextStyle":"light",
