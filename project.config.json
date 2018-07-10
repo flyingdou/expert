@@ -31,14 +31,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "share",
-					"pathName": "pages/index/index",
-					"query": "scene=12769"
-				}
-			]
+			"list": []
 		}
 	}
 }
