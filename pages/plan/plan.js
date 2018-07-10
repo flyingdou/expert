@@ -17,6 +17,16 @@ Page({
     article:"Can You change a line ? <br/> Yes I'm change the line!<br/>"
   },
   onLoad: function (options) {
+    // 判断有没有登录
+    var memberId = wx.getStorageSync('memberId');
+    if (!memberId) {
+      // 未登录跳转到‘我的’页面，去登录
+      wx.reLaunch({
+        url: '../../pages/mine/mine?source=plan',
+      })
+      return;
+    }
+
     var currentObj = this.getCurrentDayString()
     var YYYY = currentObj.getFullYear();
     var MM = currentObj.getMonth()+1;

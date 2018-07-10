@@ -22,7 +22,22 @@ Page({
     var objx = this;
     // 获取加载页面参数
     var source = options.source;
-  
+    var param = options.param;
+    
+    // 来源页面
+    if (source) {
+      objx.setData({
+        source: source
+      })
+    }
+
+    // 来源页面携带的功能参数
+    if (param) {
+      objx.setData({
+        param: param
+      })
+    }
+    
   },
 
   /**
@@ -249,6 +264,22 @@ Page({
             })
             // 登录成功，判断是relaunch过来的，还是用户主动点击tabBar过来的
             var source = objx.data.source;
+            if (!source) {
+              // 查询用户数据
+              objx.getMemberData();
+            }
+
+            // 跳转到来时的页面
+            if (source) {
+              var param = objx.data.param;
+              var reUrl = '../../pages/'+ source + '/' + source;
+              if (param) {
+                reUrl = reUrl + '?param=' + param;
+              }
+              wx.reLaunch({
+                url: reUrl,
+              })
+            }
             
             
             
