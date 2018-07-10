@@ -75,6 +75,7 @@ page{
 }
 
 .pre{
+    position: relative;
     width: auto;
     height: auto;
     padding: 20rpx 30rpx;
@@ -98,7 +99,19 @@ page{
     background-color: white;
 }
 
+/* 打开客服按钮 */
+.contact-button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
 
+.contact-button::after{
+  border: none;
+}
 
 .connectWifiDiv{
   position: relative;
