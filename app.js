@@ -12,6 +12,7 @@ App({
    * 全局常量
    */
   constants: {
+    shareMember: 0,
     expert_img_url: 'https://www.ecartoon.com.cn/expert/img/'
   },
   

@@ -11,12 +11,12 @@ Page({
     // 通过小程序码进入, 保存分享用户Id
     if (options.scene) {
       var shareMember = decodeURIComponent(options.scene);
-      wx.setStorageSync('shareMember', shareMember);
+      app.constants.shareMember = shareMember;
     }
 
     // 通过小程序转发进入, 保存分享用户Id
     if (options.shareMember) {
-      wx.setStorageSync('shareMember', options.shareMember);
+      app.constants.shareMember = options.shareMember;
     }  
 
     // 页面初始化, 读取服务端专家系统数据
