@@ -180,6 +180,20 @@ Page({
   },
 
   /**
+   * 查看我的分享订单
+   */
+  gotoMyShareOrder: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+       return;
+    }
+    wx.navigateTo({
+      url: '../../pages/myShareOrder/myShareOrder',
+    })
+  },
+
+  /**
    * check进入页面时，是否已经登录
    */
   checkOnShow: function () {
@@ -238,8 +252,8 @@ Page({
       e.detail.code = objx.data.code;
 
       // 判断是否从他人分享的连接进来的
-      var shareMember = wx.getStorageSync('shareMember');
-      if (shareMember) {
+      var shareMember = app.constants.shareMember;
+      if (shareMember > 0 ) {
          e.detail.shareMember = shareMember;
       }
 

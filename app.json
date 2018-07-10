@@ -15,7 +15,8 @@
     "pages/myOrder/myOrder",
     "pages/myWallet/myWallet",
     "pages/cash/cash",
-    "pages/bindAccount/bindAccount"
+    "pages/bindAccount/bindAccount",
+    "pages/myShareOrder/myShareOrder"
   ],
   "window":{
     "backgroundTextStyle":"light",

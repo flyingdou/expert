@@ -76,10 +76,10 @@
       </view>
 
       <!-- 我的分享订单 -->
-      <view class="pre" bindtap='gotoMyAppointment'>
+      <view class="pre" bindtap='gotoMyShareOrder'>
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/expert/img/shareorder.png'></image>
             </view>
 
             <view class="title">我的分享订单</view>
@@ -92,7 +92,7 @@
       <view class="pre" bindtap='gotoMyQRCode'>
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/expert/img/sharecode.png'></image>
             </view>
 
             <view class="title">我的分享码</view>
@@ -105,7 +105,7 @@
       <view class="pre"  >
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/expert/img/friends@2x.png'></image>
             </view>
 
             <view class="title">联系客服</view>
