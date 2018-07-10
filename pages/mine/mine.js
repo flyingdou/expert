@@ -18,12 +18,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var objx = this;
     // 获取加载页面参数
     var source = options.source;
     var param = options.param;
-    
+
     // 来源页面
     if (source) {
       objx.setData({
@@ -37,20 +37,20 @@ Page({
         param: param
       })
     }
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var objx = this;
     objx.checkOnShow();
   },
@@ -58,35 +58,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 查询当前用户的数据
    */
-  getMemberData: function () {
+  getMemberData: function() {
     var objx = this;
     var memberId = wx.getStorageSync("memberId");
     var param = {};
@@ -99,7 +99,7 @@ Page({
       data: {
         json: encodeURI(JSON.stringify(param))
       },
-      success: function (res) {
+      success: function(res) {
         // 请求成功
         res = JSON.parse(res.data);
         if (res.success) {
@@ -125,7 +125,7 @@ Page({
           })
         }
       },
-      error: function (e) {
+      error: function(e) {
         // 请求失败
         wx.showModal({
           title: "提示",
@@ -139,7 +139,7 @@ Page({
   /**
    * 查看我的订单
    */
-  gotoMyOrder: function () {
+  gotoMyOrder: function() {
     var objx = this;
     // 登录检查
     if (!objx.checkOnFun()) {
@@ -153,7 +153,7 @@ Page({
   /**
    * 查看我的钱包
    */
-  gotoMyWallet: function () {
+  gotoMyWallet: function() {
     var objx = this;
     // 登录检查
     if (!objx.checkOnFun()) {
@@ -168,7 +168,7 @@ Page({
   /**
    * 查看我的优惠券
    */
-  gotoMyTicke: function () {
+  gotoMyTicke: function() {
     var objx = this;
     // 登录检查
     if (!objx.checkOnFun()) {
@@ -182,11 +182,11 @@ Page({
   /**
    * 查看我的分享订单
    */
-  gotoMyShareOrder: function () {
+  gotoMyShareOrder: function() {
     var objx = this;
     // 登录检查
     if (!objx.checkOnFun()) {
-       return;
+      return;
     }
     wx.navigateTo({
       url: '../../pages/myShareOrder/myShareOrder',
@@ -196,13 +196,13 @@ Page({
   /**
    * check进入页面时，是否已经登录
    */
-  checkOnShow: function () {
+  checkOnShow: function() {
     var objx = this;
     var memberId = wx.getStorageSync("memberId");
     if (!memberId || memberId == "") {
       // 用户未登录，设置登录按钮可用
       wx.login({
-        success: function (login_res) {
+        success: function(login_res) {
           objx.setData({
             login_button: true,
             code: login_res.code
@@ -223,7 +223,7 @@ Page({
   /**
    * 点击功能时，检查登录状态
    */
-  checkOnFun: function () {
+  checkOnFun: function() {
     var objx = this;
     var memberId = wx.getStorageSync("memberId");
     if (!memberId || memberId == "") {
@@ -231,7 +231,7 @@ Page({
         title: '提示',
         content: '本小程序需要登录使用，请点击上面的“登录”按钮，用微信号登录获得完整体验。',
         showCancel: false,
-        complete: function () {
+        complete: function() {
           return false;
         }
       })
@@ -242,10 +242,10 @@ Page({
   },
 
 
- /**
-  * wechatLogin
-  */
-  wechatLogin: function (e) {
+  /**
+   * wechatLogin
+   */
+  wechatLogin: function(e) {
     var objx = this;
     if (e.detail.errMsg == "getUserInfo:ok") {
       // 获取code
@@ -253,8 +253,8 @@ Page({
 
       // 判断是否从他人分享的连接进来的
       var shareMember = app.constants.shareMember;
-      if (shareMember > 0 ) {
-         e.detail.shareMember = shareMember;
+      if (shareMember > 0) {
+        e.detail.shareMember = shareMember;
       }
 
       // 请求登录后台
@@ -264,7 +264,7 @@ Page({
         data: {
           json: JSON.stringify(e.detail)
         },
-        success: function (res) {
+        success: function(res) {
           // 网络请求成功
           res = JSON.parse(res.data);
           if (res.success) {
@@ -286,7 +286,7 @@ Page({
             // 跳转到来时的页面
             if (source) {
               var param = objx.data.param;
-              var reUrl = '../../pages/'+ source + '/' + source;
+              var reUrl = '../../pages/' + source + '/' + source;
               if (param) {
                 reUrl = reUrl + '?param=' + param;
               }
@@ -294,9 +294,9 @@ Page({
                 url: reUrl,
               })
             }
-            
-            
-            
+
+
+
           } else {
             // 程序异常，console打印异常信息
             console.log(res.message);
@@ -312,7 +312,7 @@ Page({
             login_button: false
           })
         },
-        error: function (e) {
+        error: function(e) {
           // 网络请求失败
           wx.showModal({
             title: '提示',
@@ -329,7 +329,7 @@ Page({
   /**
    * 获取手机号
    */
-  getPhoneNumber: function (e) {
+  getPhoneNumber: function(e) {
     var objx = this;
     // 去后台解密手机号
     var session_key = wx.getStorageSync("session_key");
@@ -340,7 +340,7 @@ Page({
       data: {
         json: JSON.stringify(e)
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res);
         // 网络请求成功
         res = JSON.parse(res.data);
@@ -357,7 +357,7 @@ Page({
 
 
       },
-      error: function (e) {
+      error: function(e) {
         // 网络异常
         wx.showModal({
           title: '提示',
@@ -372,7 +372,7 @@ Page({
   /**
    * 更新用户手机号
    */
-  updatePhoneNumber: function (phoneNumber) {
+  updatePhoneNumber: function(phoneNumber) {
     // 去后台更新用户的手机号信息
     var objx = this;
     var memberId = wx.getStorageSync("memberId");
@@ -388,7 +388,7 @@ Page({
       data: {
         json: encodeURI(JSON.stringify(param))
       },
-      success: function (res) {
+      success: function(res) {
         res = JSON.parse(res.data);
         if (res.success) {
           // 请求成功
@@ -398,7 +398,7 @@ Page({
           console.log(res.message);
         }
       },
-      error: function (e) {
+      error: function(e) {
         // 网络请求异常
         console.log("网络异常");
       }
@@ -408,7 +408,7 @@ Page({
   /**
    * 检查登录
    */
-  checkTapLogin: function () {
+  checkTapLogin: function() {
     wx.showModal({
       title: '提示',
       content: '本小程序需要登录使用，请点击上面的“登录”按钮，用微信号登录获得完整体验。',
@@ -420,7 +420,7 @@ Page({
   /**
    * 到分享码页面
    */
-  gotoMyQRCode: function () {
+  gotoMyQRCode: function() {
     var objx = this;
     // 登录检查
     if (!objx.checkOnFun()) {
