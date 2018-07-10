@@ -67,6 +67,10 @@ Page({
    */
   onShareAppMessage: function () {
     return {
+      title: '国家健身队主教练王严多年研究成果，量身定制增肌减脂健身计划，'
+      + '快速达成目标！新用户领30元礼券',
+      desc: '',
+      imageUrl: 'https://www.ecartoon.com.cn/picture/201806280920.jpg',
       path: 'pages/index/index?shareMember=' + wx.getStorageSync('memberId')
     }
   },
