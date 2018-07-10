@@ -89,7 +89,7 @@
       </view>
 
       <!-- 我的分享码 -->
-      <view class="pre" >
+      <view class="pre" bindtap='gotoMyQRCode'>
             <!-- icon -->
             <view class='iconDiv'>
                   <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
@@ -112,9 +112,8 @@
             <view class="link">
                   <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
+            <button open-type='contact' class='contact-button'></button>
       </view>
-
-
    </view>
 
 </view>

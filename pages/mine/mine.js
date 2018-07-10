@@ -372,6 +372,18 @@ Page({
     return;
   },
 
-
+  /**
+   * 到分享码页面
+   */
+  gotoMyQRCode: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
+    wx.navigateTo({
+      url: '../myQRCode/myQRCode'
+    })
+  }
 
 })
