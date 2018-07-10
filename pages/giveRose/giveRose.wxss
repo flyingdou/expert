@@ -34,17 +34,18 @@ image{
 }
 
 .text-left{
-  width: 45%;
+  width: 20%;
+  padding-bottom: 20rpx;
 }
 
 .text-right{
-  width: 45%;
+  width: 75%;
   font-size: 26rpx;
   color: #BBB;
 }
 
-.text-left{
-  padding-bottom: 20rpx;
+.text-right > view{
+  text-align: right;
 }
 
 .share-friend{
