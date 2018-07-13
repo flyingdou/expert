@@ -257,6 +257,12 @@ Page({
         e.detail.shareMember = shareMember;
       }
 
+      // 判断是否从百度广告小程序码进入
+      var originType = app.constants.originType;
+      if (originType && originType != '') {
+        e.detail.originType = originType;
+      }
+
       // 请求登录后台
       wx.request({
         url: app.wechat_login_url + 'wechatLogin.asp',
