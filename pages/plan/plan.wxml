@@ -101,11 +101,16 @@
      </view>
 
      <!-- 当天有计划 -->
-     <view class="course-info" wx:if="{{hasNoData == 0}}" >
+     <view class="course-info" wx:if="{{hasNoData == 0}}" 
+        bindtap = "courseAction" data-courseId="{{planData.id}}">
          
                   <view class="title">
                     <view class="title-div">
                           <view class="title-name">课程名称</view>
+                          <view class='icon-more-block'>
+                            <image src='https://www.ecartoon.com.cn/picture/more.png'
+                              class='icon-more'></image>
+                          </view>
                           <view class="title-courseName">{{planData.course}}</view>
                     </view>
                   </view>
@@ -124,10 +129,10 @@
          
      </view>
  </view>
- <view class="planDetail-div" wx:if="{{hasNoData == 0}}"  bindtap = "courseAction" data-courseId="{{planData.id}}" >
+ <!-- <view class="planDetail-div" wx:if="{{hasNoData == 0}}"  bindtap = "courseAction" data-courseId="{{planData.id}}" >
      <view class="planDetailButton" >
       查看计划详情
      </view>
- </view>
+ </view> -->
 
 </view>

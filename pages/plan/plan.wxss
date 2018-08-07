@@ -114,6 +114,18 @@ page {
   color: black; 
 }
 
+.icon-more-block{
+  display: flex;
+  align-items: center;
+  float: right;
+  height: 80rpx;
+}
+
+.icon-more{
+  width: 40rpx;
+  height: 40rpx;
+}
+
 .title-courseName{
  float: right;
  margin-right: 10rpx;
