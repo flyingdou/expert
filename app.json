@@ -10,6 +10,7 @@
     "pages/paySuccess/paySuccess",
     "pages/plan/plan",
     "pages/planDetail/planDetail",
+    "pages/video/video",
     "pages/activeTicket/activeTicket",
     "pages/mine/mine",
     "pages/myOrder/myOrder",

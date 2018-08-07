@@ -103,6 +103,16 @@ Page({
       })
   },
 
+  /**
+   * wxml绑定函数: 动作列表项点击绑定
+   */
+  bindActionItemTap: function () {
+    var items = this.data.planDetailData.items;
+    wx.navigateTo({
+      url: '../video/video?items=' + JSON.stringify(items)
+    })
+  },
+
   reminder: function () {
       wx.showModal({
         title: '提示',

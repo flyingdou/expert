@@ -1,0 +1,72 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 播放器 -->
+<view class='player'>
+  <view class='prev' bindtap='bindPrevButtonTap'>
+    <image src='{{filter.getPictureUrl("201808071128.png")}}' mode='aspectFill'>
+    </image>
+  </view> 
+  <view class='video-block'>
+    <video src='{{actionList[currentIndex].video}}' autoplay loop>
+    </video>
+  </view>
+  <view class='next' bindtap='bindNextButtonTap'>
+    <image src='{{filter.getPictureUrl("201808071129.png")}}' mode='aspectFill'>
+    </image>
+  </view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;'></view>
+
+<!-- 组数信息 -->
+<view class='action-group'>
+  <view class='action-group-title'>
+    {{actionList[currentIndex].name}}
+  </view>
+  <view class='action-group-content'>
+    <view class='group-info-title'>
+      <view>组数</view>
+      <view>重复</view>
+      <view>重量(时间)</view> 
+      <view>休息</view>
+    </view>
+
+    <!-- 填充高度 -->
+    <view style='height: 20rpx;'></view>
+
+    <view class='group-info-content' wx:for='{{actionList[currentIndex].groups}}' wx:key=''>
+      <view>第{{index + 1}}组</view>
+      <view>{{item.planTimes}}次</view>
+      <view wx:if='{{item.planWeight && actionList[currentIndex].mode == 1}}'>
+        {{item.planWeight}}公斤
+      </view> 
+      <view wx:elif='{{!item.planWeight && actionList[currentIndex].mode == 1}}'>
+        力竭
+      </view> 
+      <view wx:else>
+        {{item.planDuration}}
+      </view>
+      <view>{{item.planIntervalSeconds}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;'></view>
+
+<!-- 动作描述|注意事项 -->
+<view class='action-descr'>
+  <view class='action-descr-title'>
+    动作描述|注意事项
+  </view>
+  <view class='action-descr-content'>
+    <view class='descr'>
+      <text decode>{{actionList[currentIndex].descr}}</text>
+    </view>
+    <view class='regard'>
+      <text decode>{{actionList[currentIndex].regard}}</text>
+    </view>
+  </view>
+</view>

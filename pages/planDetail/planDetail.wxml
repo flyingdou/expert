@@ -43,7 +43,7 @@
 
       <view class="action-items">
           <!-- for循环遍历渲染页面 -->
-          <view class="action-item" wx:for="{{planDetailData.items}}" >
+          <view class="action-item" wx:for="{{planDetailData.items}}" bindtap='bindActionItemTap'>
               <view class="action-item-img-div">
                    <image class="action-item-img" src="https://www.ecartoon.com.cn/picture/{{item.action.image}}"></image>
               </view>
@@ -59,7 +59,7 @@
   </view>
 
   <!-- 开始训练 -->
-  <view class="train" bindtap="reminder" >
+  <!-- <view class="train" bindtap="reminder" >
     请下载“卡库健身”APP查看本计划视频
-  </view>
+  </view> -->
 </view>
