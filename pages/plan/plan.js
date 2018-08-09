@@ -286,6 +286,13 @@ Page({
 
   },
   
-
+  /**
+   * 回到首页
+   */
+  backIndex: function () {
+    wx.reLaunch({
+      url: '../index/index'
+    })
+  }
 
 })

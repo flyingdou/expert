@@ -3,17 +3,41 @@
 
 <!-- 播放器 -->
 <view class='player'>
-  <view class='prev' bindtap='bindPrevButtonTap'>
-    <image src='{{filter.getPictureUrl("201808071128.png")}}' mode='aspectFill'>
-    </image>
-  </view> 
-  <view class='video-block'>
-    <video src='{{actionList[currentIndex].video}}' autoplay loop>
-    </video>
-  </view>
-  <view class='next' bindtap='bindNextButtonTap'>
-    <image src='{{filter.getPictureUrl("201808071129.png")}}' mode='aspectFill'>
-    </image>
+  <video id='video' src='{{actionList[currentIndex].video}}' autoplay loop controls='{{false}}'>
+  </video>
+</view>
+
+<!-- 操作栏 -->
+<view class='option'>
+  <image src='https://www.ecartoon.com.cn/picture/Row1Bar.png' mode='aspectFill'>
+  </image>
+  <view class='option-block'>
+    <view class='options-box'>
+      <view class='options-button' bindtap='bindPrevButtonTap'>
+        <view class='icon-prev'>
+          <image src='https://www.ecartoon.com.cn/picture/Rewind.png' mode='aspectFill'>
+          </image>
+        </view>
+      </view>
+      <view class='options-button' bindtap='bindPauseButtonTap'>
+        <view class='icon-pause'>
+          <image src='https://www.ecartoon.com.cn/picture/Pause.png' mode='aspectFill'>
+          </image>
+        </view>
+      </view>
+      <view class='options-button' bindtap='bindPlayButtonTap'>
+        <view class='icon-play'>
+          <image src='https://www.ecartoon.com.cn/picture/Play.png' mode='aspectFill'>
+          </image>
+        </view>
+      </view>
+      <view class='options-button' bindtap='bindNextButtonTap'>
+        <view class='icon-next'>
+          <image src='https://www.ecartoon.com.cn/picture/FastForward.png' mode='aspectFill'>
+          </image>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 
@@ -46,9 +70,9 @@
         力竭
       </view> 
       <view wx:else>
-        {{item.planDuration}}
+        {{filter.timeConver(item.planDuration)}}
       </view>
-      <view>{{item.planIntervalSeconds}}</view>
+      <view>{{filter.timeConver(item.planIntervalSeconds)}}</view>
     </view>
   </view>
 </view>

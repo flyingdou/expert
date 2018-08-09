@@ -22,7 +22,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    // 初始化视频播放组件
+    this.vidoContenxt = wx.createVideoContext('video', this);
   },
 
   /**
@@ -61,11 +62,30 @@ Page({
   },
 
   /**
+   * wxml绑定函数: 暂停按钮点击绑定
+   */
+  bindPauseButtonTap: function () {
+    this.vidoContenxt.pause();
+  },
+
+  /**
+   * wxml绑定函数: 播放按钮点击绑定
+   */
+  bindPlayButtonTap: function () {
+    this.vidoContenxt.play();
+  },
+
+  /**
    * wxml绑定函数: 上一个按钮点击绑定
    */
   bindPrevButtonTap: function () {
     var currentIndex = this.data.currentIndex;
     if (currentIndex <= 0) {
+      wx.showModal({
+        title: '提示',
+        content: '已经是第一组了',
+        showCancel: false
+      });
       return;
     }
     currentIndex--;
@@ -80,6 +100,11 @@ Page({
   bindNextButtonTap: function () {
     var currentIndex = this.data.currentIndex;
     if (currentIndex >= this.data.actionList.length - 1) {
+      wx.showModal({
+        title: '提示',
+        content: '已经最后一组了',
+        showCancel: false
+      });
       return;
     }
     currentIndex++;
