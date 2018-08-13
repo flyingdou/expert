@@ -14,12 +14,10 @@ Page({
       // 通过百度手机广告小程序码进入, 保存originType
       if (param == 'expert_baidu_mobile') {
         app.constants.originType = param;
-        return;  
       }
       // 通过百度PC广告小程序码进入, 保存originType
       if (param == 'expert_baidu_PC') {
         app.constants.originType = param;
-        return;
       }
       // 普通小程序码, 保存用户Id
       app.constants.shareMember = param;
