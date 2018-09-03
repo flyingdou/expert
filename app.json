@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
+    "pages/ranking/ranking",
     "pages/giveRose/giveRose",
     "pages/myQRCode/myQRCode",
     "pages/order/order",
@@ -12,6 +12,10 @@
     "pages/planDetail/planDetail",
     "pages/video/video",
     "pages/activeTicket/activeTicket",
+    "pages/active/active",
+    "pages/activeDetail/activeDetail",
+    "pages/joinActive/joinActive",
+    "pages/logs/logs",
     "pages/mine/mine",
     "pages/myOrder/myOrder",
     "pages/myWallet/myWallet",
@@ -41,10 +45,10 @@
         "selectedIconPath": "icon/courseList_selected.png"
       },
       {
-        "pagePath": "pages/giveRose/giveRose",
-        "text": "赠人玫瑰",
-        "iconPath": "icon/rose-off.png",
-        "selectedIconPath": "icon/rose-on.png"
+        "pagePath": "pages/active/active",
+        "text": "健身挑战",
+        "iconPath": "icon/challenge.png",
+        "selectedIconPath": "icon/challenge_selected.png"
       },
       {
         "pagePath": "pages/mine/mine",

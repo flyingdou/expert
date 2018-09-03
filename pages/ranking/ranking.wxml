@@ -1,0 +1,56 @@
+<!-- 引入过滤器 -->
+<wxs module='filter' src='../../utils/filters.wxs'></wxs>
+<!-- 页面开始 -->
+<view class='wraper'>
+  <view class='memberRanking'>
+    <view class='memberRanking-title'>
+      <view>
+        <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;排名</text>
+      </view>
+      <view>会员</view>
+      <view>
+        <text decode='{{true}}'>健身次数&nbsp;&nbsp;&nbsp;&nbsp;</text>
+      </view>
+    </view>
+    <view class='memberRanking-body'>
+      <view class="no-data" wx:if="{{memberRanking.length == 0}}">
+        <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+        </image>
+        <view>暂无数据</view>
+        <view>先去看看别的</view>
+      </view>
+      <view class='memberRanking-item' wx:for='{{memberRanking}}' wx:key=''>
+        <view class='ranking'>
+          <image src='{{filter.errorImage("201805210945.png")}}' mode='aspectFill'
+            wx:if='{{index == 0}}'>
+          </image>
+          <image src='{{filter.errorImage("201805210946.png")}}' mode='aspectFill'
+            wx:if='{{index == 1}}'>
+          </image>
+          <image src='{{filter.errorImage("201805210947.png")}}' mode='aspectFill'
+            wx:if="{{index == 2}}">
+          </image>
+          <text decode='{{true}}' wx:if='{{index > 2}}'>&nbsp;&nbsp;&nbsp;&nbsp;No.{{index + 1}}</text>
+        </view>
+        <view class='memberInfo'>
+          <image class='memberInfo-image' src='{{filter.errorImage(item.image)}}'   
+              mode='aspectFill' wx:if='{{item.image && item.image != ""}}'>
+          <image class='memberInfo-image' 
+            src='{{filter.errorImage("20180203151096.jpg")}}'  
+            mode='aspectFill' wx:if='{{!item.image || item.image == ""}}'></image>
+          </image>
+          <view class='memberInfo-name'>{{item.name}}</view>
+        </view>
+        <view class='count'>
+          <text decode='{{true}}'>{{item.count}}次&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享页面，回到首页按钮 -->
+  <view class='goHome' bindtap='goHome' wx:if='{{source}}'>
+          <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
+          <view>前往主页</view>
+  </view>
+</view>

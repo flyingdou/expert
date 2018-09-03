@@ -1,179 +1,212 @@
 page{
-  margin: 0;
-  padding: 0;
-  width: 100%;
   height: 100%;
-  color: #FFF;
   overflow: hidden;
+  background-color: #DFDFDD;
 }
 
 image{
+  display: block;
   width: 100%;
   height: 100%;
 }
 
-.wraper{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* 多功能按钮 */
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFF;
 }
 
-.block{
-  position: relative;
-  height: 100%;
+.button{
+  padding-top: 20rpx;
+  width: 25%;
 }
 
-.price{
-  position: absolute;
-  top: 43%;
-  left: 0;
-  width: 90%;
-  padding: 0 5%;
+.button-icon{
+  margin: 0 auto;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.button-text{
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ACA9A9;
+}
+
+/* 健康评估 */
+.healthy{
+  background-color: #FFF;
+}
+
+.healthy-title{
+  padding: 20rpx;
+  font-size: 30rpx;
+  color: #030303;
+  border-bottom: 1px solid #F8F8F8;
+}
+
+.healthy-content{
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.healthy-icon{
+  display: flex;
+  align-items: center;
+  float: left;
+  height: 90rpx;
+}
+
+.healthy-icon > image{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.healthy-middle{
+  float: left;
+  margin-left: 20rpx;
+}
+
+.healthy-name{
+  font-size: 28rpx;
+  color: #030303;
+}
+
+.healthy-text{
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #6D6D6D;
+}
+
+.healthy-value{
+  float: right;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  color: #030303;
+}
+
+.healthy-tip{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  font-size: 20rpx;
+  color: #ACA9A9;
+}
+
+.ask{
+  margin-right: 10rpx;
+  width: 22rpx;
+  height: 22rpx;
+  text-align: center;
+  line-height: 22rpx;
+  font-size: 20rpx;
+  color: #FFF;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.padding0 {
+  padding: 0;
+}
+
+/* 健康评估(未登录) */
+.line{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color: #ACA9A9;
+}
+
+.line-item{
+  width: 50%;
+}
+
+.line-item-wraper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.line-sub-item{
+  color: #030303;
+}
+
+.line-select{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.select-item{
+  margin-left: 20rpx;
+  width: 80rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border: 1px solid #ACA9A9;
+  border-radius: 10rpx;
+}
+
+.select-active{
+  color: #FFF;
+  background-color: #FF4401;
+  border-color: #FF4401;
+}
+
+.line-input{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.line-input > input{
+  width: 100rpx;
   text-align: right;
 }
 
-.buttons{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: absolute;
-  bottom: 35%;
-  left: 0;
-  width: 100%;
-  height: 160rpx;
-  text-align: center;
+.company{
+  margin-left: 10rpx;
+  height: 1.4rem;
+  line-height: 1.4rem;
 }
 
-.button1{
+.submit-button{
   position: relative;
-  width: 40%;
-  height: 80rpx;
-  line-height: 80rpx;
-  color: #000;
-  background-color: #FFDD00;
-  border-radius: 10rpx;
+  margin: 0 auto;
+  width: 288rpx;
+  height: 60rpx;
 }
 
-.button2{
-  position: relative;
-  width: 40%;
-  height: 80rpx;
-  line-height: 80rpx;
-  background-color: #FF4401;
-  border-radius: 10rpx;
-}
-
-.loginButton{
+.submit-button-text{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: transparent;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: #FFF;
 }
 
-.bottom{
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 400rpx;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.bottom-block{
-  position: relative;
-}
-
-.title{
-  padding: 20rpx;
-  overflow: hidden;
-}
-
-.photo{
-  float: left;
-  width: 80rpx;
-  height: 80rpx;
-}
-
-.photo > image{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-.title-content{
-  float: left;
-  margin-left: 20rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 30rpx;
-}
-
-.titleHead{
- font-size:30rpx;font-weight:bold;
-}
-
-.titleBody{
-  font-size:24rpx;
-}
-
-.customerServiceDiv{
-   position: relative;
-   float: right;
-   width: 120rpx;
-   height: 50rpx;
-   margin-top: -90rpx;
-}
-
-.customerServiceDiv > image{
-  width: 100%;
-  height: 100%;
-}
-
-.customerButton{
+.login-button{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  z-index: 2;
+  background-color: transparent;
 }
 
-.customerButton::after{
+.login-button::after{
   border: none;
 }
-
-.swiper{
-  height: 240rpx;
-}
-
-.scroll-item{
-  padding: 20rpx;
-  overflow: hidden;
-}
-
-.product-memo{
-  float: left;
-  font-size: 30rpx;
-  font-weight: bold;
-}
-
-.product-content{
-  float: left;
-  margin-left: 20rpx;
-  font-size: 24rpx;
-}
-
-.text{
-  margin-top: 10rpx;
-}
-
-
-
 
 
 

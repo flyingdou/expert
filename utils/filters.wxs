@@ -1,8 +1,5 @@
 // 过滤器
 var filters = {
-  getPictureUrl: function (image) {
-    return 'https://www.ecartoon.com.cn/picture/' + image;
-  },
   errorImage: function (image) {
     if(!image || image == ''){
       return 'https://www.ecartoon.com.cn/miniProgram/club/img/default.png';
@@ -128,7 +125,6 @@ var filters = {
 
 // 暴露接口
 module.exports = {
-  getPictureUrl: filters.getPictureUrl,
   errorImage: filters.errorImage,
   toFixed: filters.toFixed,
   overflow_hidden: filters.overflow_hidden,

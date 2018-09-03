@@ -1,0 +1,59 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='activeInfo'>
+    <image src='{{filter.errorImage(active.image)}}' class='activeImage' mode='aspectFill'>
+    </image>
+    <view class='activeInfo-content'>
+      <view class='activeName'>
+        {{active.name}}
+      </view>
+      <view class='activeTarget'>
+        目标：{{filter.active_target(active.days, active.target, active.value)}}
+      </view>
+      <view class='activeCreator'>
+        发布人 : {{filter.overflow_hidden(active.creator, 8)}}
+      </view>
+    </view>
+  </view>
+  <view class='activeStartTime'>
+    <view class='activeStartTime-left'>
+      挑战开始时间
+    </view>
+    <picker class='activeStartTime-right' mode="date" value="{{product.currentDate}}" 
+      bindchange='changeDate'>
+      <view class='currentDate'>
+        {{currentDate}}
+      </view>
+      <image class='more-icon' src='{{base_picture_url}}/more.png'>
+      </image>
+    </picker>
+  </view>
+  <view class='currentWeight' wx:if='{{active.target == "A" || active.atarget == "B"}}'>
+    <view class='currentWeight-left'>
+      当前体重
+    </view>
+    <view class='currentWeight-right'>
+      <view class='currentWeight-right-input'>
+        <input type='number' bindinput='getInputValue'></input>
+      </view>
+      <view class='currentWeight-right-text'>
+        KG
+      </view>
+    </view>
+  </view>
+  <view class='amerceMoney'>
+    <view class='amerceMoney-left'>
+      挑战保证金
+    </view>
+    <view class='amerceMoney-right'>
+      {{active.amerce_money}}元
+    </view>
+  </view>
+  <view class='tip'>
+    我自愿参加本次挑战活动 ，无条件遵守活动规则 ，同意运营方根据挑战成绩处置保证金。
+  </view>
+  <view class='goBuy' bindtap='goBuy'>
+    支付保证金
+  </view>
+</view>

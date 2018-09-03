@@ -1,0 +1,159 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='activeInfo-top'>
+    <image src='{{filter.errorImage(active.image)}}' mode='aspectFill'></image>
+    <view class='activeInfo-top-content'>
+      <image src='{{filter.errorImage(active.image)}}' class='activeInfo-top-content-left' 
+          mode='aspectFill'></image>
+      <view class='activeInfo-top-content-right'>
+        <view class='activeName'>
+          {{filter.overflow_hidden(active.name, 12)}}
+        </view>
+        <view class='activeCreator'>
+          发布人 : {{filter.overflow_hidden(active.creator, 10)}}
+        </view>
+        <view class='activeCount'>  
+          参加人数 : {{active.count}}人
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='activeInfo-bottom'>
+    <view class='active-row' wx:if='{{active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{filter.errorImage("201805100423.png")}}' mode='aspectFill' 
+          wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          开始时间
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.orderStartTime}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{filter.errorImage("201805100423.png")}}' mode='aspectFill' 
+          wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          结束时间
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.orderEndTime}}
+      </view>
+    </view>
+    <view class='active-row'>
+      <view class='active-row-left'>
+        <image src='{{filter.errorImage("201805100423.png")}}' mode='aspectFill' 
+          wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          挑战目标
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{filter.active_target(active.days, active.target, active.value)}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{active.result && (active.target == "A" || active.result == "B")}}'>
+      <view class='active-row-left'>
+        <image src='{{filter.errorImage("201805100423.png")}}' mode='aspectFill' 
+          wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          开始体重
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.weight}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{!active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{filter.errorImage("201805100424.png")}}' mode='aspectFill' 
+          wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          成功奖励
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.award}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{!active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{filter.errorImage("201805100425.png")}}' mode='aspectFill' 
+          wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          失败惩罚
+        </view>
+      </view>
+      <view class='active-row-right'>
+        向{{active.institution}}捐赠{{active.amerce_money}}元
+      </view>
+    </view>
+    <view style='height:10px;background-color:#F0F0F2;'></view>
+    <view class='activeMemo' wx:if="{{!active.result}}">
+        注意事项
+        <view class='activeMemo-content'>
+          {{active.memo}}
+        </view>
+    </view>
+    <view class='actived' wx:if='{{active.result}}'>
+      <view class='active-row'>
+        <view class='active-row-left'>
+          当前状态
+        </view>
+        <view class='active-row-right'>
+          {{active.resultText}}
+        </view>
+      </view>
+      <view class='active-row' wx:if='{{active.target == "A" || active.target == "B"}}'>
+        <view class='active-row-left'>
+          结束体重
+        </view>
+        <view class='active-row-right' wx:if='{{active.result == 0}}'>
+          请在结束后输入体重
+        </view>
+        <view class='active-row-right' wx:if='{{active.result == 3}}'>
+          <input type='number' bindinput='getInputValue' placeholder='请在挑战结束后输入体重'>
+          </input>
+        </view>
+        <view class='active-row-right' wx:if='{{active.result == 1 || active.result == 2}}'>
+          {{active.lastWeight}}
+        </view>
+      </view>
+      <view class='active-row' wx:if='{{active.target == "C" || active.target == "D"}}'>
+        <view class='active-row-left'>
+          健身次数
+        </view>
+        <view class='active-row-right'>
+          {{active.signCount}}
+        </view>
+      </view>
+    </view>
+    <view class='resultImage' wx:if='{{active.result && active.result != 3}}'>
+      <image src='{{filter.errorImage(active.resultImage)}}'>
+      </image>
+      <view class='resultTip'>{{active.resultTip}}</view>
+    </view>
+  </view>
+  <view class='participateIn' bindtap='participateIn' wx:if='{{!active.result}}'>
+    参加挑战
+  </view>
+  <view class='participateIn' bindtap='submitWeight' wx:if='{{active.result == 3}}'>
+    提交成绩
+  </view>
+  <view class='goHome' bindtap='goHome' wx:if='{{activeId}}'>
+    <image src='{{filter.getPictureUrl("201805241551.png")}}'>
+    </image>
+    <view>前往主页</view>
+  </view>
+</view>

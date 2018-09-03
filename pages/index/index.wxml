@@ -1,52 +1,85 @@
 <!-- 引入过滤器 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
-<image src='https://www.ecartoon.com.cn/expert/img/expertIndexBackground.png' mode='widthFix'>
-</image>
-<view class='wraper'>
-  <view class='block'>
-    <!-- 价格和定制按钮 -->
-    <view class='buttons'>
-      <view class=''>
-        <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
-        <text style='font-size: 110rpx;font-weight: bold;'>{{filter.toFixed(item.price, 0)}}</text>
-        <text style='font-size: 56rpx;'>.00</text>
-      </view>
-      <view class='button2' bindtap='bindToSettingButtonTap'>
-        开始定制
-      </view>
+
+<!-- 轮播 -->
+<swiper autoplay indicator-dots interval='5000' indicator-active-color='#FFF' 
+  style='height: 468rpx;'>
+  <swiper-item wx:for='{{images}}' wx:key='' bindtap='toPage' data-page='setting'>
+    <image src='{{filter.errorImage(item)}}'></image>
+  </swiper-item>
+</swiper>
+
+<!-- 多功能按钮 -->
+<view class='buttons'>
+  <view class='button' wx:for='{{buttons}}' wx:key='' bindtap='toPage' 
+    data-page='{{item.page}}'> 
+    <view class='button-icon'>
+      <image src='{{filter.errorImage(item.image)}}'></image>
     </view>
-    <view class='bottom'>
-      <view class='bottom-block'>
-        <!-- 用户头像和标题 -->
-        <view class='title'>
-          <view class='photo'>
-            <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
-            </image>
+    <view class='button-text'>{{item.text}}</view>
+  </view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+<!-- 健康评估 -->
+<view class='healthy' wx:if='{{status}}'>
+  <view class='healthy-title'>我的健康评估</view>
+  <view class='healthy-content' wx:for='{{healthy}}' wx:key=''>
+    <view class='healthy-icon'>
+      <image src='{{filter.errorImage(item.image)}}'></image>
+    </view>
+    <view class='healthy-middle'>
+      <view class='healthy-name'>{{item.title}}</view>
+      <view class='healthy-text'>{{item.text}}</view>
+    </view>
+    <view class='healthy-value'>
+      {{filter.toFixed(item.value, 2)}}
+    </view>
+  </view>
+  <view class='healthy-tip'>
+    <view class='ask'>?</view>
+    <view>在 "健身打卡" 和 "我的-个人信息" 中更新数据可重新生成评估结果</view>
+  </view>
+</view>
+
+<!-- 健康评估(未登录) -->
+<view class='healthy' wx:if='{{!status}}'>
+  <view class='healthy-title'>我的健康评估</view>
+  <view class='healthy-content padding0'>
+    <view class='line' wx:for='{{line}}' wx:key=''>
+      <view class='line-item' wx:for='{{item}}' wx:key='' wx:for-item='subItem' 
+        wx:for-index='subIndex'>
+        <view class='line-item-wraper'>
+          <view class='line-sub-item'>{{subItem.text}}:</view>
+          <view class='line-select' wx:if='{{subItem.lineType == "select"}}'>
+            <view class='select-item {{blockIndex==selectIndex?"select-active":""}}' 
+              wx:for='{{selectBlocks}}' wx:key='' wx:for-item='block' 
+              wx:for-index='blockIndex' bindtap='saveFormData' 
+              data-type='{{subItem.lineType}}'  data-index='{{blockIndex}}'>
+              {{block.text}}
+            </view>
           </view>
-          <view class='title-content'>王严讲健身</view>
+          <view class='line-picker' wx:if='{{subItem.lineType == "picker"}}'>
+            <picker mode='date' bindchange='saveFormData' data-key='{{subItem.key}}'>
+              {{model.date}}
+            </picker>
+          </view>
+          <view class='line-input' wx:if='{{subItem.lineType == "input"}}'>
+            <input bindinput='saveFormData' data-key='{{subItem.key}}'></input>
+            <view class='company'>{{subItem.company}}</view>
+          </view>
         </view>
-        <!-- 滑块区域 -->
-        <swiper class='swiper' indicator-dots='{{true}}' autoplay='{{true}}' interval='10000'
-          indicator-color='#FFF'  indicator-active-color='#FF4401'>
-          <swiper-item>
-            <view class="scroll-item">
-              <view style='font-size:30rpx;font-weight:bold;'>王严介绍:<text decode='{{true}}'>&nbsp;&nbsp;</text><text style='font-size:24rpx;font-weight:400;'>{{item.summary}}</text>
-              </view>
-            </view>
-          </swiper-item>
-          <swiper-item>
-            <view class="scroll-item">
-              <view class="product-memo">产品简介:</view>
-              <view class="product-content">
-                <view class='text'>计划类型: 瘦身减重,健美增肌,提高运动表现</view>
-                <view class='text'>适用对象: 初级,中级</view>
-                <view class='text'>计划周期: 4周<text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;</text>使用场景: 健身房</view>
-                <view class='text'>所需器材: 各种力量训练器材</view>
-              </view>
-            </view>
-          </swiper-item>
-        </swiper>
       </view>
     </view>
   </view>
-</view> 
+  <view class='submit-button'>
+    <image src='{{filter.errorImage("201809031051.png")}}'></image>
+    <view class='submit-button-text'>开始评估</view>
+    <button class='login-button' open-type='getUserInfo' bindgetuserinfo='wechatLogin' 
+      wx:if='{{!status}}'>
+    </button>
+  </view>
+  <view style='height: 20rpx;'></view>
+</view>

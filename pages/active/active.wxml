@@ -1,0 +1,46 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<tab titles='{{tab}}' height='{{height}}' wx:if='{{height}}' 
+  bindChangeCurrentIndex='saveCurrentIndex'>
+  <view class='wraper' wx:for='{{tab}}' wx:key='' wx:for-item='tabItem' 
+    wx:for-index='tabIndex' slot='{{tabIndex}}'>
+    <view class="no-data" 
+      wx:if="{{tabItem.data.length == 0}}">
+      <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+      </image>
+      <view>暂无数据</view>
+      <view>先去看看别的</view>
+    </view>
+    <view class='active-list'>
+      <view class='active-item' wx:for='{{tabItem.data}}' wx:key='' 
+        bindtap='activeDetail' data-index='{{index}}' > 
+        <image src='{{filter.errorImage(item.image)}}' mode='aspectFill'></image>
+        <view class='active-body'>
+          <view class='top'>挑战：{{item.name}}</view>
+          <view class='middle'>目标：{{filter.active_target(item.days, item.target, item.value)}}</view>
+          <view class='bottom'>
+            {{item.count}}人参加
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='active-list'>
+      <view class='active-item' wx:for='{{priceActiveList}}' wx:key='' bindtap='cutdown'
+        data-index='{{index}}' > 
+        <image src='{{filter.errorImage(item.poster)}}' mode='aspectFill'></image>
+        <view class='active-body'>
+          <view class='top'>砍价：{{item.activeName}}</view>
+          <view class='middle'>
+            原价 ¥{{item.money}}
+            <text decode="{{true}}">&nbsp;&nbsp;</text>
+            可砍至：{{item.lowPrice}}元
+          </view>
+          <view class='bottom'>
+            {{item.count}}人参加
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</tab>
