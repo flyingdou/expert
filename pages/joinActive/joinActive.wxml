@@ -25,7 +25,7 @@
       <view class='currentDate'>
         {{currentDate}}
       </view>
-      <image class='more-icon' src='{{base_picture_url}}/more.png'>
+      <image class='more-icon' src='{{filter.errorImage("more.png")}}'>
       </image>
     </picker>
   </view>

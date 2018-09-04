@@ -9,7 +9,7 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
-const formatData = date => {
+const formatDate = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -37,6 +37,6 @@ function getSystemInfo() {
 
 module.exports = {
   formatTime: formatTime,
-  formatData: formatData,
+  formatDate: formatDate,
   getSystemInfo: getSystemInfo
 }

@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function (options) {
     let active = JSON.parse(decodeURI(options.active));
-    let currentDate = util.formatTime(new Date());
+    let currentDate = util.formatDate(new Date());
     this.setData({
       active: active,
       currentDate: currentDate

@@ -2,7 +2,7 @@ var app = getApp()
 var util = require('../../utils/util.js')
 Page({
   data: {
-    images: [ '201809031048.png', '201809031048.png' ],
+    images: [ '201809031048.png', '201809031754.png' ],
     buttons: [
       { image: '201807090917.png', text: '定制计划', page: 'setting' },
       { image: '201805042235.png', text: '健身排行榜', page: 'ranking' },
@@ -73,7 +73,7 @@ Page({
     this.methods.init(this);
 
     var model = this.data.model;
-    model.date = util.formatData(new Date());
+    model.date = util.formatDate(new Date());
     this.setData({
       model: model
     })
