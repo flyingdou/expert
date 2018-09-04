@@ -2,111 +2,148 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 页面开始 -->
 <view class="content">
-  <!-- 个人信息 -->
-  <view class="personInfo">
-    <!-- 背景图 -->
-    <image class="BGP" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/wxbackground.jpg" mode="aspectFill"></image>
+   <!-- 个人信息 -->
+   <view class="personInfo">
+       <!-- 背景图 -->
+       <image class="BGP" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/wxbackground.jpg" mode="aspectFill"></image>
+       
+       <!-- 用户登录的情况 -->
+       <view class="person" wx:if="{{!login_button}}">
+             <view class='presonDD'>
 
-    <!-- 用户登录的情况 -->
-    <view class="person" wx:if="{{!login_button}}">
-      <view class='presonDD'>
+                     <!-- 头像 -->
+                      <view class="personImageDiv" bindtap='toUserInfoPage'>
+                            <image class="personImage" mode="aspectFill" src="{{filter.errorImage(memberData.image)}}"></image>
+                      </view>
 
-        <!-- 头像 -->
-        <view class="personImageDiv">
-          <image class="personImage" mode="aspectFill" src="{{filter.errorImage(memberData.image)}}"></image>
-        </view>
+                      <!-- 其他信息 -->
+                      <view class="others"> 
+                              <view class="nickName">
+                                    {{memberData.nickName}}
+                                    <text decode='{{true}}'>&nbsp;|&nbsp;</text>
+                                     <!-- 地图图标 -->
+                                    <view class='mapIconDiv'>
+                                            <image mode='aspectFill' class='mapIcon' src='{{base_img_url}}/address2.png'></image>
+                                    </view>
+                                    <view class='locationFont'>
+                                               
+                                                <view class='userProvince'>
+                                                        <open-data type='userProvince' lang='zh_CN'></open-data><text>-</text>
+                                                </view>
+                                                <view class='userCity'>
+                                                        <open-data type='userCity' lang = 'zh_CN'></open-data>
+                                                </view>
+                                    </view>
+                              </view>
+                              
+                              
+                      </view>
+             </view>
+       </view>
 
-        <!-- 其他信息 -->
-        <view class="others">
-          <!-- 昵称 -->
-          <view class='nickName'>{{memberData.nickName}}
-            <text decode='{{true}}'>&nbsp;&nbsp;|</text>
-            <text class='countDesc' decode='{{true}}'>&nbsp;&nbsp;&nbsp;已健身</text>
-            <text class='countFont'>{{memberData.count}}</text>
-            <text class='countDesc'>次</text>
-          </view>
+       <!-- 用户未登录，展示登录按钮 -->
+       <view class="login" wx:if="{{login_button}}">
+            <view class='login_div'>
+                   <button class='login_button' open-type='getUserInfo' lang='zh_CN' bindgetuserinfo='wechatLogin' >登录</button> 
+            </view>
+       </view>
+   </view>
+
+   <!-- 三大块 -->
+   <view class='big3'>
+         <!-- 我的足迹 -->
+         <view class='pred' bindtap='gotoMyFooter' >
+               <!-- 图标 -->
+               <view class='picDiv'>
+                     <image class='pic' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/footprint@2x.png'></image>
+               </view>
+
+               <!-- description -->
+               <view class='desc'>我的足迹</view>
+         </view>
 
 
-        </view>
+        <!-- 我的挑战 -->
+         <view class='pred' bindtap='gotoMyActive'>
+               <!-- 图标 -->
+               <view class='picDiv'>
+                     <image class='pic' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/challenge@2x.png'></image>
+               </view>
+
+               <!-- description -->
+               <view class='desc'>我的挑战</view>
+         </view>
+
+
+         <!-- 已健身次数 -->
+         <view class='pred'>
+              <!-- 上部 -->
+              <view class='countNum'>{{filter.getCount(memberData.count)}}<text class='countUnit'>次</text></view>
+              <!-- 下部 -->
+              <view class='desc'>已健身</view>
+         </view>
+
+
+
+
+   </view>
+   
+   <!-- 页面跳转链接 -->
+   <view class="linksPage">
+      <!-- 我的订单 -->
+      <view class="pre" bindtap="gotoMyOrder">
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
+            </view>
+
+            <view class="title">我的订单</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
-    </view>
 
-    <!-- 用户未登录，展示登录按钮 -->
-    <view class="login" wx:if="{{login_button}}">
-      <view class='login_div'>
-        <button class='login_button' open-type='getUserInfo' lang='zh_CN' bindgetuserinfo='wechatLogin'>登录</button>
-      </view>
-    </view>
-  </view>
+      <!-- 我的钱包 -->
+      <view class="pre" bindtap="gotoMyWallet">
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
+            </view>
 
-  <!-- 页面跳转链接 -->
-  <view class="linksPage">
-    <!-- 我的订单 -->
-    <view class="pre" bindtap="gotoMyOrder">
-      <!-- icon -->
-      <view class='iconDiv'>
-        <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
+            <view class="title">我的钱包</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
-      <view class="title">我的订单</view>
-      <view class="link">
-        <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
-      </view>
-    </view>
+      <!-- 我的优惠券 -->
+      <view class="pre" bindtap='gotoMyTicke'>
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
+            </view>
 
-    <!-- 我的钱包 -->
-    <view class="pre" bindtap="gotoMyWallet">
-      <!-- icon -->
-      <view class='iconDiv'>
-        <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
-      </view>
-
-      <view class="title">我的钱包</view>
-      <view class="link">
-        <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
-      </view>
-    </view>
-
-    <!-- 我的优惠券 -->
-    <view class="pre" bindtap='gotoMyTicke'>
-      <!-- icon -->
-      <view class='iconDiv'>
-        <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
+            <view class="title">我的优惠券</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
-      <view class="title">我的优惠券</view>
-      <view class="link">
-        <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
-      </view>
-    </view>
+      <!-- 送人健康 -->
+      <view class="pre" bindtap='gotoGiveHealth' >
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>
+            </view>
 
-    <!-- 我的分享订单 -->
-    <view class="pre" bindtap='gotoMyShareOrder'>
-      <!-- icon -->
-      <view class='iconDiv'>
-        <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/expert/img/shareorder.png'></image>
-      </view>
-
-      <view class="title">我的分享订单</view>
-      <view class="link">
-        <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
-      </view>
-    </view>
-
-    <!-- 我的分享码 -->
-    <view class="pre" bindtap='gotoMyQRCode'>
-      <!-- icon -->
-      <view class='iconDiv'>
-        <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/expert/img/sharecode.png'></image>
+            <view class="title">邀请好友</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
-      <view class="title">我的分享码</view>
-      <view class="link">
-        <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
-      </view>
-    </view>
-
-    <!-- 联系客服 -->
+      
+<!-- 联系客服 -->
     <view class="pre">
       <!-- icon -->
       <view class='iconDiv'>
@@ -119,6 +156,15 @@
       </view>
       <button open-type='contact' class='contact-button'></button>
     </view>
-  </view>
+      
+
+      
+
+       
+      
+
+
+
+   </view>
 
 </view>

@@ -1,0 +1,68 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<view class='line'>
+  <view class='line-left'>头像</view>
+  <view class='line-right'>
+    <image src='{{filter.errorImage("wangyan1.jpg")}}' class='photo'></image>
+  </view>
+</view>
+
+<view class='line'>
+  <view class='line-left'>昵称</view>
+  <view class='line-right'>
+    张子明
+  </view>
+</view>
+
+<view class='line'>
+  <view class='line-left'>手机</view>
+  <view class='line-right'>
+    {{filter.getStarNumberStr("13657277062", 3, 4)}}
+  </view>
+</view>
+
+<view class='line last-line'>
+  <view class='line-left'>地区</view>
+  <view class='line-right'>
+    湖北省 武汉市 洪山区
+  </view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+<view class='line'>
+  <view class='line-left'>出生日期</view>
+  <view class='line-right'>
+    1995-12-12
+  </view>
+</view>
+
+<view class='line'>
+  <view class='line-left'>性别</view>
+  <view class='line-right'>
+    男
+  </view>
+</view>
+
+<view class='line'>
+  <view class='line-left'>身高</view>
+  <view class='line-right'>
+    170 cm
+  </view>
+</view>
+
+<view class='line last-line'>
+  <view class='line-left'>静心率</view>
+  <view class='line-right'>
+    70 次/分钟
+  </view>
+</view>
+
+<view class='line last-line'>
+  <view class='line-left'>靶心率阈值</view>
+  <view class='line-right'>
+    55%-85%
+  </view>
+</view>

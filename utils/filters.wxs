@@ -119,7 +119,17 @@ var filters = {
          str = "￥" + parseFloat(str).toFixed(2);
       }
       return str;
+    },
+
+  /**
+ * 健身次数过滤
+ */
+  getCount: function (num) {
+    if (num == '' || num == 'null' || !num || num == 'undefined') {
+      num = 0;
     }
+    return num;
+  },
 
 }
 
@@ -135,5 +145,6 @@ module.exports = {
   stringNull: filters.stringNull,
   getStarNumberStr:filters.getStarNumberStr,
   getStarNumberStrMix:filters.getStarNumberStrMix,
-  getPriceStr:filters.getPriceStr
+  getPriceStr:filters.getPriceStr,
+  getCount: filters.getCount
 }

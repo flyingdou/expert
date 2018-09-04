@@ -1,0 +1,71 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 用户信息 -->
+<view class='user-info'>
+  <view class='user-image'>
+    <image src='{{filter.errorImage(memberData.image)}}'></image>
+  </view>
+  <view class='user-other-info'>
+    <view class='user-nick'>{{memberData.nickName}}</view>
+    <view class='sign-count'>已健身 <text class='count'>{{memberData.count}}</text> 次</view>
+  </view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+<!-- 打卡时间 -->
+<view class='sign-time-wraper'>
+  <view class='sign-time-icon'>
+    <image src='{{filter.errorImage("201809031055.png")}}'></image>
+  </view>
+  <view class='sign-time'>
+    <view class='sign-time-text'>
+      打卡时间
+    </view>
+    <view class='sign-tim-content'>
+      {{currentTime}}
+    </view>
+  </view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+<!-- 签到数据 -->
+<view class='form'>
+  <view class='form-title'>本次打卡数据</view>
+  <view class='form-content'>
+    <view class='line' wx:for='{{form}}' wx:key=''>
+      <view class='line-left'>
+        {{item.text}}
+      </view>
+      <view class='line-right'>
+        <input></input>
+        <view class='company'>{{item.company}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 提示信息 -->
+<view class='message'>
+  <view class='message-icon'>
+    <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-happy.png'></image>
+  </view>
+  <view class='message-content'>
+    <view>使用 “好友监督保存”，请好友督促健身</view>
+    <view>好友同意后，数据才显示到 “打卡记录” 中</view>
+  </view>
+</view>
+
+<!-- 底部按钮 -->
+<view class='buttons'>
+  <view class='button button-style1'>
+    直接保存
+  </view>
+  <view class='button button-style2'>
+    好友监督保存
+  </view>
+</view>

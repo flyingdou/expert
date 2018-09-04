@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/ranking/ranking",
+    "pages/sign/sign",
     "pages/giveRose/giveRose",
     "pages/myQRCode/myQRCode",
     "pages/order/order",
@@ -17,6 +18,7 @@
     "pages/joinActive/joinActive",
     "pages/logs/logs",
     "pages/mine/mine",
+    "pages/userInfo/userInfo",
     "pages/myOrder/myOrder",
     "pages/myWallet/myWallet",
     "pages/cash/cash",

@@ -137,6 +137,15 @@ Page({
   },
 
   /**
+   * 去个人信息页面
+   */
+  toUserInfoPage: function () {
+    wx.navigateTo({
+      url: '../userInfo/userInfo'
+    })
+  },
+
+  /**
    * 查看我的订单
    */
   gotoMyOrder: function() {
