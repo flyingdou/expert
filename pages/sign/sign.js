@@ -8,11 +8,12 @@ Page({
    */
   data: {
     form: [
-      { text: '体重', company: 'kg' },
-      { text: '腰围', company: 'cm' },
-      { text: '臀围', company: 'cm' },
-      { text: '最高运动心率', company: '次/分钟' }
-    ]
+      { text: '体重', company: 'kg', key: 'weight' },
+      { text: '腰围', company: 'cm', key: 'waist' },
+      { text: '臀围', company: 'cm', key: 'hip' },
+      { text: '最高运动心率', company: '次/分钟', key: 'bmiHigh' }
+    ],
+    model: {}
   },
 
   /**
@@ -122,6 +123,71 @@ Page({
           title: "提示",
           content: "网络异常",
           showCancel: false
+        })
+      }
+    })
+  },
+
+  /**
+   * 保存表单数据
+   */
+  saveFormData: function (e) {
+    var key = e.currentTarget.dataset.key;
+    var model = _this.data.model;
+    model[key] = e.detail.value;
+    _this.setData({
+      model: model
+    })
+  },
+
+  /**
+   * 检查表单
+   */
+  checkForm: function () {
+    var model = _this.data.model;
+    var paramList = [
+      { key: 'weight', message: '请输入体重' },
+      { key: 'waist', message: '请输入腰围' },
+      { key: 'hip', message: '请输入臀围' },
+      { key: 'bmiHigh', message: '请输入最高运动心率' }
+    ];
+    for (var item of paramList) {
+      if (!model[item.key] || model[item.key] == '') {
+        wx.showModal({
+          title: '提示',
+          content: item.message,
+          showCancel: false
+        })
+        return false;
+      }
+    }
+    model.memberId = wx.getStorageSync('memberId');
+    return model;
+  },
+
+  /**
+   * 提交表单
+   */
+  submitForm: function () {
+    var model = _this.checkForm();
+    if (!model) {
+      return;
+    }
+    wx.request({
+      url: app.request_url + "sign.asp",
+      data: {
+        json: encodeURI(JSON.stringify(model))
+      },
+      success: function (res) {
+        wx.showModal({
+          title: '签到成功',
+          content: '欢迎您在本次服务结束后，提出您的宝贵意见。',
+          showCancel: false,
+          complete: function () {
+            wx.navigateTo({
+              url: '../myFooter/myFooter'
+            })
+          }
         })
       }
     })

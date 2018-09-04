@@ -42,7 +42,7 @@
         {{item.text}}
       </view>
       <view class='line-right'>
-        <input></input>
+        <input bindinput='saveFormData' data-key='{{item.key}}'></input>
         <view class='company'>{{item.company}}</view>
       </view>
     </view>
@@ -62,7 +62,7 @@
 
 <!-- 底部按钮 -->
 <view class='buttons'>
-  <view class='button button-style1'>
+  <view class='button button-style1' bindtap='submitForm'>
     直接保存
   </view>
   <view class='button button-style2'>

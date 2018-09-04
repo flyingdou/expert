@@ -12,7 +12,7 @@
              <view class='presonDD'>
 
                      <!-- 头像 -->
-                      <view class="personImageDiv" bindtap='toUserInfoPage'>
+                      <view class="personImageDiv" bindtap='gotoUserInfo'>
                             <image class="personImage" mode="aspectFill" src="{{filter.errorImage(memberData.image)}}"></image>
                       </view>
 
@@ -59,7 +59,7 @@
                </view>
 
                <!-- description -->
-               <view class='desc'>我的足迹</view>
+               <view class='desc'>打卡记录</view>
          </view>
 
 

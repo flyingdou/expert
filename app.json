@@ -19,6 +19,7 @@
     "pages/logs/logs",
     "pages/mine/mine",
     "pages/userInfo/userInfo",
+    "pages/myFooter/myFooter",
     "pages/myOrder/myOrder",
     "pages/myWallet/myWallet",
     "pages/cash/cash",

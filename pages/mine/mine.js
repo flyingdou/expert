@@ -12,7 +12,7 @@ Page({
     login_button: true,
     hasMobilephone: 0,
     hasLogin: 0,
-    base_img_url: 'https://fish.ecartoon.com.cn/img/'
+    base_img_url: 'https://fish.ecartoon.com.cn/static/img'
   },
 
   /**
@@ -139,9 +139,18 @@ Page({
   /**
    * 去个人信息页面
    */
-  toUserInfoPage: function () {
+  gotoUserInfo: function () {
     wx.navigateTo({
       url: '../userInfo/userInfo'
+    })
+  },
+
+  /**
+   * 去我的足迹页面
+   */
+  gotoMyFooter: function () {
+    wx.navigateTo({
+      url: '../myFooter/myFooter'
     })
   },
 
