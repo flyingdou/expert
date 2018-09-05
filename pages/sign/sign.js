@@ -24,11 +24,21 @@ Page({
 
     // 获取当前系统时间
     _this.setData({
-      currentTime: util.formatTime(new Date())
+      model: { currentTime: util.formatTime(new Date()) }
     })
 
+    if (options.model) {
+      _this.setData({
+        model: JSON.parse(options.model)
+      })
+    }
+
     // 查询用户数据
-    _this.getMemberData(wx.getStorageSync('memberId') || options.memberId);
+    if (wx.getStorageSync('memberId')) {
+      _this.getMemberData(wx.getStorageSync('memberId'));
+    } else {
+      _this.getMemberData(_this.data.model.memberId);
+    }
   },
 
   /**
@@ -77,7 +87,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var model = _this.data.model;
+    model.memberId = wx.getStorageSync('memberId');
+    return {
+      title: '健身打卡',
+      path: 'pages/sign/sign?model=' + JSON.stringify(model)
+    }
   },
 
   /**
@@ -161,14 +176,15 @@ Page({
         return false;
       }
     }
-    model.memberId = wx.getStorageSync('memberId');
+    model.memberId = model.memberId || wx.getStorageSync('memberId');
     return model;
   },
 
   /**
    * 提交表单
    */
-  submitForm: function () {
+  submitForm: function (e) {
+    var share = e.currentTarget.dataset.share;
     var model = _this.checkForm();
     if (!model) {
       return;
@@ -179,17 +195,37 @@ Page({
         json: encodeURI(JSON.stringify(model))
       },
       success: function (res) {
-        wx.showModal({
-          title: '签到成功',
-          content: '欢迎您在本次服务结束后，提出您的宝贵意见。',
-          showCancel: false,
-          complete: function () {
-            wx.navigateTo({
-              url: '../myFooter/myFooter'
-            })
-          }
-        })
+        if (!share) { 
+          wx.showModal({
+            title: '签到成功',
+            content: '欢迎您在本次服务结束后，提出您的宝贵意见。',
+            showCancel: false,
+            complete: function () {
+              wx.navigateTo({
+                url: '../myFooter/myFooter'
+              })
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '操作成功',
+            showCancel: false,
+            complete: function () {
+              _this.goHome();
+            }
+          })
+        }
       }
+    })
+  },
+
+  /**
+   * 回主页
+   */
+  goHome: function () {
+    wx.reLaunch({
+      url: '../index/index'
     })
   }
 })

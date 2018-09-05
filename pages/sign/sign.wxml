@@ -25,7 +25,7 @@
       打卡时间
     </view>
     <view class='sign-tim-content'>
-      {{currentTime}}
+      {{model.currentTime}}
     </view>
   </view>
 </view>
@@ -41,8 +41,18 @@
       <view class='line-left'>
         {{item.text}}
       </view>
-      <view class='line-right'>
-        <input bindinput='saveFormData' data-key='{{item.key}}'></input>
+
+      <!-- 本人可输入 -->
+      <view class='line-right' wx:if='{{!model.memberId}}'>
+        <input type='number' bindinput='saveFormData' data-key='{{item.key}}'></input>
+        <view class='company'>{{item.company}}</view>
+      </view>
+
+      <!-- 分享给好友只读 -->
+      <view class='line-right' wx:else>
+        <input bindinput='saveFormData' data-key='{{item.key}}' 
+          value='{{model[item.key]}}' disabled>
+        </input>
         <view class='company'>{{item.company}}</view>
       </view>
     </view>
@@ -61,11 +71,23 @@
 </view>
 
 <!-- 底部按钮 -->
-<view class='buttons'>
+<view class='buttons' wx:if='{{!model.memberId}}'>
   <view class='button button-style1' bindtap='submitForm'>
     直接保存
   </view>
   <view class='button button-style2'>
     好友监督保存
+    <button open-type='share' class='login-button'></button>
   </view>
 </view>
+
+<!-- 分享展示按钮 -->
+<view class='buttons' wx:else>
+  <view class='button button-style1' bindtap='submitForm' data-share='share'>
+    同意本次打卡
+  </view>
+  <view class='button button-style2' bindtap='goHome'>
+    拒绝本次打卡
+  </view>
+</view>
+
