@@ -203,7 +203,7 @@ Page({
       '您属于肥胖体型，属健康高危人群。',
       '请点击“健身打卡”填写您的身体数据。'
     ];
-    var bmi = Math.pow(model.weight / model.height, 2);
+    var bmi = Math.pow(model.weight / model.height, 2) * 100;
     !!!(bmi < 18.5) || (healthy[0].text = bmi_messages[0]);
     !!!(bmi >= 18.5 && bmi < 24) || (healthy[0].text = bmi_messages[1]);
     !!!(bmi >= 24 && bmi < 28) || (healthy[0].text = bmi_messages[2]);

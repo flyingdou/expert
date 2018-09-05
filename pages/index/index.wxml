@@ -67,7 +67,8 @@
             </picker>
           </view>
           <view class='line-input' wx:if='{{subItem.lineType == "input"}}'>
-            <input bindinput='saveFormData' data-key='{{subItem.key}}'></input>
+            <input type='number' bindinput='saveFormData' data-key='{{subItem.key}}'>
+            </input>
             <view class='company'>{{subItem.company}}</view>
           </view>
         </view>

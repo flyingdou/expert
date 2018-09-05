@@ -1,3 +1,6 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
 <view class='wraper'>
   <view class='sign-list'>
     <view class="no-data" wx:if="{{signList.length == 0}}">
@@ -14,22 +17,20 @@
         <view class='sign-content-left'>
           {{item.date}}日
         </view>
-        <view class='sign-content-right' bindtap='bindTapSignItem' data-index='{{index}}'>
-          <image src='{{base_picture_url}}/{{item.image}}' mode='aspectFill' class='clubImage'>
-          </image>
-          <view class='clubInfo'>
-            <view class='clubName'>{{item.name}}</view>
-            <view class='clubScore' wx:if='{{!item.totalityScore}}'>
-              我要点评
+        <view class='sign-content-right' bindtap='bindTapSignItem' 
+          data-index='{{index}}'>
+          <view class='sign-count-wraper'>
+            <view class='sign-healthy-icon'>
+              <image src='{{filter.errorImage(item.style.icon)}}'>
+              </image>
             </view>
-            <view class='clubScore' wx:if='{{item.totalityScore}}'>
-              <view class='totalScore'>
-                {{item.totalityScore}}分 
-              </view>
-              <view class='otherScore'>
-                设备{{item.deviceScore}}; 环境{{item.evenScore}}; 服务{{item.servieScore}}
-              </view>
+            <view class='sign-count'>
+              第{{item.count}}次
             </view>
+          </view>
+          <view class='sign-heartRates-wraper'>
+            <view class='sign-message {{item.style.css}}'>{{item.style.message}}</view>
+            <view class='sign-heartRates'>最高运动心率: {{item.heartRates}}次/分钟</view>
           </view>
         </view>
       </view>

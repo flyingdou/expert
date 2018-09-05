@@ -42,6 +42,9 @@ page{
 }
 
 .sign-content-right{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   float: left;
   margin-left: 10px;
   padding: 10px;
@@ -49,6 +52,56 @@ page{
   overflow: hidden;
   background-color: #FFF;
   border-radius: 10px;
+}
+
+.sign-count-wraper{
+  padding-right: 20rpx;
+  border-right: 1px solid #F0F0F2;
+}
+
+.sign-healthy-icon{
+  margin: 0 auto;
+  width: 46rpx;
+  height: 40rpx;
+}
+
+.sign-healthy-icon > image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sign-count{
+  margin-top: 4rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.sign-heartRates-wraper{
+  padding-left: 20rpx;
+}
+
+.sign-message{
+  font-size: 24rpx;
+}
+
+.sign-message-style1{
+  color: #1ED01E;
+}
+
+.sign-message-style2{
+  color: #FFDD00;
+}
+
+.sign-message-style3{
+  color: #FF4401;
+}
+
+.sign-heartRates{
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #999;
 }
 
 .clubImage{

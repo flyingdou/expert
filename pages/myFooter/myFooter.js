@@ -29,6 +29,7 @@ Page({
    */
   onShow: function () {
     // 每次页面显示重新刷新我的足迹数据
+    this.getLastTrainRecord();
     this.getData();
   },
 
@@ -61,20 +62,99 @@ Page({
   },
 
   /**
+   * 获取最新训练日志
+   */
+  getLastTrainRecord: function () {
+    wx.request({
+      url: app.request_url + 'getLastTrainRecord.asp',
+      data: {
+        memberId: wx.getStorageSync('memberId')
+      },
+      success: function (res) {
+        _this.data.trainRcord = res.data;
+      }
+    })
+  },
+
+  /**
    * 获取数据
    */
   getData: function () {
     wx.request({
-      url: 'https://www.ecartoon.com.cn/mmemberv45!ShowHeartRate.asp',
+      url: app.request_url + 'ShowHeartRate.asp',
       data: {
         memberId: wx.getStorageSync('memberId'),
         currentPage: 1,
         pageSize: 1000
       },
       success: function (res) {
-        console.log(res)
+        _this.setData({
+          signList: res.data.phrList.map(_this.computeData)
+        })
       }
     })
+  },
+
+  /**
+   * 切割日期
+   */
+  computeData: function (sign) {
+    // 切割日期
+    var date = sign.train_date;
+    sign.year = date.split('-')[0];
+    sign.month = date.split('-')[1];
+    sign.monthText = [ '零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'][parseInt(sign.month)];
+    sign.date = date.split('-')[2];
+
+    // 计算身体数据
+    var trainRcord = _this.data.trainRcord;
+    var age = _this.ages(trainRcord.birthday);
+
+    var bmiH = (220 - age - trainRcord.heart) * trainRcord.bmiHeigh + trainRcord.heart;
+    var bmiL = (220 - age - trainRcord.heart) * trainRcord.bmiLow + trainRcord.heart;
+
+    var styles = [
+      { 
+        message: '运动强度不够，请继续努力！', 
+        icon: '201809031053.png', 
+        css: 'sign-message-style2' 
+      },
+      {
+        message: '您的运动强度合适，请继续保持！',
+        icon: '201809031052.png',
+        css: 'sign-message-style1'
+      },
+      {
+        message: '最高心率区：运动强度太大，请减少运动量！',
+        icon: '201809031054.png',
+        css: 'sign-message-style3'
+      }
+    ];
+
+    if (sign.heartRates < bmiL) {
+      sign.style = styles[0];
+    }
+    if (sign.heartRates >= bmiL && sign.heartRates < bmiH) {
+      sign.style = styles[1];
+    }
+    if (sign.heartRates >= bmiH) {
+      sign.style = styles[2];
+    }
+
+    return sign;
+  },
+
+  /**
+   * 获得年龄
+   */
+  ages: function (birthday) {
+    var r = birthday.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+    if (r == null) return false;
+    var d = new Date(r[1], r[3] - 1, r[4]);
+    if (d.getFullYear() == r[1] && (d.getMonth() + 1) == r[3] && d.getDate() == r[4]) {
+      var Y = new Date().getFullYear();
+      return  (Y - r[1]);
+    }   
   },
 
   /**
