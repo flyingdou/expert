@@ -453,6 +453,15 @@ Page({
     wx.navigateTo({
       url: '../myQRCode/myQRCode'
     })
+  },
+
+  /**
+   * 到邀请好友页面
+   */
+  gotoinvite: function () {
+    wx.navigateTo({
+      url: '../invite/invite'
+    })
   }
 
 })

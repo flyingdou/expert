@@ -129,8 +129,8 @@
             </view>
       </view>
 
-      <!-- 送人健康 -->
-      <view class="pre" bindtap='gotoGiveHealth' >
+      <!-- 邀请好友 -->
+      <view class="pre" bindtap='gotoinvite' >
             <!-- icon -->
             <view class='iconDiv'>
                   <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>

@@ -1,0 +1,103 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 页面开始 -->
+<view class='content'>
+
+          <!-- tab_title -->
+          <view class='tab_title'>
+                  <!-- tab_title_sub -->
+                  <view class='tab_title_sub {{currentIndex == 0 ? "tab_title_sub_active" : ""}}' bindtap='changeCurrentIndex' data-index = '0' >
+                  我的邀请码
+                          <view class='activeLine' wx:if = '{{currentIndex == 0}}'></view>
+                  </view>
+
+                  <!-- tab_title_sub -->
+                  <view class='tab_title_sub {{currentIndex == 1 ? "tab_title_sub_active" : ""}}' bindtap='changeCurrentIndex' data-index = '1' >
+                  我邀请的好友
+                          <view class='activeLine' wx:if = '{{currentIndex == 1}}'></view>
+                  </view>
+
+          </view>
+
+
+          <!-- tab内容区 -->
+          <swiper current='{{currentIndex}}' style='height:{{swiperHeight}}rpx' bindchange='changeCurrentIndex'>
+                      <!-- swiper-item -->
+                      <!-- 我的邀请码 -->
+                      <swiper-item>
+
+                          <!-- 填充高度 -->
+                          <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+                            <!-- 邀请码区域 -->
+                            <view class='inviteArea'>
+                                  <!-- 用户信息 -->
+                                  <view class='userInfo'>
+                                         <!-- pic -->
+                                         <view class='pic'>
+                                              <image mode='aspectFill' src='{{filter.errorImage(memberData.image)}}'></image>
+                                         </view>
+
+                                         <!-- font -->
+                                         <view class='userNick'>
+                                               <view class='nick'>{{memberData.nickName}}</view>
+                                               <view class='nickRemark'>王严健身专家系统专属分享码</view>
+                                         </view>
+
+                                  </view>
+
+                                  <!-- shareQRCode -->
+                                  <view class='shareQRCode'>
+                                         <image mode='aspectFill'  src = '{{qrCode}}' ></image>
+                                         <view class='userPic'>
+                                                 <image mode='aspectFill' src='{{filter.errorImage(memberData.image)}}'></image>
+                                         </view>
+                                  </view>
+
+                                  <!-- 下方的文字 -->
+                                  <view class='downFontDiv'>
+                                        <view class='line'>
+                                                <view class='lineH title'>方法1：</view>
+                                                <view class='lineH value'>将上面的邀请码发到朋友圈或贴到其它网站论坛，用户扫码注册，领取成交额20%奖金。</view>
+                                        </view>
+
+                                        <view class='line'>
+                                                <view class='lineH title'>方法2：</view>
+                                                <view class='lineH value'>点击首页右上角的转发按钮，分享给好友或微信群，用户通过分享注册。领取成交额20%奖金。</view>
+                                        </view>
+                                  
+                                  </view>
+                            </view>
+                            
+                      
+                      </swiper-item>
+
+
+                      <!-- 我邀请的好友 -->
+                      <swiper-item>
+
+                          <!-- 填充高度 -->
+                          <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+                          <view class='friend-wraper {{index == shareMemberList.length - 1 ? "last-friend-wraper" : ""}}' wx:for='{{shareMemberList}}' wx:key=''>
+                            <view class='friend-photo'>
+                              <image mode='aspectFill' src='{{filter.errorImage(item.image)}}'></image>
+                            </view>
+                            <view class='friend-nick-wraper'>
+                              <view class='friend-nick'>{{item.name}}</view>
+                              <view class='friend-sign-count'>已健身 <text style='font-size: 26rpx;color: #FF4401;'>{{item.count}}</text> 次</view>
+                            </view>
+                            <view class='register-date'>
+                              {{item.reg_date}}
+                            </view>
+                          </view>
+                      </swiper-item>
+
+                     
+          
+          </swiper>
+
+                   
+
+
+</view>

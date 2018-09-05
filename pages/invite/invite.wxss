@@ -1,0 +1,178 @@
+/* default css */
+Page{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #DFDFDF;
+}
+
+image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+swiper-item{
+  overflow: scroll;
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+}
+
+/* swiper-title */
+.tab_title{
+  margin-top: 1rpx;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+}
+
+.tab_title_sub{
+  font-size: 28rpx;
+  color: #9f9f9f;
+  text-align: center;
+  padding: 20rpx 0;
+}
+
+.tab_title_sub_active{
+  position: relative;
+  color: #313131;
+}
+
+.activeLine{
+  position: absolute;
+  bottom: 0;
+  left: 22%;
+  width: 70rpx;
+  height: 4rpx;
+  background: #FF4401;
+}
+
+
+/* inviteArea */
+.inviteArea{
+  background: white;
+  padding: 50rpx;
+}
+
+.userInfo{
+  display: flex;
+  align-items: center;
+}
+
+.pic{
+  width: 118rpx;
+  height: 118rpx;
+  padding-right: 20rpx;
+}
+
+.nick{
+  padding: 15rpx 0;
+  font-size: 30rpx;
+  color: #313131;
+}
+
+.nickRemark{
+  padding: 15rpx 0;
+  font-size: 24rpx;
+  color: #a6a5a5;
+}
+
+.upperFontDiv{
+  padding-top: 20rpx;
+}
+
+.upperFont{
+  font-size: 24rpx;
+  color: #a6a5a5;
+  padding-top: 20rpx;
+  text-align: center;
+}
+
+.shareQRCode{
+  position: relative;
+  width: 513rpx;
+  height: 513rpx;
+  margin: 20rpx auto;
+}
+
+.userPic{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 228rpx;
+  height: 228rpx;
+  margin-left: -114rpx;
+  margin-top: -114rpx;
+}
+
+.userPic > image{
+   border-radius: 50%;
+}
+
+.line{
+  overflow: hidden;
+}
+
+.lineH{
+  font-size: 24rpx;
+  color: #a6a5a5;
+  line-height: 50rpx;
+}
+
+.title{
+  float: left;
+  width: 15%;
+}
+
+.value{
+  float: left;
+  width: 80%;
+}
+
+/* 邀请好友列表 */
+.friend-wraper{
+  padding: 20rpx;
+  background-color: #FFF;
+  overflow: hidden;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.last-friend-wraper{
+  border: 0;
+}
+
+.friend-photo{
+  float: left;
+  width: 80rpx;
+  height: 80rpx;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.friend-nick-wraper{
+  float: left;
+  margin-left: 20rpx;
+}
+
+.friend-nick{
+  font-size: 28rpx;
+  color: #000;
+}
+
+.friend-sign-count{
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.register-date{
+  float: right;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #999;
+}
