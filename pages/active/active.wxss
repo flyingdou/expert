@@ -53,3 +53,17 @@
   font-size: 11px;
   text-align: right;
 }
+
+.release{
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.release > image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}

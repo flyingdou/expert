@@ -44,3 +44,8 @@
     </view>
   </view>
 </tab>
+
+<!-- 发起挑战按钮 -->
+<view class='release' bindtap='toActiveReleasePage'>
+  <image src='{{filter.errorImage("201809031050.png")}}' mode='aspectFill'></image>
+</view>

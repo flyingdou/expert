@@ -80,6 +80,10 @@ var filters = {
      * 手机号、银行卡号处理
      */
     getStarNumberStr: function (str,headLength,footLength) {
+      if (!str){
+        return str;
+      }
+
        var headIndex = headLength;
        var footIndex = str.length - footLength;
        var starLength = str.length - headLength - footLength;

@@ -4,28 +4,28 @@
 <view class='line'>
   <view class='line-left'>头像</view>
   <view class='line-right'>
-    <image src='{{filter.errorImage("wangyan1.jpg")}}' class='photo'></image>
+    <image src='{{filter.errorImage(memberData.image)}}' class='photo'></image>
   </view>
 </view>
 
 <view class='line'>
   <view class='line-left'>昵称</view>
   <view class='line-right'>
-    张子明
+    {{memberData.nickName}}
   </view>
 </view>
 
 <view class='line'>
   <view class='line-left'>手机</view>
   <view class='line-right'>
-    {{filter.getStarNumberStr("13657277062", 3, 4)}}
+    {{filter.getStarNumberStr(memberData.mobilephone, 3, 4)}}
   </view>
 </view>
 
 <view class='line last-line'>
   <view class='line-left'>地区</view>
   <view class='line-right'>
-    湖北省 武汉市 洪山区
+    {{memberData.city}} {{memberData.county}}
   </view>
 </view>
 
@@ -35,34 +35,65 @@
 <view class='line'>
   <view class='line-left'>出生日期</view>
   <view class='line-right'>
-    1995-12-12
+    <picker mode='date' bindchange='saveFormData' data-key='birthday'>
+      {{model.birthday}}
+    </picker>
   </view>
 </view>
 
 <view class='line'>
   <view class='line-left'>性别</view>
-  <view class='line-right'>
-    男
+  <view class='line-right picker'>
+    <picker class='picker' mode='selector' range='{{genderSelector}}' range-key='text'
+      bindchange='saveFormData' data-key='gender' data-type='selector'>
+      {{model.gender}}
+    </picker>
   </view>
 </view>
 
 <view class='line'>
   <view class='line-left'>身高</view>
   <view class='line-right'>
-    170 cm
+    <input type='number' value='{{model.height}}' bindinput='saveFormData' 
+      data-key='height'>
+    </input>
+    <view class='company'>cm</view>
   </view>
 </view>
 
 <view class='line last-line'>
   <view class='line-left'>静心率</view>
   <view class='line-right'>
-    70 次/分钟
+    <input type='number' placeholder='70' value='{{model.heart}}' data-key='heart'
+      bindinput='saveFormData'>
+    </input>
+    <view class='company'>次/分钟</view>
   </view>
 </view>
 
 <view class='line last-line'>
-  <view class='line-left'>靶心率阈值</view>
+  <view class='line-left'>靶心率阈值下限</view>
   <view class='line-right'>
-    55%-85%
+    <input type='number' placeholder='55' value='{{model.bmiLow}}' data-key='bmiLow'
+      bindinput='saveFormData'>
+    </input>
+    <view class='company'>%</view>
   </view>
 </view>
+
+<view class='line last-line'>
+  <view class='line-left'>靶心率阈值上限</view>
+  <view class='line-right'>
+    <input type='number' placeholder='85' value='{{model.bmiHigh}}' data-key='bmiHigh'
+      bindinput='saveFormData'>
+    </input>
+    <view class='company'>%</view>
+  </view>
+</view>
+
+<!-- 保存按钮 -->
+<view class='submit-button' bindtap='submitForm'>
+  <image src='{{filter.errorImage("201809031051.png")}}' mode='aspectFill'></image>
+  <view class='submit-button-text'>保存</view>
+</view>
+

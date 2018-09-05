@@ -154,5 +154,14 @@ Page({
     wx.navigateTo({
       url: '../priceCutdown/priceCutdown?priceActiveId=' + priceActive.id
     });
+  },
+
+  /**
+   * 去发布挑战页面
+   */
+  toActiveReleasePage: function () {
+    wx.navigateTo({
+      url: '../activeRelease/activeRelease'
+    })
   }
 })

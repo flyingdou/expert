@@ -14,6 +14,7 @@
     "pages/video/video",
     "pages/activeTicket/activeTicket",
     "pages/active/active",
+    "pages/activeRelease/activeRelease",
     "pages/activeDetail/activeDetail",
     "pages/joinActive/joinActive",
     "pages/logs/logs",
