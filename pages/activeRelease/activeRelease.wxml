@@ -7,7 +7,16 @@
   <!-- 表单 -->
   <view class='form' style='height: {{windowHeightRpx}}rpx;'>
 
-    <view class='line'>
+    <view class='active-image-wraper'>
+      <view class='upload-message'  wx:if='{{!imageData}}' bindtap='uploadImage'>
+        上传活动海报
+      </view>
+      <image class='image' src='{{imageData}}' mode='aspectFill'
+        wx:if='{{imageData}}' bindtap='uploadImage'>
+      </image>
+    </view>
+
+    <!-- <view class='line'>
       <view class='line-left'>
         挑战海报
       </view>
@@ -19,7 +28,7 @@
           wx:if='{{imageData}}' bindtap='uploadImage'>
         </image>
       </view>
-    </view>
+    </view> -->
 
     <view class='line'>
       <view class='line-left'>
