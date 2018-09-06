@@ -19,9 +19,11 @@ Page({
   onLoad: function (options) {
     var obj = this;
     if (options.product) {
+      var product = JSON.parse(decodeURI(options.product));
       obj.setData({
         userInfo: getApp().globalData.userInfo,
-        productDetail: JSON.parse(decodeURI(options.product))
+        productDetail: product,
+        price: product.price
       });
     } else {
       // 展示用户信息和商品数据

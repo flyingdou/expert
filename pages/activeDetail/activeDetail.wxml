@@ -151,8 +151,8 @@
   <view class='participateIn' bindtap='submitWeight' wx:if='{{active.result == 3}}'>
     提交成绩
   </view>
-  <view class='goHome' bindtap='goHome' wx:if='{{activeId}}'>
-    <image src='{{filter.getPictureUrl("201805241551.png")}}'>
+  <view class='goHome' bindtap='goHome' wx:if='{{activeId && !release}}'>
+    <image src='{{filter.errorImage("201805241551.png")}}'>
     </image>
     <view>前往主页</view>
   </view>

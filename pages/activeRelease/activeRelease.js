@@ -147,7 +147,7 @@ Page({
           name: 'memberHead',
           success: function (res) {
             res = JSON.parse(res.data);
-            var model = res.data.model;
+            var model = _this.data.model;
             model.image = res.image;
             _this.setData({
               model: model
@@ -233,7 +233,7 @@ Page({
           showCancel: false,
           complete: function () {
             wx.navigateTo({
-              url: '../activeDetail/activeDetail?activeId=' + res.data.key
+              url: '../activeDetail/activeDetail?release=1&activeId=' + res.data.key
             })
           }
         })

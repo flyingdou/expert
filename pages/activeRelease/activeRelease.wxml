@@ -15,7 +15,7 @@
         <image class='add-icon' src='{{filter.errorImage("Addbox@2x.png")}}'
           wx:if='{{!model.image}}' bindtap='uploadImage'>
         </image>
-        <image class='image' src='{{filter.errorImage(model.image)}}'
+        <image class='image' src='{{filter.errorImage(model.image)}}' mode='aspectFill'
           wx:if='{{model.image}}' bindtap='uploadImage'>
         </image>
       </view>
