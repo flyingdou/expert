@@ -1,4 +1,4 @@
-
+var app = getApp();
 Page({
 
   /**
@@ -18,19 +18,77 @@ Page({
    */
   onLoad: function (options) {
     var obj = this;
-    // 展示用户信息和商品数据
+    if (options.product) {
+      obj.setData({
+        userInfo: getApp().globalData.userInfo,
+        productDetail: JSON.parse(decodeURI(options.product))
+      });
+    } else {
+      // 展示用户信息和商品数据
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/expertex!getProducDetail.asp',
+        success: function(res){
+          obj.setData({
+            userInfo: getApp().globalData.userInfo,
+            productDetail: {
+              productName: res.data.productName,
+              originalPrice: res.data.price,
+              strengthDate: options.strengthDate
+            },
+            price: res.data.price.toFixed(2)
+          });
+        }
+      })
+    }
+
+    /**
+   * 查询当前用户的数据
+   */
+   var _this = this;
+    // 发起网络请求
     wx.request({
-      url: 'https://www.ecartoon.com.cn/expertex!getProducDetail.asp',
-      success: function(res){
-        obj.setData({
-          userInfo: getApp().globalData.userInfo,
-          productDetail: {
-            productName: res.data.productName,
-            originalPrice: res.data.price,
-            strengthDate: options.strengthDate
-          },
-          price: res.data.price.toFixed(2)
-        });
+      url: app.request_url + 'findMe.asp',
+      dataType: JSON,
+      data: {
+        json: encodeURI(JSON.stringify({ memberId: wx.getStorageSync('memberId') }))
+      },
+      success: function (res) {
+        // 请求成功
+        res = JSON.parse(res.data);
+        if (res.success) {
+          // 用户数据请求成功
+          var mobilephone = res.memberData.mobilephone;
+          var mobileValid = res.memberData.mobileValid;
+          var hasMobilephone = 0;
+          if (mobilephone && "" != mobilephone && "null" != mobilephone && "undefined" != mobilephone && mobileValid && "" != mobileValid && "null" != mobileValid && "undefined" != mobileValid) {
+            // 手机号存在，且已验证
+            hasMobilephone = 1;
+            _this.setData({
+              showPhoneNumber: mobilephone,
+              phoneNumber: mobilephone
+            })
+          }
+          // 获取数据成功
+          _this.setData({
+            memberData: res.memberData,
+            hasMobilephone: hasMobilephone
+          })
+        } else {
+          // 程序异常
+          wx.showModal({
+            title: "提示",
+            content: res.message,
+            showCancel: false
+          })
+        }
+      },
+      error: function (e) {
+        // 请求失败
+        wx.showModal({
+          title: "提示",
+          content: "网络异常",
+          showCancel: false
+        })
       }
     })
   },
@@ -128,8 +186,12 @@ Page({
    * 用户点击选择优惠券
    */
   selectTicket: function() {
+    var url = '../ticket/ticket';
+    if (this.data.productDetail.productType) {
+      url = '../ticket/ticket?type=1';
+    }
     wx.navigateTo({
-      url: '../ticket/ticket'
+      url: url
     });
   },
   /**
@@ -152,6 +214,13 @@ Page({
     param.openId = wx.getStorageSync("openId");
     if(this.data.ticket){
       param.ticket = this.data.ticket.ticketId;
+    }
+    if (this.data.productDetail.productType) {
+      param.productId = this.data.productDetail.productId;
+      param.productType = this.data.productDetail.productType;
+      if (this.data.productDetail.weight) {
+        param.weight = this.data.productDetail.weight;
+      }
     }
     wx.request({
       url: 'https://www.ecartoon.com.cn/expertex!createGoodsOrder.asp',

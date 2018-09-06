@@ -1,3 +1,6 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
 <view class='wraper'>
   <view class='top-box'></view>
   <view class='box_userInfo'>
@@ -10,7 +13,9 @@
       </view>
     </view>
     <view class='userInfo_phoneNumber'>
-      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>{{showPhoneNubmer}}</button>
+      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>
+        {{ phoneNubmer ? filter.showPhoneNubmer(phoneNumber, 3, 4) : showPhoneNumber}}
+      </button>
     </view>
   </view>
   <view class='box_commodity'>
@@ -21,7 +26,7 @@
     <view class='commodity_describe'>
       <view class="commodity_name">{{productDetail.productName}}</view>
       <view class="commodity_startTime">开始时间: {{productDetail.strengthDate}}</view>
-      <view class="commodity_price">￥{{productDetail.originalPrice}}.00</view>
+      <view class="commodity_price">￥{{filter.toFixed(productDetail.originalPrice, 2)}}</view>
     </view>
   </view>
   <view class='box_ticket'>
@@ -51,7 +56,7 @@
   <view class='footer'>
     <view class='orderMoney'>
       <view class='orderMonty_text'> 
-         实付款<text class="RMB">￥</text>{{price}}元
+         实付款<text class="RMB">￥</text>{{filter.toFixed(price, 2)}}元
       </view>
     </view>
     <view class='payMent' bindtap='payMent'>

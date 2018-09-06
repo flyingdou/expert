@@ -13,6 +13,7 @@ App({
    */
   constants: {
     expert_img_url: 'https://www.ecartoon.com.cn/expert/img/',
+    base_picture_url: 'https://www.ecartoon.com.cn/picture',
     shareMember: 0,
     originType: ''
   },

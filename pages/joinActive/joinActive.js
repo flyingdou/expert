@@ -68,10 +68,11 @@ Page({
     let param = {
       productId: active.id,
       productName: active.name,
-      productPrice: active.amerce_money,
+      originalPrice: active.amerce_money,
+      price: active.amerce_money,
       image: active.image,
       productType: 'active',
-      time: this.data.currentDate,
+      strengthDate: this.data.currentDate,
       weight: this.data.weight
     }
     // url编码

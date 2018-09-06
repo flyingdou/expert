@@ -21,6 +21,7 @@
     "pages/mine/mine",
     "pages/userInfo/userInfo",
     "pages/myFooter/myFooter",
+    "pages/myActive/myActive",
     "pages/myOrder/myOrder",
     "pages/myWallet/myWallet",
     "pages/invite/invite",

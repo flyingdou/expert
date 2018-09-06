@@ -182,6 +182,19 @@ Page({
     })
   },
 
+  /**
+   * 查看我的挑战
+   */
+  gotoMyActive: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
+    wx.navigateTo({
+      url: "../../pages/myActive/myActive",
+    })
+  },
 
   /**
    * 查看我的优惠券

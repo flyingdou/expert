@@ -78,7 +78,7 @@ Component({
         index: index
       }
       var myEventOption = {} // 触发事件的选项
-      this.triggerEvent('changeCurrentIndex', myEventDetail, myEventOption)
+      this.triggerEvent('ChangeCurrentIndex', myEventDetail, myEventOption)
     }
 
     // 用户点击tab页标题触发
@@ -93,7 +93,7 @@ Component({
         index: index
       }
       var myEventOption = {} // 触发事件的选项
-      this.triggerEvent('changeCurrentIndex', myEventDetail, myEventOption)
+      this.triggerEvent('ChangeCurrentIndex', myEventDetail, myEventOption)
     }
   }
   // methods end

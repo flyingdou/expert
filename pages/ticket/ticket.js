@@ -13,7 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (options.type) {
+      this.data.type = options.type;
+    }
   },
 
   /**
@@ -27,6 +29,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (this.data.type) {
+      return;
+    }
+    
     // 页面初始化(获取优惠券数据)
     this.methods.init(this);
   },
