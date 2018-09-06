@@ -70,9 +70,8 @@ Page({
    * 分享
    */
   onShareAppMessage: function () {
-    var club = wx.getStorageSync('club');
     return {
-      title: club.name + '的活动',
+      title: '健身挑战',
       path: 'pages/active/active'
     }
   },
