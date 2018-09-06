@@ -6,7 +6,7 @@ Page({
     buttons: [
       { image: '201807090917.png', text: '定制计划', page: 'setting' },
       { image: '201805042235.png', text: '健身排行榜', page: 'ranking' },
-      { image: '201805042236.png', text: '健身视频', page: 'txVideo' },
+      // { image: '201805042236.png', text: '健身视频', page: 'txVideo' },
       { image: '201805042233.png', text: '健身打卡', page: 'sign' }
     ],
     healthy: [

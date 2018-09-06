@@ -68,7 +68,6 @@ page{
 .linksPage{
    width: 100%;
    height: auto;
-   margin-top: 4%;
 }
 
 .pre{

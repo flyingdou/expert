@@ -87,7 +87,13 @@
 
 
    </view>
+
+   <!-- 流量主 -->
+   <ad unit-id="adunit-f440563fdadeecff"></ad>
    
+   <!--  -->
+   <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
    <!-- 页面跳转链接 -->
    <view class="linksPage">
       <!-- 我的订单 -->

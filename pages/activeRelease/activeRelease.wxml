@@ -13,10 +13,10 @@
       </view>
       <view class='line-right'>
         <image class='add-icon' src='{{filter.errorImage("Addbox@2x.png")}}'
-          wx:if='{{!model.image}}' bindtap='uploadImage'>
+          wx:if='{{!imageData}}' bindtap='uploadImage'>
         </image>
-        <image class='image' src='{{filter.errorImage(model.image)}}' mode='aspectFill'
-          wx:if='{{model.image}}' bindtap='uploadImage'>
+        <image class='image' src='{{imageData}}' mode='aspectFill'
+          wx:if='{{imageData}}' bindtap='uploadImage'>
         </image>
       </view>
     </view>

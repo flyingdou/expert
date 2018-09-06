@@ -59,7 +59,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if (wx.getStorageSync('imageData')) {
+      var imageData = 'data:image/png;base64,' + wx.getStorageSync('imageData');
+      _this.setData({
+        imageData: imageData
+      });
 
+      // 静默上传图片
+      wx.uploadFile({
+        url: 'https://www.ecartoon.com.cn/esignwx!uploadImage.asp',
+        filePath: wx.getStorageSync('imageSrc'),
+        name: 'memberHead',
+        success: res => {
+          res.data = JSON.parse(res.data);
+          _this.data.model.image = res.data.image;
+
+          // 清除缓存
+          wx.removeStorageSync('imageData');
+          wx.removeStorageSync('imageSrc');
+        }
+      })
+    }
   },
 
   /**
@@ -137,6 +157,11 @@ Page({
    * 上传图片
    */
   uploadImage: function () {
+    wx.navigateTo({
+      url: '../clip/clip?width=4&height=3'
+    });
+    return;
+
     wx.chooseImage({
       count: 1,
       success: function (res) {

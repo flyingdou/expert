@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/ranking/ranking",
     "pages/sign/sign",
+    "pages/clip/clip",
     "pages/giveRose/giveRose",
     "pages/myQRCode/myQRCode",
     "pages/order/order",
