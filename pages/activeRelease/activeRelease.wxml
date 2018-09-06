@@ -1,2 +1,203 @@
-<!--pages/activeRelease/activeRelease.wxml-->
-<text>pages/activeRelease/activeRelease.wxml</text>
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 最外层 -->
+<view class='wraper' style='margin-left: -{{position}}rpx;'>
+
+  <!-- 表单 -->
+  <view class='form' style='height: {{windowHeightRpx}}rpx;'>
+
+    <view class='line'>
+      <view class='line-left'>
+        挑战海报
+      </view>
+      <view class='line-right'>
+        <image class='add-icon' src='{{filter.errorImage("Addbox@2x.png")}}'
+          wx:if='{{!model.image}}' bindtap='uploadImage'>
+        </image>
+        <image class='image' src='{{filter.errorImage(model.image)}}'
+          wx:if='{{model.image}}' bindtap='uploadImage'>
+        </image>
+      </view>
+    </view>
+
+    <view class='line'>
+      <view class='line-left'>
+        挑战名称
+      </view>
+      <view class='line-right'>
+        <input type='text' class='input' placeholder='请输入挑战名称' 
+          bindinput='saveFormData' data-key='name'>
+        </input>
+      </view>
+    </view>
+
+    <view class='line'>
+      <view class='line-left'>
+        挑战目标
+      </view>
+      <view class='line-right line-right-width' bindtap='showOtherPage' 
+        data-index='0'>
+        <image class='more-icon' src='{{filter.errorImage("more.png")}}'></image>
+      </view>
+    </view>
+
+    <view class='line'>
+      <view class='line-left'>
+        成功奖励
+      </view>
+      <view class='line-right line-right-width' bindtap='showOtherPage'
+        data-index='1'>
+        <image class='more-icon' src='{{filter.errorImage("more.png")}}'></image>
+      </view>
+    </view>
+
+    <view class='line'>
+      <view class='line-left'>
+        失败惩罚
+      </view>
+      <view class='line-right line-right-width' bindtap='showOtherPage'
+        data-index='2'>
+        <image class='more-icon' src='{{filter.errorImage("more.png")}}'></image>
+      </view>
+    </view>
+
+    <!-- 注意事项 -->
+    <view class='memo-wraper'>
+      <view class='memo-title'>
+        注意事项
+      </view>
+      <view class='memo-content'>
+        <textarea class='memo-textarea' placeholder='请输入挑战注意事项' 
+          bindinput='saveFormData' data-key='memo'>
+        </textarea>
+      </view>
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class='submit-button' bindtap='submitForm'>
+      <image src='{{filter.errorImage("201809031051.png")}}' mode='aspectFill'></image>
+      <view class='submit-button-text'>保存</view>
+    </view>
+
+  <!-- form end -->
+  </view> 
+
+  <!-- other -->
+  <view class='other' style='height: {{windowHeightRpx}}rpx;'>
+
+    <!-- 挑战目标 -->
+    <view class='target-wraper' wx:if='{{pageIndex == 0}}'>
+
+      <!-- 填充高度 -->
+      <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+      <view class='line'>
+        <view class='line-left'>请输入挑战天数</view>
+        <view class='line-right'>
+          <input type='number' class='input' bindinput='saveFormData' data-key='days'>
+          </input>
+          <view class='company'>天</view>
+        </view>
+      </view>
+      
+      <!-- 填充高度 -->
+      <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+      <!-- 挑战目标内容 -->
+      <view class='target-content'>
+        <view class='target-content-title'>请选择挑战目标</view>
+        <block>
+          <view class='line line-height' wx:for='{{targetList}}' wx:key=''>
+            <view class='line-left' bindtap='changeSelectIndex' data-index='{{index}}'
+              data-key='targetIndex'>
+              <image class='select-icon' mode='aspectFill' 
+                wx:if='{{index == targetIndex}}'
+                src='https://www.ecartoon.com.cn/expert/img/button-on.png'>
+              </image>
+              <image class='select-icon' mode='aspectFill' 
+                wx:if='{{index != targetIndex}}'
+                src='https://www.ecartoon.com.cn/expert/img/button-off.png'>
+              </image>
+              <view class='target-title'>
+                {{item.text}}
+              </view>
+            </view>
+            <view class='line-right'>
+              <input type='number' class='input' wx:if='{{index == targetIndex}}'
+                placeholder='{{item.placeholder}}' bindinput='saveFormData' 
+                data-key='value'>
+              </input>
+            </view>
+          </view>
+        </block>
+      </view>
+
+    <!-- target-wrapr end -->
+    </view> 
+
+    <!-- 成功奖励 -->
+    <view class='award' wx:if='{{pageIndex == 1}}'>
+      <textarea class='award-textarea' placeholder='请输入挑战成功后的奖励内容'
+        bindinput='saveFormData' data-key='award'>
+      </textarea>
+    </view>
+
+    <!-- 失败惩罚 -->
+    <view class='institution' wx:if='{{pageIndex == 2}}'>
+      <!-- 填充高度 -->
+      <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+      <view class='line'>
+        <view class='line-left'>挑战失败向以下用户支付</view>
+        <view class='line-right'>
+          <input type='number' class='input' bindinput='saveFormData' 
+            data-key='amerceMoney'>
+          </input>
+          <view class='company'>元</view>
+        </view>
+      </view>
+
+      <view class='member-wraper' wx:for='{{memberList}}' wx:key=''>
+        <!-- 填充高度 -->
+        <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+
+        <view class='line'>
+          <view class='line-left'>
+            <image class='memberImage' src='{{filter.errorImage(item.image)}}'>
+            </image>
+            <view class='memberName'>{{item.name}}</view>
+          </view>
+          <view class='line-right' bindtap='changeSelectIndex' data-index='{{index}}'
+            data-key='memberIndex'>
+            <image class='select-icon' mode='aspectFill' 
+              wx:if='{{index == memberIndex}}'
+              src='https://www.ecartoon.com.cn/expert/img/button-on.png'>
+            </image>
+            <image class='select-icon' mode='aspectFill' 
+              wx:if='{{index != memberIndex}}'
+              src='https://www.ecartoon.com.cn/expert/img/button-off.png'>
+            </image>
+          </view>
+        </view>
+        <view class='member-memo'>
+          {{item.description || ''}}
+        </view>
+
+      <!-- member-wraper end -->
+      </view>
+
+    <!-- institution end -->
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class='submit-button' bindtap='back'>
+      <image src='{{filter.errorImage("201809031051.png")}}' mode='aspectFill'></image>
+      <view class='submit-button-text'>保存</view>
+    </view>
+
+  <!-- other end -->
+  </view>
+
+<!-- wraper end -->
+</view>

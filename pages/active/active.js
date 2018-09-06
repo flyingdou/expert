@@ -160,6 +160,13 @@ Page({
    * 去发布挑战页面
    */
   toActiveReleasePage: function () {
+    // 先检查是否登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=active'
+      });
+      return;
+    }
     wx.navigateTo({
       url: '../activeRelease/activeRelease'
     })
