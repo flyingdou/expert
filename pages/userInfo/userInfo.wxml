@@ -17,8 +17,14 @@
 
 <view class='line'>
   <view class='line-left'>手机</view>
-  <view class='line-right'>
+  <view class='line-right' wx:if='{{memberData.mobilephone && memberData.mobileValid}}'>
     {{filter.getStarNumberStr(memberData.mobilephone, 3, 4)}}
+  </view>
+  <view class='line-right' wx:else>
+    点击绑定手机
+    <button class='float-button' open-type='getPhoneNumber' 
+      bindgetphonenumber='getPhoneNumber'>
+    </button>
   </view>
 </view>
 
@@ -61,7 +67,7 @@
   </view>
 </view>
 
-<view class='line last-line'>
+<view class='line'>
   <view class='line-left'>静心率</view>
   <view class='line-right'>
     <input type='number' placeholder='70' value='{{model.heart}}' data-key='heart'
@@ -71,7 +77,7 @@
   </view>
 </view>
 
-<view class='line last-line'>
+<view class='line'>
   <view class='line-left'>靶心率阈值下限</view>
   <view class='line-right'>
     <input type='number' placeholder='55' value='{{model.bmiLow}}' data-key='bmiLow'

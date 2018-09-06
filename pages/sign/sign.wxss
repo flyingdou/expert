@@ -14,7 +14,7 @@ image{
   display: flex;
   justify-content: flex-start;
   align-content: center;
-  padding: 20rpx;
+  padding: 40rpx 20rpx;
   background-color: #FFF;
 }
 

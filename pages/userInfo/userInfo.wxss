@@ -9,7 +9,7 @@ page{
   align-items: center;
   padding: 20rpx;
   font-size: 28rpx;
-  border: 1px solid #F8F8F8;
+  border-bottom: 1px solid #F0F0F2;
   background-color: #FFF;
 }
 
@@ -22,10 +22,24 @@ page{
 }
 
 .line-right{
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   color: #ACA9A9;
+}
+
+.float-button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.float-button::after{
+  border: 0;
 }
 
 .line-right > input{

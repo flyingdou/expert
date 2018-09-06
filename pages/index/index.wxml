@@ -2,7 +2,7 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 
 <!-- 轮播 -->
-<swiper autoplay indicator-dots interval='5000' indicator-active-color='#FFF' 
+<swiper autoplay indicator-dots interval='10000' indicator-active-color='#FFF' 
   style='height: 468rpx;'>
   <swiper-item wx:for='{{images}}' wx:key='' bindtap='toPage' data-page='setting'>
     <image src='{{filter.errorImage(item)}}'></image>

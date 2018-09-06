@@ -161,9 +161,9 @@ Page({
   checkForm: function () {
     var model = _this.data.model;
     var paramList = [
-      { key: 'weight', message: '请输入体重' },
-      { key: 'waist', message: '请输入腰围' },
-      { key: 'hip', message: '请输入臀围' },
+      // { key: 'weight', message: '请输入体重' },
+      // { key: 'waist', message: '请输入腰围' },
+      // { key: 'hip', message: '请输入臀围' },
       { key: 'bmiHigh', message: '请输入最高运动心率' }
     ];
     for (var item of paramList) {
@@ -198,7 +198,7 @@ Page({
         if (!share) { 
           wx.showModal({
             title: '签到成功',
-            content: '欢迎您在本次服务结束后，提出您的宝贵意见。',
+            content: '您已成功打卡，请进入“我的足迹”查看打卡记录。',
             showCancel: false,
             complete: function () {
               wx.navigateTo({

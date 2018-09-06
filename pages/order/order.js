@@ -8,7 +8,6 @@ Page({
     userInfo: {},
     productDetail: {},
     price: 0,
-    phoneNumber: 0,
     showPhoneNubmer: '请点击获取手机号',
     ticket: { name: '请选择优惠券'}
   },

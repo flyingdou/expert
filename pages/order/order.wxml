@@ -13,14 +13,19 @@
       </view>
     </view>
     <view class='userInfo_phoneNumber'>
-      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>
-        {{ phoneNubmer ? filter.showPhoneNubmer(phoneNumber, 3, 4) : showPhoneNumber}}
+      <button class='getPhoneNumber' open-type='getPhoneNumber' 
+        bindgetphonenumber='getPhoneNumber'>
+        {{phoneNumber ? filter.showPhoneNubmer(phoneNumber, 3, 4) : showPhoneNubmer}}
       </button>
     </view>
   </view>
   <view class='box_commodity'>
     <view class='commodity_photo'>
-      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
+      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'
+        wx:if='{{!productDetail.image}}'>
+      </image>
+      <image src='{{filter.errorImage(productDetail.image)}}' mode='aspectFill'
+        wx:if='{{productDetail.image}}'>
       </image>
     </view>
     <view class='commodity_describe'>

@@ -472,6 +472,11 @@ Page({
    * 到邀请好友页面
    */
   gotoinvite: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
     wx.navigateTo({
       url: '../invite/invite'
     })
