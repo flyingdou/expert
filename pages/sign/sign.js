@@ -47,10 +47,10 @@ Page({
    */
   onShow: function () {
     // 查询用户数据
-    if (wx.getStorageSync('memberId')) {
-      _this.getMemberData(wx.getStorageSync('memberId'));
-    } else {
+    if (_this.data.model.memberId) {
       _this.getMemberData(_this.data.model.memberId);
+    } else {
+      _this.getMemberData(wx.getStorageSync('memberId'));
     }
   },
 
@@ -92,6 +92,76 @@ Page({
     return {
       title: '健身打卡',
       path: 'pages/sign/sign?model=' + JSON.stringify(model)
+    }
+  },
+
+  /**
+   * wechatLogin
+   */
+  wechatLogin: function (e) {
+    var objx = this;
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      // 获取code
+      e.detail.code = objx.data.code;
+
+      // 判断是否从他人分享的连接进来的
+      var shareMember = app.constants.shareMember;
+      if (shareMember > 0) {
+        e.detail.shareMember = shareMember;
+      }
+
+      // 判断是否从百度广告小程序码进入
+      var originType = app.constants.originType;
+      if (originType && originType != '') {
+        e.detail.originType = originType;
+      }
+
+      // 请求登录后台
+      wx.request({
+        url: app.wechat_login_url + 'wechatLogin.asp',
+        dataType: JSON,
+        data: {
+          json: JSON.stringify(e.detail)
+        },
+        success: function (res) {
+          // 网络请求成功
+          res = JSON.parse(res.data);
+          if (res.success) {
+            app.globalData.userInfo = e.detail.userInfo;
+            // 登录成功，将数据存储起来
+            wx.setStorageSync("memberId", res.key);
+            wx.setStorageSync("session_key", res.session_key);
+            wx.setStorageSync("openId", res.openid);
+
+            // 判断用户确认操作还是取消操作
+            var success = e.currentTarget.dataset.success;
+            if (success) {
+              objx.submitForm();
+            } else {
+              objx.cancal();
+            }
+          } else {
+            // 程序异常，console打印异常信息
+            console.log(res.message);
+            wx.showModal({
+              title: '提示',
+              content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
+              showCancel: false
+            })
+          }
+        },
+        error: function (e) {
+          // 网络请求失败
+          wx.showModal({
+            title: '提示',
+            content: '网络异常',
+            showCancel: false
+          })
+          return;
+        }
+      })
+    } else {
+      this.submitForm();
     }
   },
 
@@ -162,15 +232,6 @@ Page({
     // 修改状态, 根据状态禁用按钮
     _this.setData({ status: 2 });
 
-    // 判断是否输入最高运动心率
-    if (!_this.data.model.bmiHigh) {
-      wx.showModal({
-        title: '提示',
-        content: '请输入最高运动心率',
-        showCancel: false
-      })
-    }
-
     // 判断是否需要用户填写生日数据
     if (!_this.data.memberData.birthday) {
       wx.showModal({
@@ -184,6 +245,35 @@ Page({
         }
       });
     }
+
+    // 判断是否输入最高运动心率
+    if (!_this.data.model.bmiHigh) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入最高运动心率',
+        showCancel: false
+      })
+    }
+  },
+
+  /**
+   * 上报formId
+   */
+  submitApply: function (e) {
+    var param = {
+      source: e.detail.formId,
+      openid: wx.getStorageSync('openId'),
+      memberId: wx.getStorageSync('memberId'),
+      clubId: 0,
+      type: 'sign',
+      type_id: 0
+    }
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!uploadFormId.asp',
+      data: {
+        json: encodeURI(JSON.stringify(param))
+      }
+    })
   },
 
   /**
@@ -239,6 +329,9 @@ Page({
     if (!model) {
       return;
     }
+    if (share) {
+      model.shareMember = wx.getStorageSync('memberId');
+    }
     wx.request({
       url: app.request_url + "sign.asp",
       data: {
@@ -268,6 +361,22 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 用户取消操作
+   */
+  cancal: function () {
+    var param = { shareMember: wx.getStorageSync('memberId') }
+    wx.request({
+      url: app.request_url + 'cancal.asp',
+      data: {
+        json: encodeURI(JSON.stringify(param))
+      },
+      success: function () {
+        _this.goHome();
+      }
+    });
   },
 
   /**

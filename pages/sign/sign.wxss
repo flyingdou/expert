@@ -168,7 +168,8 @@ image{
   background-color: #ACA9A9;
 }
 
-.login-button{
+/* 分享按钮 */
+.share-button{
   position: absolute;
   top: 0;
   left: 0;
@@ -178,7 +179,27 @@ image{
   background-color: transparent;
 }
 
-.login-button::after{
+.share-button::after{
+  border: none;
+}
+
+/* 表单组件 */
+.submitDiv{
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.submitButton{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.submitButton::after{
   border: none;
 }
 

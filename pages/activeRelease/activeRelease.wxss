@@ -49,6 +49,7 @@ page{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 50%;
   color: #030303;
 }
 
@@ -56,11 +57,8 @@ page{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  color: #ACA9A9;
-}
-
-.line-right-width{
   width: 50%;
+  color: #ACA9A9;
 }
 
 .input{

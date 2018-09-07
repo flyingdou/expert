@@ -83,7 +83,10 @@
   <view class='button button-style2' bindtap='showMessage' 
     wx:if='{{!status || status == 2}}'>
     邀请好友监督
-    <button open-type='share' class='login-button' bindtap='showMessage'
+    <form class='submitDiv' report-submit='true' bindsubmit='submitApply'>
+      <button class='submitButton' form-type='submit'></button>
+    </form>
+    <button open-type='share' class='share-button' bindtap='showMessage'
       wx:if='{{model.bmiHigh && memberData.birthday}}'>
     </button>
   </view>
@@ -96,9 +99,13 @@
 <view class='buttons' wx:else>
   <view class='button button-style1' bindtap='submitForm' data-share='share'>
     同意本次打卡
+    <button class='share-button' open-type='getUserInfo'
+      bindgetuserinfo='wechatLogin' data-success='true'></button>
   </view>
   <view class='button button-style2' bindtap='goHome'>
     拒绝本次打卡
+    <button class='share-button' open-type='getUserInfo'
+      bindgetuserinfo='wechatLogin' data-success='false'></button>
   </view>
 </view>
 
