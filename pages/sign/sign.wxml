@@ -97,15 +97,15 @@
 
 <!-- 分享展示按钮 -->
 <view class='buttons' wx:else>
-  <view class='button button-style1' bindtap='submitForm' data-share='share'>
+  <view class='button button-style1'>
     同意本次打卡
     <button class='share-button' open-type='getUserInfo'
-      bindgetuserinfo='wechatLogin' data-success='true'></button>
+      bindgetuserinfo='wechatLogin' data-success='1'></button>
   </view>
-  <view class='button button-style2' bindtap='goHome'>
+  <view class='button button-style2'>
     拒绝本次打卡
     <button class='share-button' open-type='getUserInfo'
-      bindgetuserinfo='wechatLogin' data-success='false'></button>
+      bindgetuserinfo='wechatLogin' data-success='0'></button>
   </view>
 </view>
 

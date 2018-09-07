@@ -31,7 +31,7 @@ Page({
     if (options.model) {
       _this.setData({
         model: JSON.parse(options.model)
-      })
+      });
     }
   },
 
@@ -46,6 +46,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 获取登录code
+    wx.login({
+      success: function (res) {
+        _this.data.code = res.code;
+      }
+    });
+
     // 查询用户数据
     if (_this.data.model.memberId) {
       _this.getMemberData(_this.data.model.memberId);
@@ -135,10 +142,10 @@ Page({
 
             // 判断用户确认操作还是取消操作
             var success = e.currentTarget.dataset.success;
-            if (success) {
-              objx.submitForm();
+            if (success == 1) {
+              objx.submitForm(res.key);
             } else {
-              objx.cancal();
+              objx.cancal(res.key);
             }
           } else {
             // 程序异常，console打印异常信息
@@ -304,7 +311,7 @@ Page({
   /**
    * 提交表单
    */
-  submitForm: function (e) {
+  submitForm: function (shareMember) {
     // 修改状态, 根据状态禁用按钮
     _this.setData({ status: 1 });
 
@@ -324,13 +331,12 @@ Page({
     }
 
     // 是否是通过分享保存数据标识
-    var share = e.currentTarget.dataset.share;
     var model = _this.checkForm();
     if (!model) {
       return;
     }
-    if (share) {
-      model.shareMember = wx.getStorageSync('memberId');
+    if (shareMember) {
+      model.shareMember = shareMember;
     }
     wx.request({
       url: app.request_url + "sign.asp",
@@ -338,7 +344,7 @@ Page({
         json: encodeURI(JSON.stringify(model))
       },
       success: function (res) {
-        if (!share) { 
+        if (!shareMember) { 
           wx.showModal({
             title: '签到成功',
             content: '您已成功打卡，请进入“我的足迹”查看打卡记录。',
@@ -366,8 +372,8 @@ Page({
   /**
    * 用户取消操作
    */
-  cancal: function () {
-    var param = { shareMember: wx.getStorageSync('memberId') }
+  cancal: function (shareMember) {
+    var param = { shareMember: shareMember }
     wx.request({
       url: app.request_url + 'cancal.asp',
       data: {
