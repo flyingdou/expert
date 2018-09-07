@@ -163,6 +163,11 @@ image{
   background-color: #FF4401;
 }
 
+.button-style3{
+  color: #FFF;
+  background-color: #ACA9A9;
+}
+
 .login-button{
   position: absolute;
   top: 0;

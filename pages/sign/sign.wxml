@@ -71,13 +71,24 @@
 </view>
 
 <!-- 底部按钮 -->
-<view class='buttons' wx:if='{{!model.memberId}}'>
-  <view class='button button-style1' bindtap='submitForm'>
+<view class='buttons' wx:if='{{!model.share}}'>
+  <view class='button button-style1' bindtap='submitForm' 
+    wx:if='{{!status || status == 1}}'>
     直接保存
   </view>
-  <view class='button button-style2'>
-    好友监督保存
-    <button open-type='share' class='login-button'></button>
+  <view class='button button-style3' wx:if='{{status == 2}}'>
+    直接保存
+  </view>
+
+  <view class='button button-style2' bindtap='showMessage' 
+    wx:if='{{!status || status == 2}}'>
+    邀请好友监督
+    <button open-type='share' class='login-button' bindtap='showMessage'
+      wx:if='{{model.bmiHigh && memberData.birthday}}'>
+    </button>
+  </view>
+  <view class='button button-style3' wx:if='{{status == 1}}'>
+    邀请好友监督
   </view>
 </view>
 

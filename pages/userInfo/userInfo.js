@@ -135,7 +135,9 @@ Page({
             bmiHigh: trainRcord.bmiHigh
           }
           if (!model.birthday || model.birthday == '') {
-            model.birthday = util.formatDate(new Date());
+            // 如果没有生日默认当前时间减20年
+            var time = new Date().getTime() - (20 * 365 * 24 * 60 * 60 * 1000);
+            model.birthday = util.formatDate(new Date(time));
           }
           if (!model.gender || model.gender == '') {
             model.gender = '男';

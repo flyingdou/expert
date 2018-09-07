@@ -27,17 +27,11 @@ Page({
       model: { currentTime: util.formatTime(new Date()) }
     })
 
+    // 判断是否通过分享进入
     if (options.model) {
       _this.setData({
         model: JSON.parse(options.model)
       })
-    }
-
-    // 查询用户数据
-    if (wx.getStorageSync('memberId')) {
-      _this.getMemberData(wx.getStorageSync('memberId'));
-    } else {
-      _this.getMemberData(_this.data.model.memberId);
     }
   },
 
@@ -52,7 +46,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 查询用户数据
+    if (wx.getStorageSync('memberId')) {
+      _this.getMemberData(wx.getStorageSync('memberId'));
+    } else {
+      _this.getMemberData(_this.data.model.memberId);
+    }
   },
 
   /**
@@ -89,6 +88,7 @@ Page({
   onShareAppMessage: function () {
     var model = _this.data.model;
     model.memberId = wx.getStorageSync('memberId');
+    model.share = true;
     return {
       title: '健身打卡',
       path: 'pages/sign/sign?model=' + JSON.stringify(model)
@@ -156,6 +156,37 @@ Page({
   },
 
   /**
+   * 显示提示信息
+   */
+  showMessage: function () {
+    // 修改状态, 根据状态禁用按钮
+    _this.setData({ status: 2 });
+
+    // 判断是否输入最高运动心率
+    if (!_this.data.model.bmiHigh) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入最高运动心率',
+        showCancel: false
+      })
+    }
+
+    // 判断是否需要用户填写生日数据
+    if (!_this.data.memberData.birthday) {
+      wx.showModal({
+        title: '提示',
+        content: '请填写准确出生日期并保存后打卡',
+        showCancel: false,
+        complete: function () {
+          wx.navigateTo({
+            url: '../userInfo/userInfo'
+          });
+        }
+      });
+    }
+  },
+
+  /**
    * 检查表单
    */
   checkForm: function () {
@@ -184,6 +215,25 @@ Page({
    * 提交表单
    */
   submitForm: function (e) {
+    // 修改状态, 根据状态禁用按钮
+    _this.setData({ status: 1 });
+
+    // 判断是否需要用户填写生日数据
+    if (!_this.data.memberData.birthday) {
+      wx.showModal({
+        title: '提示',
+        content: '请填写准确出生日期并保存后打卡',
+        showCancel: false,
+        complete: function () {
+          wx.navigateTo({
+            url: '../userInfo/userInfo'
+          });
+        }
+      });
+      return;
+    }
+
+    // 是否是通过分享保存数据标识
     var share = e.currentTarget.dataset.share;
     var model = _this.checkForm();
     if (!model) {

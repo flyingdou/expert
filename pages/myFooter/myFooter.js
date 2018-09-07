@@ -109,10 +109,9 @@ Page({
     // 计算身体数据
     var trainRcord = _this.data.trainRcord;
     var age = _this.ages(trainRcord.birthday);
-
-    var bmiH = (220 - age - trainRcord.heart) * trainRcord.bmiHeigh + trainRcord.heart;
-    var bmiL = (220 - age - trainRcord.heart) * trainRcord.bmiLow + trainRcord.heart;
-
+    var base = (220 - age - trainRcord.heart);
+    var bmiH = base * (trainRcord.bmiHigh / 100) + trainRcord.heart;
+    var bmiL = base * (trainRcord.bmiLow / 100) + trainRcord.heart;
     var styles = [
       { 
         message: '运动强度不够，请继续努力！', 
@@ -130,7 +129,7 @@ Page({
         css: 'sign-message-style3'
       }
     ];
-
+    // 判断运动强度区域
     if (sign.heartRates < bmiL) {
       sign.style = styles[0];
     }
@@ -140,7 +139,6 @@ Page({
     if (sign.heartRates >= bmiH) {
       sign.style = styles[2];
     }
-
     return sign;
   },
 
