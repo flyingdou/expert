@@ -72,11 +72,12 @@ Page({
     // 页面初始化, 读取服务端专家系统数据
     this.methods.init(this);
 
+    // 初始化数据, 获取当前系统时间
     var model = this.data.model;
     model.date = util.formatDate(new Date());
     this.setData({
       model: model
-    })
+    });
   },
 
   /**
@@ -90,8 +91,11 @@ Page({
         success: function (res) {
           _this.data.code = res.code;
         }
-      })
+      });
     } else {
+      _this.setData({
+        loginStatus: true
+      });
       wx.request({
         url: app.request_url + 'getLastTrainRecord.asp',
         data: {
@@ -108,7 +112,7 @@ Page({
           _this.data.model = model;
           _this.computeHealthy();
         }
-      })
+      });
     }
   },
 
@@ -125,7 +129,27 @@ Page({
     }
   },
 
-  // 去填写身体数据页面
+  /**
+   * 上报formId
+   */
+  submitApply: function (e) {
+    var param = {
+      source: e.detail.formId,
+      openid: wx.getStorageSync('openId'),
+      memberId: wx.getStorageSync('memberId'),
+      clubId: 0,
+      type: 'sign',
+      type_id: 0
+    }
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!uploadFormId.asp',
+      data: {
+        json: encodeURI(JSON.stringify(param))
+      }
+    })
+  },
+
+  // 去指定页面
   toPage: function (e) {
     // 判断用户是否登录
     if (!wx.getStorageSync('memberId')) {

@@ -83,9 +83,6 @@
   <view class='button button-style2' bindtap='showMessage' 
     wx:if='{{!status || status == 2}}'>
     邀请好友监督
-    <form class='submitDiv' report-submit='true' bindsubmit='submitApply'>
-      <button class='submitButton' form-type='submit'></button>
-    </form>
     <button open-type='share' class='share-button' bindtap='showMessage'
       wx:if='{{model.bmiHigh && memberData.birthday}}'>
     </button>

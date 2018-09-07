@@ -17,6 +17,10 @@
       <image src='{{filter.errorImage(item.image)}}'></image>
     </view>
     <view class='button-text'>{{item.text}}</view>
+    <form class='submitDiv' report-submit='true' bindsubmit='submitApply' 
+      wx:if='{{item.page == "sign" && loginStatus}}'>
+      <button class='submitButton' form-type='submit'></button>
+    </form>
   </view>
 </view>
 

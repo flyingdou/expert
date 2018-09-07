@@ -264,26 +264,6 @@ Page({
   },
 
   /**
-   * 上报formId
-   */
-  submitApply: function (e) {
-    var param = {
-      source: e.detail.formId,
-      openid: wx.getStorageSync('openId'),
-      memberId: wx.getStorageSync('memberId'),
-      clubId: 0,
-      type: 'sign',
-      type_id: 0
-    }
-    wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!uploadFormId.asp',
-      data: {
-        json: encodeURI(JSON.stringify(param))
-      }
-    })
-  },
-
-  /**
    * 检查表单
    */
   checkForm: function () {
