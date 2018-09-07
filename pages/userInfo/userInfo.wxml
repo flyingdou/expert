@@ -101,8 +101,13 @@
 </view>
 
 <!-- 保存按钮 -->
-<view class='submit-button' bindtap='submitForm'>
+<!-- <view class='submit-button' bindtap='submitForm'>
   <image src='{{filter.errorImage("201809031051.png")}}' mode='aspectFill'></image>
   <view class='submit-button-text'>保存</view>
+</view> -->
+
+<!-- 保存按钮 -->
+<view class='submit-button2' bindtap='submitForm'>
+  保存
 </view>
 
