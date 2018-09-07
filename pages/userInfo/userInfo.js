@@ -127,12 +127,18 @@ Page({
           var memberData = _this.data.memberData;
           var trainRcord = res.data;
           var model = {
-            birthday: memberData.birthday || util.formatData(new Date()),
-            gender: memberData.sex || '男',
+            birthday: memberData.birthday,
+            gender: memberData.sex,
             height: trainRcord.height,
             heart: trainRcord.heart,
             bmiLow: trainRcord.bmiLow,
             bmiHigh: trainRcord.bmiHigh
+          }
+          if (!model.birthday || model.birthday == '') {
+            model.birthday = util.formatDate(new Date());
+          }
+          if (!model.gender || model.gender == '') {
+            model.gender = '男';
           }
           _this.setData({
             model: model
