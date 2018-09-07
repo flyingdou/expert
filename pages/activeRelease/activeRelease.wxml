@@ -84,9 +84,14 @@
     </view>
 
     <!-- 保存按钮 -->
-    <view class='submit-button' bindtap='submitForm'>
+    <!-- <view class='submit-button' bindtap='submitForm'>
       <image src='{{filter.errorImage("201809031051.png")}}' mode='aspectFill'></image>
       <view class='submit-button-text'>保存</view>
+    </view> -->
+
+    <!-- 保存按钮 -->
+    <view class='submit-button2' bindtap='submitForm'>
+      保存
     </view>
 
   <!-- form end -->
@@ -96,7 +101,7 @@
   <view class='other' style='height: {{windowHeightRpx}}rpx;'>
 
     <!-- 挑战目标 -->
-    <view class='target-wraper' wx:if='{{pageIndex == 0}}'>
+    <view class='target-wraper' style='display: {{pageIndex == 0 ? "block" : "none"}};'>
 
       <!-- 填充高度 -->
       <view style='height: 20rpx;background-color: #F8F8F8;'></view>
@@ -146,14 +151,14 @@
     </view> 
 
     <!-- 成功奖励 -->
-    <view class='award' wx:if='{{pageIndex == 1}}'>
+    <view class='award' style='display: {{pageIndex == 1 ? "block" : "none"}};'>
       <textarea class='award-textarea' placeholder='请输入挑战成功后的奖励内容'
         bindinput='saveFormData' data-key='award'>
       </textarea>
     </view>
 
     <!-- 失败惩罚 -->
-    <view class='institution' wx:if='{{pageIndex == 2}}'>
+    <view class='institution' style='display: {{pageIndex == 2 ? "block" : "none"}};'>
       <!-- 填充高度 -->
       <view style='height: 20rpx;background-color: #F8F8F8;'></view>
 
@@ -200,9 +205,14 @@
     </view>
 
     <!-- 保存按钮 -->
-    <view class='submit-button' bindtap='back'>
+    <!-- <view class='submit-button' bindtap='back'>
       <image src='{{filter.errorImage("201809031051.png")}}' mode='aspectFill'></image>
       <view class='submit-button-text'>保存</view>
+    </view> -->
+
+    <!-- 保存按钮 -->
+    <view class='submit-button2' bindtap='back'>
+      保存
     </view>
 
   <!-- other end -->

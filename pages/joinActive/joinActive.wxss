@@ -148,6 +148,6 @@ page{
   background-color: #FF4401;
   text-align: center;
   line-height: 44px;
-  font-size: 18px;
+  font-size: 28rpx;
   color: #FFF;
 }

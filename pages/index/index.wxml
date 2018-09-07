@@ -39,7 +39,7 @@
     </view>
   </view>
   <view class='healthy-tip'>
-    <view class='ask'>?</view>
+    <view class='ask'>!</view>
     <view>在 "健身打卡" 和 "我的-个人信息" 中更新数据可重新生成评估结果</view>
   </view>
 </view>

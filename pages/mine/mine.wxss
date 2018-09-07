@@ -202,7 +202,7 @@ page{
   width: 100%;
   height: auto;
   background-color: white;
-  margin: 20rpx 0;
+  margin-bottom: 20rpx;
   overflow: hidden;
 }
 

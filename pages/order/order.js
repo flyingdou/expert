@@ -8,7 +8,7 @@ Page({
     userInfo: {},
     productDetail: {},
     price: 0,
-    showPhoneNubmer: '请点击获取手机号',
+    showPhoneNumber: '请点击获取手机号',
     ticket: { name: '请选择优惠券'}
   },
 
@@ -171,12 +171,9 @@ Page({
       success: function (res) {
         // 获取和处理用户手机号
         var userPhoneNumber = res.data.phoneNumber;
-        var showUserPhoneNumber = userPhoneNumber.substring(0, 3) + "****" 
-          + userPhoneNumber.substring(userPhoneNumber.length - 4, userPhoneNumber.length);
         // 更新UI显示
         obj.setData({
-          phoneNumber: userPhoneNumber,
-          showPhoneNubmer: showUserPhoneNumber
+          phoneNumber: userPhoneNumber
         });
         // 隐藏加载动画
         wx.hideLoading();

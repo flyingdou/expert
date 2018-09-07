@@ -44,7 +44,7 @@ image{
   padding: 20rpx;
   font-size: 30rpx;
   color: #030303;
-  border-bottom: 1px solid #F8F8F8;
+  border-bottom: 1px solid #F0F0F2;
 }
 
 .healthy-content{

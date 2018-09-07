@@ -20,6 +20,9 @@
   <view class='line-right' wx:if='{{memberData.mobilephone && memberData.mobileValid}}'>
     {{filter.getStarNumberStr(memberData.mobilephone, 3, 4)}}
   </view>
+  <view class='line-right' wx:elif='{{model.mobilephone}}'>
+    {{filter.getStarNumberStr(model.mobilephone, 3, 4)}}
+  </view>
   <view class='line-right' wx:else>
     点击绑定手机
     <button class='float-button' open-type='getPhoneNumber' 

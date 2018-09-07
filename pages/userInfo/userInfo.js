@@ -146,7 +146,27 @@ Page({
    * 获取用户手机号
    */
   getPhoneNumber: function (e) {
-    console.log(e)
+    wx.showLoading({
+      mask: 'true'
+    })
+    e.session_key = wx.getStorageSync("session_key");
+    wx.request({
+      url: app.request_url + 'decodePhoneNumber.asp',
+      data: {
+        json: JSON.stringify(e)
+      },
+      success: function (res) {
+        var model = _this.data.model;
+        // 获取用户手机号
+        model.mobilephone = res.data.phoneNumber;
+        // 更新UI显示
+        _this.setData({
+          model: model
+        });
+        // 隐藏加载动画
+        wx.hideLoading();
+      }
+    });
   },
 
   /**

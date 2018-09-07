@@ -15,7 +15,7 @@
     <view class='userInfo_phoneNumber'>
       <button class='getPhoneNumber' open-type='getPhoneNumber' 
         bindgetphonenumber='getPhoneNumber'>
-        {{phoneNumber ? filter.showPhoneNubmer(phoneNumber, 3, 4) : showPhoneNubmer}}
+        {{phoneNumber ? filter.getStarNumberStr(phoneNumber, 3, 4) : showPhoneNumber}}
       </button>
     </view>
   </view>
