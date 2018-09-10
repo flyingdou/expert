@@ -18,6 +18,7 @@ image{
 }
 
 .button{
+  position: relative;
   padding-top: 20rpx;
   width: 33.33%;
 }

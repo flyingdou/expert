@@ -162,7 +162,7 @@ Page({
     var page = e.currentTarget.dataset.page;
     wx.navigateTo({
       url: `../${page}/${page}`
-    })
+    });
   },
 
   /**

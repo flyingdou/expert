@@ -11,8 +11,8 @@
 
 <!-- 多功能按钮 -->
 <view class='buttons'>
-  <view class='button' wx:for='{{buttons}}' wx:key='' bindtap='toPage' 
-    data-page='{{item.page}}'> 
+  <view class='button' wx:for='{{buttons}}' wx:key='' bindtap='toPage'
+    data-page='{{item.page}}' data-index='{{index}}'> 
     <view class='button-icon'>
       <image src='{{filter.errorImage(item.image)}}'></image>
     </view>
