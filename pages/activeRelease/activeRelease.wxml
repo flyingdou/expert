@@ -77,8 +77,9 @@
         注意事项
       </view>
       <view class='memo-content'>
-        <textarea class='memo-textarea' bindinput='saveFormData' data-key='memo'
-          placeholder='{{position == 0 ? "请输入挑战注意事项" : ""}}'>
+        <textarea style='display: {{position == 0 ? "block" : "none"}}' 
+          class='memo-textarea' bindinput='saveFormData' data-key='memo'
+          placeholder='请输入注意事项'>
         </textarea>
       </view>
     </view>
@@ -152,8 +153,9 @@
 
     <!-- 成功奖励 -->
     <view class='award' style='display: {{pageIndex == 1 ? "block" : "none"}};'>
-      <textarea class='award-textarea' bindinput='saveFormData' data-key='award'
-        placeholder='{{position != 0 ? "请输入挑战成功后的奖励内容" : ""}}'>
+      <textarea style='display: {{position != 0 ? "block" : "none"}}' 
+        class='award-textarea' bindinput='saveFormData' data-key='award'
+        placeholder='请输入挑战成功后的奖励内容'>
       </textarea>
     </view>
 
