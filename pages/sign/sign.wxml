@@ -84,7 +84,7 @@
     wx:if='{{!status || status == 2}}'>
     邀请好友监督
     <button open-type='share' class='share-button' bindtap='showMessage'
-      wx:if='{{model.bmiHigh && memberData.birthday && sign}}'>
+      wx:if='{{model.bmiHigh && memberData.birthday && !sign}}'>
     </button>
   </view>
   <view class='button button-style3' wx:if='{{status == 1}}'>
