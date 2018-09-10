@@ -16,19 +16,22 @@ Page({
       },
       {
         text: '体重减少',
-        placeholder: '输入减少体重kg',
-        code: 'A'
+        placeholder: '输入减少体重',
+        code: 'A',
+        company: 'kg'
       },
       {
         text: '体重增加',
-        placeholder: '输入增加体重kg',
-        code: 'B'
+        placeholder: '输入增加体重',
+        code: 'B',
+        company: 'kg'
       }
     ],
     targetIndex: 0,
     memberList: [],
     memberIndex: 0,
-    model: {}
+    model: {},
+    pageIndex: 0
   },
 
   /**
@@ -130,13 +133,30 @@ Page({
   /**
    * 显示另一个页面
    */
-  showOtherPage: function (e) {
+  showPage: function (e) {
+    // 显示页面
     var index = e.currentTarget.dataset.index;
-    var titles = [ '挑战目标', '成功奖励', '失败惩罚' ];
-    _this.setData({
-      position: _this.data.windowWidthRpx,
-      pageIndex: index
-    });
+    var titles = [ '健身挑战', '挑战目标', '成功奖励', '失败惩罚' ];
+    var position = index == 0 ? 0 : _this.data.windowWidthRpx;
+    if (index == 0) {
+      // 检查表单
+      var model = _this.checkForm();
+      if (!model) {
+        return;
+      } else {
+        _this.setData({
+          model: model,
+          position: position,
+          pageIndex: index
+        });
+      }
+    } else {
+      _this.setData({
+        position: position,
+        pageIndex: index
+      });
+    }
+    // 设置页面标题
     wx.setNavigationBarTitle({
       title: titles[index]
     });
@@ -200,12 +220,7 @@ Page({
    * 返回
    */
   back: function () {
-    _this.setData({
-      position: 0
-    });
-    wx.setNavigationBarTitle({
-      title: '健身挑战'
-    });
+    
   },
 
   /**
@@ -214,14 +229,27 @@ Page({
   checkForm: function () {
     var model = _this.data.model;
     var paramList = [
-      { key: 'image', message: '请上传挑战海报' },
-      { key: 'name', message: '请输入挑战名称' },
-      { key: 'days', message: '请输入挑战天数' },
-      { key: 'value', message: '请输入挑战目标值' },
-      { key: 'award', message: '请输入成功奖励' },
-      { key: 'amerceMoney', message: '请输入失败惩罚金额' }
+      [
+        { key: 'image', message: '请上传挑战海报' },
+        { key: 'name', message: '请输入挑战名称' },
+        { key: 'days', message: '请输入挑战天数' },
+        { key: 'value', message: '请输入挑战目标值' },
+        { key: 'award', message: '请输入成功奖励' },
+        { key: 'amerceMoney', message: '请输入失败惩罚金额' }
+      ],
+      [
+        { key: 'days', message: '请输入挑战天数' },
+        { key: 'value', message: '请输入挑战目标值' }
+      ],
+      [
+        { key: 'award', message: '请输入成功奖励' }
+      ],
+      [
+        { key: 'amerceMoney', message: '请输入失败惩罚金额' }
+      ]
     ];
-    for (var item of paramList) {
+    var index = parseInt(_this.data.pageIndex);
+    for (var item of paramList[index]) {
       if (!model[item.key] || model[item.key] == '') {
         wx.showModal({
           title: '提示',

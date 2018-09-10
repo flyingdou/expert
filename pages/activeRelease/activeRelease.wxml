@@ -45,8 +45,10 @@
       <view class='line-left'>
         挑战目标
       </view>
-      <view class='line-right line-right-width' bindtap='showOtherPage' 
-        data-index='0'>
+      <view class='line-right' bindtap='showPage' data-index='1'>
+        <view wx:if='{{model.days && model.target && model.value}}'>
+          {{filter.active_target(model.days, model.target, model.value)}}
+        </view>
         <image class='more-icon' src='{{filter.errorImage("more.png")}}'></image>
       </view>
     </view>
@@ -55,8 +57,8 @@
       <view class='line-left'>
         成功奖励
       </view>
-      <view class='line-right line-right-width' bindtap='showOtherPage'
-        data-index='1'>
+      <view class='line-right' bindtap='showPage' data-index='2'>
+        <view wx:if='{{model.award}}'>{{filter.overflow_hidden(model.award, 10)}}</view>
         <image class='more-icon' src='{{filter.errorImage("more.png")}}'></image>
       </view>
     </view>
@@ -65,8 +67,10 @@
       <view class='line-left'>
         失败惩罚
       </view>
-      <view class='line-right line-right-width' bindtap='showOtherPage'
-        data-index='2'>
+      <view class='line-right' bindtap='showPage' data-index='3'>
+        <view wx:if='{{model.amerceMoney}}'>
+          {{filter.overflow_hidden('向' + memberList[memberIndex].name + '捐款' + model.amerceMoney + '元', 10)}}
+        </view>
         <image class='more-icon' src='{{filter.errorImage("more.png")}}'></image>
       </view>
     </view>
@@ -102,7 +106,7 @@
   <view class='other' style='height: {{windowHeightRpx}}rpx;'>
 
     <!-- 挑战目标 -->
-    <view class='target-wraper' style='display: {{pageIndex == 0 ? "block" : "none"}};'>
+    <view class='target-wraper' style='display: {{pageIndex == 1 ? "block" : "none"}};'>
 
       <!-- 填充高度 -->
       <view style='height: 20rpx;background-color: #F8F8F8;'></view>
@@ -138,11 +142,11 @@
                 {{item.text}}
               </view>
             </view>
-            <view class='line-right'>
-              <input type='number' class='input' wx:if='{{index == targetIndex}}'
-                placeholder='{{item.placeholder}}' bindinput='saveFormData' 
-                data-key='value'>
+            <view class='line-right' wx:if='{{index == targetIndex}}'>
+              <input type='number' class='input' placeholder='{{item.placeholder}}' 
+                bindinput='saveFormData' data-key='value'>
               </input>
+              <view class='company' wx:if='{{item.company}}'>{{item.company}}</view>
             </view>
           </view>
         </block>
@@ -152,7 +156,7 @@
     </view> 
 
     <!-- 成功奖励 -->
-    <view class='award' style='display: {{pageIndex == 1 ? "block" : "none"}};'>
+    <view class='award' style='display: {{pageIndex == 2 ? "block" : "none"}};'>
       <textarea style='display: {{position != 0 ? "block" : "none"}}' 
         class='award-textarea' bindinput='saveFormData' data-key='award'
         placeholder='请输入挑战成功后的奖励内容'>
@@ -160,7 +164,7 @@
     </view>
 
     <!-- 失败惩罚 -->
-    <view class='institution' style='display: {{pageIndex == 2 ? "block" : "none"}};'>
+    <view class='institution' style='display: {{pageIndex == 3 ? "block" : "none"}};'>
       <!-- 填充高度 -->
       <view style='height: 20rpx;background-color: #F8F8F8;'></view>
 
@@ -213,7 +217,7 @@
     </view> -->
 
     <!-- 保存按钮 -->
-    <view class='submit-button2' bindtap='back'>
+    <view class='submit-button2' bindtap='showPage' data-index='0'>
       保存
     </view>
 
