@@ -158,7 +158,7 @@ Page({
    */
   uploadImage: function () {
     wx.navigateTo({
-      url: '../clip/clip?width=16&height=9'
+      url: '../clip/clip?width=355&height=140'
     });
     return;
 

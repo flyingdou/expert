@@ -104,7 +104,7 @@ Page({
         // 根据图片的宽高显示不同的效果   保证图片可以正常显示
         if (IMG_RATIO >= 1) {
           var _width = 0, _height = 0, _x = 0, _y = 0;
-          var width = _this.data.width, height = _this.data.height;
+          var width = parseInt(_this.data.width), height = parseInt(_this.data.height);
           if (width > height) {
             _width = SCREEN_WIDTH;
             _height = _width * (height / width);
@@ -144,12 +144,12 @@ Page({
           })
         } else {
           var _width = 0, _height = 0, _x = 0, _y = 0;
-          var width = _this.data.width, height = _this.data.height;
+          var width = parseInt(_this.data.width), height = parseInt(_this.data.height);
           if (width > height) {
             _width = SCREEN_WIDTH * IMG_RATIO;
             _height = _width * (height / width);
             _x = 0;
-            _y = Math.ceil(((SCREEN_WIDTH / IMG_RATIO) - _height) / 2);
+            _y = Math.ceil((SCREEN_WIDTH - _height) / 2);
           } else if (width < height) {
             _height = SCREEN_WIDTH;
             _width = _height * (width / height);
@@ -261,6 +261,9 @@ Page({
               wx.setStorageSync('imageData', base64);
               wx.setStorageSync('imageSrc', tempRes.tempFilePath);
 
+              // 隐藏加载窗口
+              wx.hideLoading();
+
               wx.navigateBack({
                 delta: 1
               })
@@ -269,17 +272,10 @@ Page({
             fail: function (e) {
               console.log(e);
             }
-          })
-
-          wx.hideLoading()
-          // 成功获得地址的地方
-          // wx.previewImage({
-          //   current: '', // 当前显示图片的http链接
-          //   urls: [res.tempFilePath] // 需要预览的图片http链接列表
-          // })
+          });
         }
-      })
-    })
+      });
+    });
   },
 
   // 设置大小的时候触发的touchStart事件
