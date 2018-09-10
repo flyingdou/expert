@@ -46,12 +46,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 获取登录code
-    wx.login({
-      success: function (res) {
-        _this.data.code = res.code;
-      }
-    });
+    if (!wx.getStorageSync('memberId')) {
+      // 获取登录code
+      wx.login({
+        success: function (res) {
+          _this.data.code = res.code;
+        }
+      });
+    }
 
     // 查询用户数据
     if (_this.data.model.memberId) {
@@ -151,6 +153,9 @@ Page({
             } else {
               objx.cancal(res.key);
             }
+            _this.setData({
+              loginStatus: true
+            });
           } else {
             // 程序异常，console打印异常信息
             console.log(res.message);
@@ -229,7 +234,7 @@ Page({
    */
   getSign: function () {
     var param = {
-      memberId: wx.getStorageSync('memberId')
+      memberId: _this.data.model.memberId || wx.getStorageSync('memberId')
     }
     wx.request({
       url: app.request_url + 'getSign.asp',

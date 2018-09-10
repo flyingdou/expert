@@ -97,12 +97,14 @@
   <view class='button button-style1'>
     同意本次打卡
     <button class='share-button' open-type='getUserInfo'
-      bindgetuserinfo='wechatLogin' data-success='1'></button>
+      bindgetuserinfo='wechatLogin' data-success='1' wx:if='{{!loginStatus}}'>
+    </button>
   </view>
   <view class='button button-style2'>
     拒绝本次打卡
     <button class='share-button' open-type='getUserInfo'
-      bindgetuserinfo='wechatLogin' data-success='0'></button>
+      bindgetuserinfo='wechatLogin' data-success='0' wx:if='{{!loginStatus}}'>
+    </button>
   </view>
 </view>
 
