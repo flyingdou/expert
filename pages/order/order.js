@@ -8,7 +8,7 @@ Page({
     userInfo: {},
     productDetail: {},
     price: 0,
-    showPhoneNumber: '请点击获取手机号',
+    showPhoneNumber: '请绑定手机号',
     ticket: { name: '请选择优惠券'}
   },
 
@@ -198,9 +198,10 @@ Page({
   payMent: function() {
     // 判断用户是否已经获取手机号
     if (this.data.phoneNumber == 0){
-      wx.showToast({
-        title: '请先获取手机号!',
-        icon: 'none'
+      wx.showModal({
+        title: '提示',
+        content: '请点击本页面右上按钮绑定手机',
+        showCancel: false
       });
       return;
     }

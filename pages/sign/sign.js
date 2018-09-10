@@ -59,6 +59,9 @@ Page({
     } else {
       _this.getMemberData(wx.getStorageSync('memberId'));
     }
+
+    // 查询当天是否打过卡
+    _this.getSign();
   },
 
   /**
@@ -94,10 +97,11 @@ Page({
    */
   onShareAppMessage: function () {
     var model = _this.data.model;
+    var memberNick = _this.data.memberData.nickName;
     model.memberId = wx.getStorageSync('memberId');
     model.share = true;
     return {
-      title: '健身打卡',
+      title: `“${memberNick}” 请您监督TA的健身打卡记录`,
       path: 'pages/sign/sign?model=' + JSON.stringify(model)
     }
   },
@@ -221,6 +225,26 @@ Page({
   },
 
   /**
+   * 查询当天是否打过卡
+   */
+  getSign: function () {
+    var param = {
+      memberId: wx.getStorageSync('memberId')
+    }
+    wx.request({
+      url: app.request_url + 'getSign.asp',
+      data: {
+        json: encodeURI(JSON.stringify(param))
+      },
+      success: function (res) {
+        _this.setData({
+          sign: parseInt(res.data.sign)
+        });
+      }
+    });
+  },
+
+  /**
    * 保存表单数据
    */
   saveFormData: function (e) {
@@ -253,13 +277,23 @@ Page({
       });
     }
 
+    // 当天已经打过卡, 不能再打卡
+    if (_this.data.sign) {
+      wx.showModal({
+        title: '提示',
+        content: '今日已经打过卡, 请明天再来',
+        showCancel: false
+      });
+      return;
+    }
+
     // 判断是否输入最高运动心率
     if (!_this.data.model.bmiHigh) {
       wx.showModal({
         title: '提示',
         content: '请输入最高运动心率',
         showCancel: false
-      })
+      });
     }
   },
 
@@ -310,6 +344,16 @@ Page({
       return;
     }
 
+    // 当天已经打过卡, 不能再打卡
+    if (_this.data.sign) {
+      wx.showModal({
+        title: '提示',
+        content: '今日已经打过卡, 请明天再来',
+        showCancel: false
+      });
+      return;
+    }
+
     // 是否是通过分享保存数据标识
     var model = _this.checkForm();
     if (!model) {
@@ -324,7 +368,9 @@ Page({
         json: encodeURI(JSON.stringify(model))
       },
       success: function (res) {
-        if (!shareMember) { 
+        if (isNaN(shareMember)) { 
+          // 标识已经打过卡
+          _this.setData({ sign: 1});
           wx.showModal({
             title: '签到成功',
             content: '您已成功打卡，请进入“我的足迹”查看打卡记录。',
@@ -334,7 +380,7 @@ Page({
                 url: '../myFooter/myFooter'
               })
             }
-          })
+          });
         } else {
           wx.showModal({
             title: '提示',
@@ -343,10 +389,10 @@ Page({
             complete: function () {
               _this.goHome();
             }
-          })
+          });
         }
       }
-    })
+    });
   },
 
   /**

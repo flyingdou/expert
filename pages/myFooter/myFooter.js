@@ -114,7 +114,7 @@ Page({
     var bmiL = base * (trainRcord.bmiLow / 100) + trainRcord.heart;
     var styles = [
       { 
-        message: '运动强度不够，请继续努力！', 
+        message: '您的运动强度不够，请继续努力！', 
         icon: '201809031053.png', 
         css: 'sign-message-style2' 
       },
@@ -124,7 +124,7 @@ Page({
         css: 'sign-message-style1'
       },
       {
-        message: '最高心率区：运动强度太大，请减少运动量！',
+        message: '您的运动强度太大，请减少运动量！',
         icon: '201809031054.png',
         css: 'sign-message-style3'
       }
