@@ -1,4 +1,5 @@
 var app = getApp();
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -6,14 +7,22 @@ Page({
    */
   data: {
     base_picture_url: app.constants.base_pic_url,
-    activeList: []
+    tab: [
+      { title: '我参加的挑战' },
+      { title: '我发起的挑战' }
+    ],
+    activeList: [],
+    createActiveList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var systemInfo = util.getSystemInfo();
+    this.setData({
+      height: systemInfo.windowHeightRpx
+    })
   },
 
   /**
@@ -44,6 +53,26 @@ Page({
       success: (res) => {
         obj.setData({
           activeList: res.data.activeList.map(addResultImage)
+        });
+      }
+    });
+
+    this.mineCreateActive();
+  },
+
+  /**
+   * 我发起的挑战
+   */
+  mineCreateActive: function () {
+    var _this = this;
+    wx.request({
+      url: app.request_url + 'mineCreateActive.asp',
+      data: {
+        memberId: wx.getStorageSync('memberId')
+      },
+      success: function (res) {
+        _this.setData({
+          createActiveList: res.data.activeList
         });
       }
     });

@@ -23,6 +23,10 @@
   color: #999;
 }
 
+.paySuccess-content-top{
+  padding: 0 20rpx;
+}
+
 .paySuccess-message{
   margin-top: 30px;
   padding: 10px;

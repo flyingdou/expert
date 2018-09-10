@@ -197,7 +197,7 @@ Page({
    */
   payMent: function() {
     // 判断用户是否已经获取手机号
-    if (this.data.phoneNumber == 0){
+    if (!this.data.phoneNumber){
       wx.showModal({
         title: '提示',
         content: '请点击本页面右上按钮绑定手机',
@@ -239,9 +239,11 @@ Page({
               title: '支付成功!',
               icon: 'success'
             });
+            var productType = this.data.productDetail.productType || 'goods';
+            var productName = this.data.productDetail.productName;
             // 支付成功, 跳转页面
             wx.navigateTo({
-              url: '../paySuccess/paySuccess'
+              url: `../paySuccess/paySuccess?productType=${productType}&productName=${productName}`
             });
           },
           fail: function (e) {
