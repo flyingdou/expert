@@ -11,7 +11,7 @@
           {{filter.overflow_hidden(active.name, 12)}}
         </view>
         <view class='activeCreator'>
-          发布人 : {{filter.overflow_hidden(active.creator, 10)}}
+          发布人 : {{filter.overflow_hidden(active.creator, 8)}}
         </view>
         <view class='activeCount'>  
           参加人数 : {{active.count}}人
